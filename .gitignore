@@ -1,0 +1,7 @@
+# Cache de datasets GEO
+projeto/analise/data/
+
+# Python / Poetry
+projeto/analise/.venv/
+__pycache__/
+*.pyc
