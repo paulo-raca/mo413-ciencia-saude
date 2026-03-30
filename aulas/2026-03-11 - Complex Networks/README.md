@@ -1,5 +1,8 @@
 # Redes Complexas (Complex Networks)
 
+[slides](slides.pdf) | [YouTube](https://www.youtube.com/watch?v=sIK1K8-pguI)
+
+
 Aula de 11/03/2026 — Paula D. Paro Costa & André Santanchè (UNICAMP)
 
 ---

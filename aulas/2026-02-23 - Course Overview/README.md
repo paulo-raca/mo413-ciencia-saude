@@ -1,5 +1,8 @@
 # Resumo: Visão Geral da Disciplina — Ciência de Dados para Saúde
 
+[slides](slides.pdf) | [YouTube](https://www.youtube.com/watch?v=Yb-ygbFyeAc)
+
+
 **Página da disciplina:** https://datasci4health.github.io/
 
 ---

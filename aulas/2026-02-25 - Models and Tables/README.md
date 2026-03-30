@@ -1,5 +1,8 @@
 # Modelos e Tabelas em Ciência de Dados para Saúde
 
+[slides](slides.pdf) | [YouTube](https://www.youtube.com/watch?v=iy6lvExoqLk)
+
+
 Aula de André Santanchè (UNICAMP) — 25 de fevereiro de 2026
 
 ---

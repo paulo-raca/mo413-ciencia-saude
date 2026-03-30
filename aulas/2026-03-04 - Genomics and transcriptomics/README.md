@@ -1,5 +1,8 @@
 # Genômica e Transcriptômica
 
+[slides](slides.pdf) | [YouTube](https://www.youtube.com/watch?v=lI1nm7oQE8E)
+
+
 **Disciplina:** Biologia Molecular e Celular
 **Docente:** Murilo V. Geraldo — Dep. Biologia Estrutural e Funcional, Instituto de Biologia, UNICAMP
 
