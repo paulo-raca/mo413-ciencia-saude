@@ -132,9 +132,9 @@ Estrutura padrão (`artigos/{subgrupo}/{autor}{ano}-{topico}-resumo.md`):
 
 **Equipe ALFAK:** Alan Freitas Ribeiro, Augusto José Peterlevitz, Felipe Kennedy Carvalho Torquato, Luis Henrique Angélico, Naruan Francisco Ferraz e Ferraz, Paulo Costa
 
-**Subgrupo A (artigos L2):** Paulo, Naruan Francisco Ferraz e Ferraz, Alan Freitas Ribeiro
+**Subgrupo A (artigos L2):** Augusto José Peterlevitz, Felipe Kennedy Carvalho Torquato, Luis Henrique Angélico
 
-**Subgrupo B (artigos L2):** Augusto José Peterlevitz, Felipe Kennedy Carvalho Torquato, Luis Henrique Angélico
+**Subgrupo B (artigos L2):** Paulo Costa, Naruan Francisco Ferraz e Ferraz, Alan Freitas Ribeiro
 
 **Objetivo:** Comparar redes de interação gênica de melanoma, não-melanoma e tecido saudável usando dados do GEO, STRING e Cytoscape. Identificar hubs, módulos e diferenças topológicas entre as redes. Análise adicional com Graph Attention Networks (GAT) sobre TCGA-SKCM.
 
