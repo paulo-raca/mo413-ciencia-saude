@@ -118,7 +118,7 @@
 
 ### Contexto
 
-Doenças complexas (câncer, diabetes, Alzheimer, etc.) raramente são causadas por um único gene. Em geral, resultam da interação de dezenas ou centenas de genes com fatores ambientais. Identificar quais genes contribuem para uma doença específica é fundamental para:
+Doenças complexas (câncer, diabetes, Alzheimer, etc.) raramente são causadas por um único gene. Em geral, resultam da interação de dezenas ou centenas de genes[^gene] com fatores ambientais. Identificar quais genes contribuem para uma doença específica é fundamental para:
 
 - Desenvolver novos medicamentos direcionados a alvos moleculares específicos.
 - Identificar biomarcadores para diagnóstico precoce.
@@ -130,7 +130,7 @@ Os experimentos laboratoriais para identificar novas associações gene-doença 
 
 A pergunta central do artigo é:
 
-> **"É possível usar uma GNN para prever automaticamente, a partir de uma rede de associações conhecidas, quais outros genes provavelmente estão associados a uma determinada doença?"**
+> **"É possível usar uma GNN[^gnn] para prever automaticamente, a partir de uma rede de associações conhecidas, quais outros genes provavelmente estão associados a uma determinada doença?"**
 
 O objetivo não é substituir os experimentos, mas **priorizar** quais pares gene-doença merecem investigação laboratorial, reduzindo enormemente o espaço de busca.
 
@@ -138,20 +138,20 @@ O objetivo não é substituir os experimentos, mas **priorizar** quais pares gen
 
 ## Dados Utilizados
 
-### Fonte principal: DisGeNET
+### Fonte principal: DisGeNET[^disgenet]
 
 - **O que é:** Banco de dados público e curado que agrega associações gene-doença de múltiplas fontes (artigos científicos, bases clínicas, OMIM, UniProt, etc.).
-- **Conteúdo usado:** Conjunto de GDAs bem estabelecidas (alta confiança), incluindo relações gene-gene e doença-doença.
+- **Conteúdo usado:** Conjunto de GDAs[^gda] bem estabelecidas (alta confiança), incluindo relações gene-gene e doença-doença.
 - **Papel no estudo:** Treinamento e teste do modelo GNN.
 
-### Fonte de validação externa: DG-AssocMiner (BioSNAP, Stanford)
+### Fonte de validação externa: DG-AssocMiner (BioSNAP[^biosnap], Stanford)
 
 - **O que é:** Dataset de associações gene-doença do projeto BioSNAP da Universidade de Stanford.
 - **Papel no estudo:** Avaliação de desempenho do modelo em dados completamente independentes, para confirmar que os resultados não são específicos do DisGeNET.
 
 ### Estrutura dos dados (grafo construído)
 
-A partir dessas fontes, foi construído um **grafo heterogêneo** com:
+A partir dessas fontes, foi construído um **grafo heterogêneo**[^grafo] com:
 
 | Tipo de nó | O que representa                   |
 | ---------- | ---------------------------------- |
@@ -198,7 +198,7 @@ A partir dessas fontes, foi construído um **grafo heterogêneo** com:
   │  PASSO 3: PRÉ-PROCESSAMENTO                                     │
   │                                                                  │
   │  Aprendizado da matriz de pesos a partir da topologia do grafo  │
-  │  Inicialização dos embeddings dos nós                           │
+  │  Inicialização dos embeddings[^embedding] dos nós                           │
   └───────────────────────────┬─────────────────────────────────────┘
                               │
                               ▼
@@ -216,7 +216,7 @@ A partir dessas fontes, foi construído um **grafo heterogêneo** com:
                               │
                               ▼
   ┌─────────────────────────────────────────────────────────────────┐
-  │  PASSO 5: PREDIÇÃO DE LIGAÇÕES (Link Prediction)                │
+  │  PASSO 5: PREDIÇÃO DE LIGAÇÕES (Link Prediction[^linkprediction])               │
   │                                                                  │
   │  Para cada par (gene X, doença Y):                              │
   │    Score = f(embedding[X], embedding[Y])                        │
@@ -265,7 +265,7 @@ A partir dessas fontes, foi construído um **grafo heterogêneo** com:
 - **Gene ↔ Gene**: interações moleculares entre genes (co-expressão, regulação, etc.).
 - **Doença ↔ Doença**: relacionamento entre doenças (comorbidade, fenótipo semelhante).
 
-### Algoritmo central: Graph Convolutional Network (GCN)
+### Algoritmo central: Graph Convolutional Network (GCN)[^gcn]
 
 A GCN opera da seguinte forma:
 
@@ -292,8 +292,8 @@ Um passo de pré-processamento aprende a **matriz de pesos** a partir da topolog
 
 ### Interpretação
 
-- **AUC de 95%** em todos os conjuntos (treino, validação e teste) indica que o modelo:
-  1. Aprendeu bem os padrões — sem overfitting (o desempenho se manteve nos dados de teste).
+- **AUC[^auc] de 95%** em todos os conjuntos (treino, validação e teste) indica que o modelo:
+  1. Aprendeu bem os padrões — sem overfitting[^overfitting] (o desempenho se manteve nos dados de teste).
   2. Generaliza para dados não vistos.
 
 - **93% de acerto no Top-15**: Para doenças conhecidas, 93% dos 15 genes mais bem ranqueados pelo modelo têm suporte na literatura científica — ou seja, já foram mencionados como relacionados àquela doença em algum estudo.
@@ -311,7 +311,7 @@ Este artigo é diretamente relevante para pesquisa em redes gênicas no contexto
 A abordagem GNN apresentada pode ser **aplicada diretamente** a um grafo de interações gênicas em câncer de pele:
 
 - Substituir ou enriquecer o DisGeNET com dados específicos de câncer de pele (melanoma, carcinoma basocelular, carcinoma espinocelular).
-- Usar interações proteína-proteína de bancos como STRING para construir as arestas gene-gene.
+- Usar interações proteína[^proteina]-proteína de bancos como STRING para construir as arestas gene-gene.
 - Usar dados de expressão gênica de tumores cutâneos (ex: TCGA-SKCM) como features dos nós.
 
 ### 2. Descoberta de novos alvos terapêuticos
@@ -376,3 +376,31 @@ wget "https://pmc.ncbi.nlm.nih.gov/articles/PMC10296901/pdf/" \
 
 _Resumo elaborado em: 2026-03-29_
 _Fontes: PubMed (PMID 37372253), PMC (PMC10296901), MDPI Entropy, GitHub pietrocinaglia/gnn_gda_
+
+---
+
+## Notas
+
+[^gene]: _Gene_ — trecho do DNA que contém as instruções para fabricar uma proteína ou realizar uma função celular; funciona como uma "receita" no manual de instruções do organismo.
+
+[^gnn]: _GNN (Graph Neural Network)_ — tipo de inteligência artificial projetado para processar dados em forma de grafo, aprendendo padrões nas conexões entre os nós.
+
+[^disgenet]: _DisGeNET_ — banco de dados público que agrega associações gene-doença coletadas da literatura científica, experimentos clínicos e bases curadas; disponível em https://www.disgenet.org/.
+
+[^gda]: _GDA (Gene–Disease Association)_ — ligação documentada entre um gene específico e uma doença específica; o objetivo do artigo é prever novas GDAs ainda não confirmadas experimentalmente.
+
+[^biosnap]: _BioSNAP (DG-AssocMiner / Stanford)_ — dataset de associações gene-doença desenvolvido pela Universidade de Stanford, utilizado como fonte de validação externa e independente do modelo.
+
+[^grafo]: _Grafo heterogêneo_ — estrutura matemática com nós (pontos) conectados por arestas (linhas) que contém mais de um tipo de nó e/ou aresta; aqui, representa genes e doenças com múltiplos tipos de relação entre eles.
+
+[^embedding]: _Embedding (Representação Vetorial)_ — transformação de um nó (ex.: um gene) em um vetor de números reais que captura suas características e posição na rede, permitindo ao modelo medir similaridades.
+
+[^linkprediction]: _Link Prediction (Predição de Ligação)_ — tarefa de prever quais pares de nós deveriam ter uma aresta no grafo mas ainda não a possuem; aqui, identifica pares gene-doença provavelmente associados sem evidência experimental prévia.
+
+[^gcn]: _GCN (Graph Convolutional Network)_ — tipo específico de GNN que aplica convoluções sobre o grafo, "varrendo" a vizinhança de cada nó para aprender sua representação vetorial.
+
+[^auc]: _AUC (Area Under the Curve)_ — métrica de avaliação de modelos de classificação que vai de 0 a 1; um AUC de 95% significa que em 95% das vezes o modelo distingue corretamente um par gene-doença verdadeiro de um falso.
+
+[^overfitting]: _Overfitting (Super-ajuste)_ — quando um modelo "decora" os dados de treinamento em vez de aprender regras gerais, perdendo desempenho em dados novos.
+
+[^proteina]: _Proteína_ — molécula fabricada a partir das instruções de um gene; realiza a maior parte do trabalho nas células (estrutura, transporte, sinalização, defesa imunológica, etc.).

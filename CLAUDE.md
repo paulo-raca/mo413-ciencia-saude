@@ -124,8 +124,8 @@ git commit -m "Atualiza submodule datasci4health.github.io"
 
 Estrutura padrão (`artigos/{subgrupo}/{autor}{ano} - {Assunto}/README.md`):
 
-1. **Metadados** — tabela com título, autores, revista, ano, DOI, PMID
-2. **Glossário** — explicar cada sigla e termo técnico (biológico E computacional) para quem nunca estudou biologia ou computação avançada
+1. **Metadados** — tabela com título, autores, revista, ano, DOI, acesso
+2. **Glossário** — tabela com siglas e termos técnicos (biológicos E computacionais) para leigos
 3. **Problema investigado** — o que o artigo tenta resolver e por quê importa
 4. **Dados utilizados** — fontes, tamanho, tipo
 5. **Pipeline/Metodologia** — diagrama ASCII do fluxo do trabalho
@@ -133,6 +133,7 @@ Estrutura padrão (`artigos/{subgrupo}/{autor}{ano} - {Assunto}/README.md`):
 7. **Resultados principais** — tabela com os achados mais importantes
 8. **Relevância para o projeto** — por que este artigo importa para o projeto de câncer de pele
 9. **Referência completa** — formatos ABNT, Vancouver e APA
+10. **Notas** — footnotes Markdown (`[^KEY]: definição`) para cada sigla usada no texto; no texto, marcar a primeira ocorrência de cada sigla com `[^KEY]`
 
 ---
 

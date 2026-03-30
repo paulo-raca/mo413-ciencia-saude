@@ -129,12 +129,12 @@
 
 ## Bases de Dados Utilizadas
 
-| Banco         | URL                               | Conteúdo                                                 |
-| ------------- | --------------------------------- | -------------------------------------------------------- |
-| UCSC Xena     | http://xena.ucsc.edu/             | 471 amostras de melanoma + 813 de tecido normal          |
-| GTEx          | https://www.gtexportal.org/       | 813 amostras de pele normal (expressão em tecido normal) |
-| GEO (GSE3189) | https://www.ncbi.nlm.nih.gov/geo/ | 45 melanomas + 18 nevus + 7 pele normal                  |
-| STRING        | https://string-db.org/            | Interações proteína-proteína                             |
+| Banco               | URL                               | Conteúdo                                                 |
+| ------------------- | --------------------------------- | -------------------------------------------------------- |
+| UCSC Xena[^ucsc]    | http://xena.ucsc.edu/             | 471 amostras de melanoma + 813 de tecido normal          |
+| GTEx                | https://www.gtexportal.org/       | 813 amostras de pele normal (expressão em tecido normal) |
+| GEO[^geo] (GSE3189) | https://www.ncbi.nlm.nih.gov/geo/ | 45 melanomas + 18 nevus + 7 pele normal                  |
+| STRING[^string]     | https://string-db.org/            | Interações proteína-proteína                             |
 
 ---
 
@@ -156,7 +156,7 @@
                                   │
                                   ▼
   ┌──────────────────────────────────────────────────────────────────────┐
-  │  PASSO 2: WGCNA — MÓDULOS DE CO-EXPRESSÃO                           │
+  │  PASSO 2: WGCNA[^wgcna] — MÓDULOS DE CO-EXPRESSÃO                           │
   │                                                                      │
   │  UCSC Xena: 6 módulos identificados                                 │
   │  GEO GSE3189: 7 módulos identificados                                │
@@ -167,9 +167,9 @@
                                   │
                                   ▼
   ┌──────────────────────────────────────────────────────────────────────┐
-  │  PASSO 3: ANÁLISE DE EXPRESSÃO DIFERENCIAL (DEGs)                    │
+  │  PASSO 3: ANÁLISE DE EXPRESSÃO DIFERENCIAL (DEGs[^deg])                    │
   │                                                                      │
-  │  Limma (R): |logFC| ≥ 1, adj. p < 0,05                             │
+  │  Limma[^limma] (R): |logFC| ≥ 1, adj. p < 0,05                             │
   │  UCSC Xena: 6.609 DEGs                                              │
   │  GEO GSE3189: 6.223 DEGs                                            │
   └───────────────────────────────┬──────────────────────────────────────┘
@@ -184,7 +184,7 @@
                                   │
                                   ▼
   ┌──────────────────────────────────────────────────────────────────────┐
-  │  PASSO 5: ENRIQUECIMENTO GO E KEGG                                   │
+  │  PASSO 5: ENRIQUECIMENTO GO E KEGG[^kegg]                                   │
   │                                                                      │
   │  clusterProfiler (R) nos 435 genes                                  │
   │  GO-BP: degranulação de neutrófilos, ativação imune                 │
@@ -195,18 +195,18 @@
                                   │
                                   ▼
   ┌──────────────────────────────────────────────────────────────────────┐
-  │  PASSO 6: CONSTRUÇÃO DA REDE PPI (STRING + CYTOSCAPE)                │
+  │  PASSO 6: CONSTRUÇÃO DA REDE PPI[^ppi] (STRING + CYTOSCAPE)                │
   │                                                                      │
   │  435 genes → STRING → rede PPI                                      │
-  │  Importação no Cytoscape (v3.8.0)                                   │
-  │  Plugin CytoHubba → algoritmo MCC → Top 10 hub genes               │
+  │  Importação no Cytoscape[^cytoscape] (v3.8.0)                                   │
+  │  Plugin CytoHubba[^cytohubba] → algoritmo MCC[^mcc] → Top 10 hub genes[^hub]               │
   └───────────────────────────────┬──────────────────────────────────────┘
                                   │
                                   ▼
   ┌──────────────────────────────────────────────────────────────────────┐
   │  PASSO 7: ANÁLISE DE PROGNÓSTICO                                     │
   │                                                                      │
-  │  GEPIA2: curvas de Kaplan-Meier para os 10 hub genes                │
+  │  GEPIA2[^gepia2]: curvas de Kaplan-Meier para os 10 hub genes                │
   │  5 dos 10 genes com OS significativamente reduzida:                 │
   │    FOXM1, EXO1, KIF20A, TPX2, CDC20                                 │
   │  Regressão COX multivariada: modelo prognóstico combinado           │
@@ -214,7 +214,7 @@
                                   │
                                   ▼
   ┌──────────────────────────────────────────────────────────────────────┐
-  │  PASSO 8: VALIDAÇÃO EXPERIMENTAL (IMUNO-HISTOQUÍMICA)                │
+  │  PASSO 8: VALIDAÇÃO EXPERIMENTAL (IMUNO-HISTOQUÍMICA[^ihc])                │
   │                                                                      │
   │  6 pares de tecido (melanoma + pele normal) por gene                │
   │  Anticorpos específicos para FOXM1, TPX2, KIF20A, CDC20, EXO1      │
@@ -319,6 +319,38 @@ Jiang J, Liu C, Xu G, Liang T, Yu C, Liao S, Zhang Z, Lu Z, Wang Z, Chen J, Chen
 
 **APA:**
 Jiang, J., Liu, C., Xu, G., Liang, T., Yu, C., Liao, S., Zhang, Z., Lu, Z., Wang, Z., Chen, J., Chen, T., Li, H., & Zhan, X. (2021). Identification of Hub Genes Associated With Melanoma Development by Comprehensive Bioinformatics Analysis. _Frontiers in Oncology_, _11_, 621430. https://doi.org/10.3389/fonc.2021.621430
+
+---
+
+## Notas
+
+[^ucsc]: _UCSC Xena_ — Plataforma online do Genomics Institute da UCSC que hospeda dados de expressão gênica de grandes consórcios (TCGA, GTEx), usada aqui para obter os dados de melanoma e pele normal.
+
+[^geo]: _GEO (Gene Expression Omnibus)_ — Repositório público do NCBI que armazena dados de expressão gênica de experimentos depositados por pesquisadores do mundo todo.
+
+[^string]: _STRING_ — Banco de dados online que agrega interações proteína-proteína conhecidas de experimentos e predições computacionais, usado para construir a rede PPI dos genes candidatos.
+
+[^wgcna]: _WGCNA (Weighted Gene Co-expression Network Analysis)_ — Método computacional para construir redes de co-expressão pesadas e identificar módulos de genes com expressão coordenada.
+
+[^deg]: _DEG (Differentially Expressed Gene)_ — Gene cujo nível de atividade difere significativamente entre duas condições (ex: tumor vs. tecido normal).
+
+[^limma]: _Limma_ — Pacote R que usa modelos lineares e estatística Bayesiana para identificar genes diferencialmente expressos em dados de microarray ou RNA-seq.
+
+[^kegg]: _KEGG (Kyoto Encyclopedia of Genes and Genomes)_ — Banco de dados de vias metabólicas e moleculares, usado para identificar em quais processos biológicos os genes candidatos estão concentrados.
+
+[^ppi]: _PPI (Protein-Protein Interaction)_ — Rede que conecta proteínas que interagem fisicamente entre si, permitindo identificar genes funcionalmente centrais.
+
+[^cytoscape]: _Cytoscape_ — Software gratuito de visualização e análise de redes biológicas, amplamente usado em bioinformática para calcular métricas de centralidade e identificar módulos.
+
+[^cytohubba]: _CytoHubba_ — Plugin do Cytoscape que calcula múltiplas métricas de centralidade para cada nó da rede PPI e ranqueia os genes pela sua importância topológica.
+
+[^mcc]: _MCC (Maximal Clique Centrality)_ — Algoritmo do CytoHubba que identifica os nós mais centrais da rede com base na participação em cliques maximais (subgrafos onde todos os nós estão conectados entre si).
+
+[^hub]: _Gene hub (gene central)_ — Gene que ocupa posição estratégica em uma rede, conectado a muitos outros genes, coordenando processos celulares críticos — como uma estação central de metrô.
+
+[^gepia2]: _GEPIA2_ — Plataforma online para análise de expressão e sobrevivência usando dados do TCGA e GTEx, usada para gerar curvas de Kaplan-Meier dos hub genes.
+
+[^ihc]: _Imuno-histoquímica (IHC)_ — Técnica laboratorial que detecta proteínas específicas em cortes de tecido usando anticorpos marcados, usada para validar experimentalmente a superexpressão dos hub genes no melanoma.
 
 ---
 

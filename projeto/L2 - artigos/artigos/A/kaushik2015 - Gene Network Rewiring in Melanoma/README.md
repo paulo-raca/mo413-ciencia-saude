@@ -120,13 +120,13 @@
 
 ### Contexto
 
-Melanoma metastático tem prognóstico ruim, pois é difícil identificar quais genes _causam_ a progressão da doença. Os estudos tradicionais focam em **genes diferencialmente expressos (DE)** — ou seja, genes que ficam mais ou menos ativos no tumor. Porém, nem todo gene importante muda de nível de atividade.
+Melanoma metastático tem prognóstico ruim, pois é difícil identificar quais genes _causam_ a progressão da doença. Os estudos tradicionais focam em **genes diferencialmente expressos (DE)**[^deg] — ou seja, genes que ficam mais ou menos ativos no tumor. Porém, nem todo gene importante muda de nível de atividade.
 
 ### O Insight Central do Artigo
 
 > **A maioria dos genes que mudam suas conexões de rede durante a progressão do melanoma NÃO são diferencialmente expressos.**
 
-Em outras palavras: um gene pode permanecer igualmente "ativo" no tecido saudável e no tumor, mas mudar _com quem ele interage_ — passando a co-expressar com genes cancerígenos. Esse fenômeno é chamado de **rewiring** (re-fiação da rede).
+Em outras palavras: um gene pode permanecer igualmente "ativo" no tecido saudável e no tumor, mas mudar _com quem ele interage_ — passando a co-expressar com genes cancerígenos. Esse fenômeno é chamado de **rewiring**[^rewiring] (re-fiação da rede).
 
 Isso é análogo a uma pessoa que não muda seu comportamento, mas muda completamente seu grupo de amigos — e seus novos amigos são todos criminosos. A pessoa em si não mudou, mas suas conexões mudaram tudo.
 
@@ -146,9 +146,9 @@ Isso é análogo a uma pessoa que não muda seu comportamento, mas muda completa
 | Linfonodo metastático (LN)    | 116      | 7      | 5 plataformas |
 | **Total**                     | **642**  | **39** | múltiplas     |
 
-- **Tipo de dado:** Microarray de expressão gênica (mRNA)
+- **Tipo de dado:** Microarray[^microarray] de expressão gênica (mRNA)
 - **Origem:** Repositórios públicos (GEO, ArrayExpress)
-- **Pré-processamento:** Correção de efeito de lote com ComBat; normalização
+- **Pré-processamento:** Correção de efeito de lote com ComBat[^combat]; normalização
 
 ---
 
@@ -229,10 +229,10 @@ Isso é análogo a uma pessoa que não muda seu comportamento, mas muda completa
 
 ### Tipo de rede
 
-**Grafos de co-expressão gênica não-direcionados**, construídos separadamente para cada estágio do melanoma:
+**Grafos**[^grafo] **de co-expressão gênica não-direcionados**, construídos separadamente para cada estágio do melanoma:
 
 - **Nós:** genes
-- **Arestas:** correlação de Pearson acima de um limiar entre dois genes (co-expressão)
+- **Arestas:** correlação de Pearson[^pearson] acima de um limiar entre dois genes (co-expressão)
 - **Peso das arestas:** valor de correlação (0 a 1)
 - **Quatro redes paralelas:** N, CnM, CM, LN
 
@@ -243,12 +243,12 @@ A estratégia inovadora do artigo é **comparar as topologias das 4 redes** em v
 1. **Construir** a rede para o estado Normal (N).
 2. **Construir** as redes para cada estágio tumoral (CnM, CM, LN).
 3. **Para cada gene**, calcular quantas conexões ele ganhou e quantas perdeu entre N e o estágio tumoral.
-4. **Ranquear** os genes pelo score de rewiring.
+4. **Ranquear** os genes pelo score de rewiring[^scorerewiring].
 5. **Cruzar** a lista de genes altamente re-fiados com a lista de genes DE: os genes que têm alto rewiring mas baixa expressão diferencial são os novos candidatos identificados pelo método.
 
 ### Análise de hubs
 
-Além do rewiring, os autores identificaram **hubs específicos de cada estágio** — os genes com maior grau em cada rede. Como hubs diferentes emergem em diferentes estágios da doença, eles representam os "motores" moleculares de cada fase da progressão.
+Além do rewiring, os autores identificaram **hubs**[^hub] **específicos de cada estágio** — os genes com maior grau em cada rede. Como hubs diferentes emergem em diferentes estágios da doença, eles representam os "motores" moleculares de cada fase da progressão.
 
 ---
 
@@ -274,7 +274,7 @@ Além do rewiring, os autores identificaram **hubs específicos de cada estágio
 
 **Hubs distintos por estágio:**
 
-- Hubs diferentes emergem em CnM, CM e LN para as mesmas vias biológicas conservadas
+- Hubs diferentes emergem em CnM, CM e LN para as mesmas vias biológicas[^vias] conservadas
 - Indica que os mesmos processos são "executados" por diferentes genes centrais em cada estágio
 
 **Enriquecimento de vias:**
@@ -294,7 +294,7 @@ O projeto compara redes de melanoma, não-melanoma e tecido saudável. Este arti
 
 ### 2. Insight sobre rewiring vs. expressão diferencial
 
-A descoberta de que genes importantes podem ter suas _conexões_ alteradas sem mudar seu _nível de expressão_ é crucial: o projeto deve considerar tanto genes DE quanto genes com alta conectividade diferencial.
+A descoberta de que genes importantes podem ter suas _conexões_ alteradas sem mudar seu _nível de expressão_ é crucial: o projeto deve considerar tanto genes DE quanto genes com alta conectividade diferencial[^condif].
 
 ### 3. Progressão de estágios
 
@@ -302,7 +302,7 @@ O pipeline N → CnM → CM → LN é análogo à comparação do projeto: saud�
 
 ### 4. Análise de hubs como biomarcadores
 
-A identificação de hubs específicos de cada estágio fornece um método para descobrir genes candidatos a biomarcadores — objetivo central do projeto.
+A identificação de hubs específicos de cada estágio fornece um método para descobrir genes candidatos a biomarcadores[^biomarcador] — objetivo central do projeto.
 
 ### 5. Vias moleculares compartilhadas
 
@@ -325,3 +325,29 @@ Kaushik, A., Bhatia, Y., Ali, S., & Gupta, D. (2015). Gene Network Rewiring to S
 
 _Resumo elaborado em: 2026-03-29_
 _PDF disponível em: artigos/A/bhatt2015-melanoma-network-rewiring.pdf_
+
+---
+
+## Notas
+
+[^deg]: _Gene Diferencialmente Expresso (DEG)_ — gene que apresenta nível de atividade significativamente diferente entre duas condições (ex: tecido saudável vs. tumor).
+
+[^rewiring]: _Rewiring de rede (Network Rewiring)_ — mudança nas conexões de uma rede gênica entre dois estados, onde um gene passa a co-expressar com parceiros moleculares diferentes mesmo sem alterar seu nível de expressão.
+
+[^microarray]: _Microarray_ — tecnologia laboratorial que mede simultaneamente o nível de expressão de milhares de genes em uma amostra de tecido, como uma "fotografia" da atividade gênica.
+
+[^combat]: _ComBat (batch correction)_ — método estatístico para remover o "efeito de lote", ou seja, variações técnicas introduzidas quando dados são produzidos em laboratórios ou plataformas diferentes.
+
+[^pearson]: _Correlação de Pearson_ — medida estatística (de −1 a +1) que quantifica o quanto dois genes variam juntos em suas expressões; usada para definir arestas em redes de co-expressão.
+
+[^grafo]: _Grafo / Rede_ — estrutura matemática com nós (genes) conectados por arestas (relações de co-expressão); a representação formal de uma rede gênica.
+
+[^hub]: _Hub (gene hub)_ — nó de altíssimo grau na rede gênica, ou seja, um gene conectado a muitos outros, biologicamente importante por sua capacidade de desestabilizar toda a rede se perturbado.
+
+[^scorerewiring]: _Score de rewiring_ — valor numérico que quantifica o quanto um gene alterou suas conexões entre dois estados, calculado como a soma de conexões ganhas e perdidas.
+
+[^condif]: _Conectividade diferencial (Differential Connectivity)_ — diferença no número ou padrão de conexões de um gene entre dois estados biológicos distintos, capturando mudanças de rede além das mudanças de expressão.
+
+[^biomarcador]: _Biomarcador_ — molécula (gene, proteína, etc.) cuja presença ou nível mensurável indica a existência ou o estágio de uma doença.
+
+[^vias]: _Vias moleculares (pathways)_ — sequências de reações bioquímicas dentro da célula que executam funções específicas, frequentemente alteradas em cânceres.

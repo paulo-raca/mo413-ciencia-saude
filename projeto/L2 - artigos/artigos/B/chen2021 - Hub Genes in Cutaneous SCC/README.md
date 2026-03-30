@@ -41,13 +41,13 @@
 
 ## Problema Investigado
 
-O Carcinoma Espinocelular Cutâneo (cSCC) é o segundo câncer de pele mais comum e pode se espalhar para outros órgãos (metástase) em ~10% dos casos. Não existem biomarcadores clínicos confiáveis para diagnosticar e tratar o cSCC precocemente. Os autores queriam identificar genes-chave (hubs) envolvidos no desenvolvimento do cSCC e da queratose actínica (AK), sua lesão precursora.
+O Carcinoma Espinocelular Cutâneo (cSCC[^cscc]) é o segundo câncer de pele mais comum e pode se espalhar para outros órgãos (metástase) em ~10% dos casos. Não existem biomarcadores clínicos confiáveis para diagnosticar e tratar o cSCC precocemente. Os autores queriam identificar genes-chave (hubs[^hub]) envolvidos no desenvolvimento do cSCC e da queratose actínica (AK[^ak]), sua lesão precursora.
 
 ---
 
 ## Dados Utilizados
 
-Todos os dados foram obtidos do banco público **GEO**:
+Todos os dados foram obtidos do banco público **GEO**[^geo]:
 
 | Dataset   | Amostras de cSCC | Amostras de AK | Amostras normais | Descrição                                                            |
 | --------- | ---------------- | -------------- | ---------------- | -------------------------------------------------------------------- |
@@ -55,7 +55,7 @@ Todos os dados foram obtidos do banco público **GEO**:
 | GSE98774  | —                | 28             | 36               | Microarray de AK vs. pele normal; plataforma Affymetrix HG-U133A 2.0 |
 | GSE108008 | 10               | 10             | 10               | RNA-seq de cSCC, AK e pele normal pareada do mesmo paciente          |
 
-Os datasets GSE45216 e GSE98774 foram combinados num único dataset (GSE45216–98774) para aumentar o poder estatístico. Isso foi possível porque ambos usam a mesma tecnologia (microarray Affymetrix HG-U133), tornando os valores de expressão diretamente comparáveis. GSE108008, por ser RNA-seq, produz valores em escala e distribuição completamente distintas do microarray — combiná-lo com os outros introduziria ruído técnico que mascararia o sinal biológico, mesmo com correção de batch. Por isso o WGCNA foi rodado separadamente para GSE108008, e os resultados foram comparados ao final para identificar genes consistentes em ambas as análises.
+Os datasets GSE45216 e GSE98774 foram combinados num único dataset (GSE45216–98774) para aumentar o poder estatístico. Isso foi possível porque ambos usam a mesma tecnologia (microarray Affymetrix HG-U133), tornando os valores de expressão diretamente comparáveis. GSE108008, por ser RNA-seq, produz valores em escala e distribuição completamente distintas do microarray — combiná-lo com os outros introduziria ruído técnico que mascararia o sinal biológico, mesmo com correção de batch. Por isso o WGCNA[^wgcna] foi rodado separadamente para GSE108008, e os resultados foram comparados ao final para identificar genes consistentes em ambas as análises.
 
 ---
 
@@ -65,13 +65,13 @@ Os datasets GSE45216 e GSE98774 foram combinados num único dataset (GSE45216–
 
 Para cada par de genes, calculou-se a correlação entre seus níveis de expressão em todas as amostras. Quanto mais dois genes "se comportam juntos" (sobem e descem juntos entre os pacientes), mais forte é a aresta entre eles na rede.
 
-Os pesos das arestas foram definidos como |r|^β — a correlação elevada à potência β — de forma que a distribuição de graus da rede se aproxime de uma lei de potência (propriedade **scale-free**, comum em redes biológicas reais). O valor de β foi escolhido como o menor inteiro para o qual R² ≥ 0.8 no ajuste linear entre log(grau) e log(frequência do grau), resultando em β = 5 para o dataset combinado e β = 6 para GSE108008.
+Os pesos das arestas foram definidos como |r|^β — a correlação elevada à potência β — de forma que a distribuição de graus da rede se aproxime de uma lei de potência (propriedade **scale-free**[^scalefree], comum em redes biológicas reais). O valor de β foi escolhido como o menor inteiro para o qual R² ≥ 0.8 no ajuste linear entre log(grau) e log(frequência do grau), resultando em β = 5 para o dataset combinado e β = 6 para GSE108008.
 
 Vale notar que redes biológicas reais (como redes de interação proteína-proteína medidas em laboratório) já são naturalmente scale-free. A rede do WGCNA, porém, é construída artificialmente a partir de correlações — e correlações brutas produzem uma distribuição de graus aproximadamente normal, não uma lei de potência. O β é portanto um artifício para forçar a rede construída a se comportar como uma rede biológica real. Embora o WGCNA teste por convenção apenas valores inteiros de β, isso é uma escolha de implementação: valores não-inteiros são matematicamente válidos, mas raramente necessários na prática, pois o critério R² ≥ 0.8 costuma ser atingido em algum inteiro pequeno.
 
 ### 2. Identificação de Módulos
 
-O algoritmo agrupou os genes em módulos. Foram encontrados:
+O algoritmo agrupou os genes em módulos[^modulo]. Foram encontrados:
 
 - **26 módulos** no dataset GSE45216–98774
 - **12 módulos** no dataset GSE108008
@@ -80,12 +80,12 @@ Cada módulo recebeu uma cor como identificador (MEblue, MEred, MEcyan, etc.).
 
 ### 3. Correlação dos Módulos com Características Clínicas
 
-Para cada módulo, calculou-se a correlação entre seu ME (representante do módulo) e as características das amostras: cSCC, AK ou normal.
+Para cada módulo, calculou-se a correlação entre seu ME[^me] (representante do módulo) e as características das amostras: cSCC, AK ou normal.
 
 - **Módulo 5** foi o mais correlacionado com cSCC (1.742 genes)
 - **Módulo 23** foi o mais correlacionado com AK (31 genes)
 
-### 4. Enriquecimento Funcional (GO e KEGG)
+### 4. Enriquecimento Funcional (GO[^go] e KEGG[^kegg])
 
 Os genes do módulo 5 (relevante para cSCC) foram associados a funções como:
 
@@ -96,11 +96,11 @@ Os genes do módulo 5 (relevante para cSCC) foram associados a funções como:
 
 ### 5. Identificação dos Genes Hub
 
-Genes presentes no módulo mais relevante **e** significativamente diferencialmente expressos (DEGs) foram candidatos a hub. Genes hub foram definidos como aqueles com alta "pertinência ao módulo" (correlação > 0,8 com o ME). Apenas os genes hub encontrados nos **dois datasets** foram considerados validados.
+Genes presentes no módulo mais relevante **e** significativamente diferencialmente expressos (DEGs[^deg]) foram candidatos a hub. Genes hub foram definidos como aqueles com alta "pertinência ao módulo" (correlação > 0,8 com o ME). Apenas os genes hub encontrados nos **dois datasets** foram considerados validados.
 
 ### 6. Validação em Pan-câncer
 
-Os 7 genes hub validados foram testados em 33 tipos de câncer usando dados do **TCGA**, verificando se sua expressão se correlaciona com sobrevida dos pacientes.
+Os 7 genes hub validados foram testados em 33 tipos de câncer usando dados do **TCGA**[^tcga], verificando se sua expressão se correlaciona com sobrevida dos pacientes.
 
 ---
 
@@ -167,3 +167,31 @@ Chen H, Yang J, Wu W. Seven key hub genes identified by gene co-expression netwo
 
 **APA:**
 Chen, H., Yang, J., & Wu, W. (2021). Seven key hub genes identified by gene co-expression network in cutaneous squamous cell carcinoma. _BMC Cancer_, _21_, 852. https://doi.org/10.1186/s12885-021-08604-y
+
+---
+
+## Notas
+
+[^cscc]: _cSCC (Cutaneous Squamous Cell Carcinoma)_ — Carcinoma Espinocelular Cutâneo: o segundo tipo de câncer de pele mais comum, originado nas células escamosas da camada externa da pele.
+
+[^hub]: _Gene hub_ — Gene altamente conectado dentro de uma rede biológica, funcionando como um "nó central" que se comunica com muitos outros genes e tende a ser crucial para o sistema.
+
+[^ak]: _AK (Actinic Keratosis)_ — Queratose Actínica: lesão pré-cancerosa da pele causada por exposição crônica ao sol, considerada o estágio precursor do cSCC.
+
+[^geo]: _GEO (Gene Expression Omnibus)_ — Banco de dados público do NCBI onde pesquisadores depositam dados de expressão gênica para que outros possam reutilizá-los.
+
+[^wgcna]: _WGCNA (Weighted Gene Co-expression Network Analysis)_ — Método que constrói uma rede de genes onde a força da conexão entre dois genes é proporcional ao quanto suas expressões se correlacionam entre as amostras.
+
+[^scalefree]: _Escala livre (scale-free)_ — Propriedade de redes em que poucos nós têm muitas conexões (hubs) e muitos nós têm poucas, seguindo uma distribuição em lei de potência comum em redes biológicas reais.
+
+[^modulo]: _Módulo_ — Grupo de genes altamente co-expressos entre si dentro de uma rede, tendendo a representar um processo biológico específico.
+
+[^me]: _ME (Module Eigengene)_ — Resumo matemático do comportamento de expressão de todos os genes de um módulo, funcionando como um "representante único" do módulo para análises de correlação.
+
+[^go]: _GO (Gene Ontology)_ — Sistema de classificação que descreve as funções dos genes em três categorias: processo biológico, função molecular e componente celular.
+
+[^kegg]: _KEGG (Kyoto Encyclopedia of Genes and Genomes)_ — Banco de dados de vias moleculares que permite descobrir em qual "circuito" celular um gene está envolvido.
+
+[^deg]: _DEG (Differentially Expressed Gene)_ — Gene diferencialmente expresso: gene com expressão significativamente maior ou menor em células cancerosas comparado a células normais.
+
+[^tcga]: _TCGA (The Cancer Genome Atlas)_ — Projeto que sequenciou o genoma de amostras de 33 tipos de câncer de milhares de pacientes, um dos maiores bancos de dados genômicos de câncer.

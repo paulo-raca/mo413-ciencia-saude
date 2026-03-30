@@ -110,14 +110,14 @@ Neste artigo são usadas **7 camadas** de GraphSAGE — o gene aprende de vizinh
 
 Descobrir quais genes estão associados a doenças é fundamental para desenvolver tratamentos, mas os experimentos laboratoriais são caros e lentos. Há bilhões de pares gene-doença possíveis — a grande maioria nunca foi testada.
 
-Modelos computacionais de GNN já foram usados para prever GDAs, mas têm dois problemas:
+Modelos computacionais de GNN[^gnn] já foram usados para prever GDAs[^gda], mas têm dois problemas:
 
 1. **Aprendizado negativo inadequado**: tratam todos os pares sem evidência como "negativos" (não associados), quando na realidade muitos são simplesmente _desconhecidos_.
 2. **Caixa preta**: não explicam quais estruturas da rede motivam a previsão, dificultando a confiança dos pesquisadores nos resultados.
 
 ### A Solução Proposta (XGDAG)
 
-> **"Usar GraphSAGE com aprendizado positivo-não rotulado (NIAPU) para priorizar genes candidatos, combinado com métodos de explicabilidade (GNNExplainer, GraphSVX, SubgraphX) para revelar os subgrafos da rede PPI que justificam cada previsão."**
+> **"Usar GraphSAGE[^graphsage] com aprendizado positivo-não rotulado (NIAPU[^niapu]) para priorizar genes candidatos, combinado com métodos de explicabilidade (GNNExplainer[^gnnexplainer], GraphSVX[^graphsvx], SubgraphX[^subgraphx]) para revelar os subgrafos da rede PPI[^ppi] que justificam cada previsão."**
 
 O nome XGDAG vem de: **X**plainable **G**raph-based **D**isease-**A**ssociated **G**enes.
 
@@ -127,7 +127,7 @@ O nome XGDAG vem de: **X**plainable **G**raph-based **D**isease-**A**ssociated *
 
 | Fonte                                         | Conteúdo                                       | Papel no Estudo                                    |
 | --------------------------------------------- | ---------------------------------------------- | -------------------------------------------------- |
-| **BioGRID**                                   | Rede PPI humana (interações proteína-proteína) | Estrutura do grafo — arestas entre genes           |
+| **BioGRID**[^biogrid]                         | Rede PPI humana (interações proteína-proteína) | Estrutura do grafo — arestas entre genes           |
 | **Associações gene-doença** (diversas fontes) | GDAs confirmadas                               | Exemplos positivos para treinamento                |
 | **Pares sem evidência**                       | Pares gene-doença não documentados             | Tratados como "desconhecidos" (não como negativos) |
 
@@ -180,7 +180,7 @@ O nome XGDAG vem de: **X**plainable **G**raph-based **D**isease-**A**ssociated *
                                   │
                                   ▼
   ┌──────────────────────────────────────────────────────────────────────┐
-  │  PASSO 5: EXPLICABILIDADE (XAI)                                      │
+  │  PASSO 5: EXPLICABILIDADE (XAI[^xai])                                │
   │                                                                      │
   │  Para cada gene candidato:                                           │
   │    GNNExplainer → arestas mais importantes para a previsão         │
@@ -236,7 +236,7 @@ O framework XGDAG pode ser aplicado especificamente para priorizar genes candida
 
 ### 2. Explicabilidade como validação
 
-Em um projeto de análise de redes gênicas, saber _por que_ um gene é um hub é tão importante quanto saber _que_ ele é um hub. Os subgrafos explicativos do XGDAG complementam métricas de centralidade como betweenness e eigenvector centrality.
+Em um projeto de análise de redes gênicas, saber _por que_ um gene é um hub[^hub] é tão importante quanto saber _que_ ele é um hub. Os subgrafos explicativos do XGDAG complementam métricas de centralidade como betweenness e eigenvector centrality.
 
 ### 3. Aprendizado com dados incompletos
 
@@ -262,6 +262,32 @@ Mastropietro A, De Carlo G, Anagnostopoulos A. XGDAG: explainable gene-disease a
 
 **APA:**
 Mastropietro, A., De Carlo, G., & Anagnostopoulos, A. (2023). XGDAG: explainable gene-disease associations via graph neural networks. _Bioinformatics_, _39_(8), btad482. https://doi.org/10.1093/bioinformatics/btad482
+
+---
+
+## Notas
+
+[^gnn]: _GNN (Graph Neural Network)_ — Tipo de inteligência artificial projetado para operar sobre dados em forma de grafo, aprendendo padrões nas conexões entre nós.
+
+[^gda]: _GDA (Gene-Disease Association)_ — Ligação documentada entre um gene e uma doença; o objetivo do artigo é descobrir novas GDAs não documentadas.
+
+[^graphsage]: _GraphSAGE (Graph Sample and Aggregate)_ — Arquitetura de GNN que aprende representações de nós amostrando e agregando informações dos vizinhos em múltiplas camadas.
+
+[^niapu]: _NIAPU (Non-IsolAted Positive-Unlabeled learning)_ — Framework de aprendizado proposto no artigo que implementa o aprendizado positivo-não rotulado considerando a estrutura de vizinhança dos genes na rede PPI.
+
+[^gnnexplainer]: _GNNExplainer_ — Método de explicabilidade para GNNs que identifica quais arestas e features do grafo foram mais importantes para a previsão de um nó específico.
+
+[^graphsvx]: _GraphSVX_ — Método de explicabilidade baseado em valores de Shapley adaptado para GNNs, atribuindo uma "contribuição" a cada nó vizinho para a previsão final.
+
+[^subgraphx]: _SubgraphX_ — Método de explicabilidade que identifica o subgrafo (subconjunto de nós e arestas) mais relevante para justificar a classificação de um gene.
+
+[^ppi]: _PPI (Protein-Protein Interaction — Rede de interação proteína-proteína)_ — Grafo onde cada nó é uma proteína e cada aresta representa uma interação física ou funcional entre duas proteínas.
+
+[^biogrid]: _BioGRID_ — Banco de dados público que cataloga interações proteína-proteína e gene-gene documentadas em experimentos, usado como fonte da rede PPI no artigo.
+
+[^xai]: _XAI (Explainable AI — IA Explicável)_ — Área da IA que desenvolve métodos para entender por que um modelo faz uma previsão específica, abrindo a "caixa preta" das GNNs.
+
+[^hub]: _Hub_ — Gene ou proteína muito conectado na rede, analogamente a uma estação central de metrô; indica alta relevância funcional na rede PPI.
 
 ---
 
