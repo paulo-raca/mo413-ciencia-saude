@@ -2,7 +2,6 @@
 
 [slides](slides.pdf) | [YouTube](https://www.youtube.com/watch?v=V0h4nsmtv2g)
 
-
 **Fonte:** Aula de Murilo V. Geraldo — Dep. Biologia Estrutural e Funcional, Instituto de Biologia, UNICAMP
 
 ---

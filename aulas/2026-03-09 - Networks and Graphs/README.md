@@ -2,7 +2,6 @@
 
 [slides](slides.pdf) | [YouTube](https://www.youtube.com/watch?v=AMRqb0UntEk)
 
-
 Resumo da aula de 09/03/2026 — André Santanchè (UNICAMP)
 
 ---
