@@ -1,9 +1,18 @@
 # Resumo: Xuan et al. (2021)
 
-**Título:** Identification of Genes Potentially Associated with Melanoma Tumorigenesis Through Co-Expression Network Analysis
-**Revista:** International Journal of General Medicine, vol. 14, pp. 8495–8508
-**DOI:** https://doi.org/10.2147/IJGM.S336295
-**Autores:** Xiuyun Xuan, Yuqi Wang, Yanhong Sun, Changzheng Huang
+---
+
+## Metadados
+
+| Campo       | Informação                                                                                                        |
+| ----------- | ----------------------------------------------------------------------------------------------------------------- |
+| **Título**  | Identification of Genes Potentially Associated with Melanoma Tumorigenesis Through Co-Expression Network Analysis |
+| **Autores** | Xiuyun Xuan, Yuqi Wang, Yanhong Sun, Changzheng Huang                                                             |
+| **Revista** | _International Journal of General Medicine_                                                                       |
+| **Ano**     | 2021                                                                                                              |
+| **Volume**  | 14, pp. 8495–8508                                                                                                 |
+| **DOI**     | https://doi.org/10.2147/IJGM.S336295                                                                              |
+| **Acesso**  | Acesso aberto (Open Access)                                                                                       |
 
 ---
 
@@ -168,6 +177,13 @@ Este artigo é o mais diretamente alinhado com nossa metodologia: usa **STRING +
 
 ---
 
-## Referência
+## Referência Completa
 
-Xuan, X., Wang, Y., Sun, Y. & Huang, C. (2021). Identification of Genes Potentially Associated with Melanoma Tumorigenesis Through Co-Expression Network Analysis. _International Journal of General Medicine_, 14, 8495–8508. https://doi.org/10.2147/IJGM.S336295
+**ABNT:**
+XUAN, Xiuyun; WANG, Yuqi; SUN, Yanhong; HUANG, Changzheng. Identification of Genes Potentially Associated with Melanoma Tumorigenesis Through Co-Expression Network Analysis. **International Journal of General Medicine**, v. 14, p. 8495–8508, 2021. DOI: https://doi.org/10.2147/IJGM.S336295.
+
+**Vancouver:**
+Xuan X, Wang Y, Sun Y, Huang C. Identification of Genes Potentially Associated with Melanoma Tumorigenesis Through Co-Expression Network Analysis. Int J Gen Med. 2021;14:8495-8508. doi: 10.2147/IJGM.S336295.
+
+**APA:**
+Xuan, X., Wang, Y., Sun, Y., & Huang, C. (2021). Identification of Genes Potentially Associated with Melanoma Tumorigenesis Through Co-Expression Network Analysis. _International Journal of General Medicine_, _14_, 8495–8508. https://doi.org/10.2147/IJGM.S336295

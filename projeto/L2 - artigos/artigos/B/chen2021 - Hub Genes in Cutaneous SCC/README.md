@@ -1,9 +1,18 @@
 # Resumo: Chen et al. (2021)
 
-**Título:** Seven key hub genes identified by gene co-expression network in cutaneous squamous cell carcinoma
-**Revista:** BMC Cancer, vol. 21, artigo 852
-**DOI:** https://doi.org/10.1186/s12885-021-08604-y
-**Autores:** Huizhen Chen, Jiankang Yang, Wenjuan Wu
+---
+
+## Metadados
+
+| Campo       | Informação                                                                                        |
+| ----------- | ------------------------------------------------------------------------------------------------- |
+| **Título**  | Seven key hub genes identified by gene co-expression network in cutaneous squamous cell carcinoma |
+| **Autores** | Huizhen Chen, Jiankang Yang, Wenjuan Wu                                                           |
+| **Revista** | _BMC Cancer_                                                                                      |
+| **Ano**     | 2021                                                                                              |
+| **Volume**  | 21, artigo 852                                                                                    |
+| **DOI**     | https://doi.org/10.1186/s12885-021-08604-y                                                        |
+| **Acesso**  | Acesso aberto (Open Access)                                                                       |
 
 > **Nota:** O artigo é frequentemente citado como "Zhang et al." por engano; os autores corretos são Chen, Yang e Wu.
 
@@ -148,6 +157,13 @@ Nosso projeto analisa câncer de pele não-melanoma (que inclui cSCC) usando exa
 
 ---
 
-## Referência
+## Referência Completa
 
-Chen, H., Yang, J. & Wu, W. (2021). Seven key hub genes identified by gene co-expression network in cutaneous squamous cell carcinoma. _BMC Cancer_, 21, 852. https://doi.org/10.1186/s12885-021-08604-y
+**ABNT:**
+CHEN, Huizhen; YANG, Jiankang; WU, Wenjuan. Seven key hub genes identified by gene co-expression network in cutaneous squamous cell carcinoma. **BMC Cancer**, v. 21, artigo 852, 2021. DOI: https://doi.org/10.1186/s12885-021-08604-y.
+
+**Vancouver:**
+Chen H, Yang J, Wu W. Seven key hub genes identified by gene co-expression network in cutaneous squamous cell carcinoma. BMC Cancer. 2021;21:852. doi: 10.1186/s12885-021-08604-y.
+
+**APA:**
+Chen, H., Yang, J., & Wu, W. (2021). Seven key hub genes identified by gene co-expression network in cutaneous squamous cell carcinoma. _BMC Cancer_, _21_, 852. https://doi.org/10.1186/s12885-021-08604-y

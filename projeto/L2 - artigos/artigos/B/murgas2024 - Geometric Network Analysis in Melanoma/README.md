@@ -1,9 +1,18 @@
 # Resumo: Murgas et al. (2024)
 
-**Título:** Multi-scale geometric network analysis identifies melanoma immunotherapy response gene modules
-**Revista:** Scientific Reports, vol. 14, artigo 6082
-**DOI:** https://doi.org/10.1038/s41598-024-56459-7
-**Autores:** Kevin A. Murgas, Rena Elkin, Nadeem Riaz, Emil Saucan, Joseph O. Deasy, Allen R. Tannenbaum
+---
+
+## Metadados
+
+| Campo       | Informação                                                                                     |
+| ----------- | ---------------------------------------------------------------------------------------------- |
+| **Título**  | Multi-scale geometric network analysis identifies melanoma immunotherapy response gene modules |
+| **Autores** | Kevin A. Murgas, Rena Elkin, Nadeem Riaz, Emil Saucan, Joseph O. Deasy, Allen R. Tannenbaum    |
+| **Revista** | _Scientific Reports_                                                                           |
+| **Ano**     | 2024                                                                                           |
+| **Volume**  | 14, artigo 6082                                                                                |
+| **DOI**     | https://doi.org/10.1038/s41598-024-56459-7                                                     |
+| **Acesso**  | Acesso aberto (Open Access)                                                                    |
 
 ---
 
@@ -91,6 +100,13 @@ Nosso projeto compara redes gênicas de melanoma, não-melanoma e tecido saudáv
 
 ---
 
-## Referência
+## Referência Completa
 
-Murgas, K.A., Elkin, R., Riaz, N., Saucan, E., Deasy, J.O. & Tannenbaum, A.R. (2024). Multi-scale geometric network analysis identifies melanoma immunotherapy response gene modules. _Scientific Reports_, 14, 6082. https://doi.org/10.1038/s41598-024-56459-7
+**ABNT:**
+MURGAS, Kevin A. et al. Multi-scale geometric network analysis identifies melanoma immunotherapy response gene modules. **Scientific Reports**, v. 14, artigo 6082, 2024. DOI: https://doi.org/10.1038/s41598-024-56459-7.
+
+**Vancouver:**
+Murgas KA, Elkin R, Riaz N, Saucan E, Deasy JO, Tannenbaum AR. Multi-scale geometric network analysis identifies melanoma immunotherapy response gene modules. Sci Rep. 2024;14:6082. doi: 10.1038/s41598-024-56459-7.
+
+**APA:**
+Murgas, K. A., Elkin, R., Riaz, N., Saucan, E., Deasy, J. O., & Tannenbaum, A. R. (2024). Multi-scale geometric network analysis identifies melanoma immunotherapy response gene modules. _Scientific Reports_, _14_, 6082. https://doi.org/10.1038/s41598-024-56459-7
