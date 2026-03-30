@@ -1,6 +1,6 @@
 # MO413A — Ciência e Visualização de Dados em Saúde
 
-**UNICAMP, 2026** | [Página da disciplina](https://datasci4health.github.io/)
+**UNICAMP, 1º semestre de 2026** | [Página da disciplina](https://datasci4health.github.io/) | [Google Classroom](https://classroom.google.com/c/ODQwMTg4NTgxMDMz)
 
 Disciplina interdisciplinar que integra Ciência de Dados, Biologia de Sistemas e Ciência de Redes aplicadas à saúde. O curso aborda desde fundamentos de biologia celular e genômica até análise de redes complexas, com projetos práticos em datasets reais de doenças como câncer, leucemia e doenças cardiovasculares.
 
