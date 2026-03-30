@@ -96,6 +96,23 @@ git commit -m "Atualiza submodule datasci4health.github.io"
 
 ---
 
+## Arquivos Binários e Git LFS
+
+Todos os arquivos binários do repositório são rastreados via **Git LFS** (Large File Storage). As extensões configuradas em `.gitattributes` são:
+
+- `*.pdf` — slides e artigos
+- `*.png` — imagens
+- `*.cys` — sessões do Cytoscape
+
+Ao adicionar novos arquivos binários dessas extensões, o LFS os captura automaticamente. Para novos tipos binários, adicionar ao `.gitattributes` antes de commitar:
+
+```bash
+git lfs track "*.extensao"
+git add .gitattributes
+```
+
+---
+
 ## Convenções de Nomenclatura
 
 | Item             | Padrão                                               |
