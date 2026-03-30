@@ -16,41 +16,6 @@
 
 ---
 
-## Glossário de Termos
-
-| Termo                         | O que significa                                                                                                                                                                                                    |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Melanoma**                  | Tipo mais agressivo de câncer de pele, originado nos melanócitos (células responsáveis pela pigmentação da pele). Representa ~4% dos cânceres de pele mas causa ~75% das mortes por câncer de pele                 |
-| **Tumorigenese**              | O processo pelo qual células normais se transformam em células cancerosas. O estudo investiga justamente essa "viagem" da pele normal até o melanoma                                                               |
-| **DEG**                       | _Differentially Expressed Gene_ — Gene diferencialmente expresso: um gene que está significativamente mais ativo (superexpresso) ou menos ativo (subexpresso) em tecido canceroso comparado ao tecido normal       |
-| **ODEG**                      | _Overlapping DEG_ — Gene diferencialmente expresso que aparece em **vários datasets ao mesmo tempo**, tornando-o mais confiável (menos provável de ser um falso positivo)                                          |
-| **GEO**                       | _Gene Expression Omnibus_ — Banco de dados público onde pesquisadores depositam seus dados de expressão gênica para que outros possam reutilizá-los livremente                                                     |
-| **Microarray**                | Tecnologia laboratorial que mede a atividade de milhares de genes simultaneamente numa amostra de tecido. Funciona como um "painel de controle" que mostra quais genes estão ligados e quais estão desligados      |
-| **logFC**                     | _log Fold Change_ — Medida de quanto a expressão de um gene mudou. \|logFC\| > 1 significa que o gene está pelo menos 2× mais (ou menos) ativo no tumor                                                            |
-| **PPI**                       | _Protein-Protein Interaction_ — Interação proteína-proteína: representa fisicamente quais proteínas se "encostam" e interagem umas com as outras dentro da célula. Cada proteína é produzida por um gene           |
-| **STRING**                    | Banco de dados de interações conhecidas entre proteínas. Dado um conjunto de genes/proteínas, o STRING retorna quais pares já foram documentados como interagindo, com um "score de confiança"                     |
-| **Cytoscape**                 | Software de visualização e análise de redes biológicas. Permite desenhar e explorar o grafo de interações                                                                                                          |
-| **MCODE**                     | Plugin do Cytoscape que detecta automaticamente "regiões densamente conectadas" (módulos/comunidades) dentro de uma rede PPI                                                                                       |
-| **CytoHubba**                 | Plugin do Cytoscape que calcula a importância de cada nó na rede usando 12 métricas matemáticas diferentes (grau, centralidade, etc.) para identificar os genes hub                                                |
-| **Gene hub**                  | Gene que funciona como um "nó central" na rede — altamente conectado a muitos outros genes. Tende a ser biologicamente mais importante                                                                             |
-| **GO**                        | _Gene Ontology_ — Sistema de classificação padronizado que descreve as funções dos genes: processo biológico (o que a célula faz), componente celular (onde está) e função molecular (como age)                    |
-| **KEGG**                      | _Kyoto Encyclopedia of Genes and Genomes_ — Banco de dados de vias moleculares (circuitos de reações dentro da célula). Permite saber em qual "rota metabólica" ou "via de sinalização" um gene está envolvido     |
-| **DAVID**                     | Ferramenta online de anotação funcional de genes — recebe uma lista de genes e diz quais processos biológicos estão "enriquecidos" nessa lista                                                                     |
-| **GEPIA**                     | Plataforma online que usa dados do TCGA e GTEx para analisar expressão gênica em tumores e sua relação com sobrevida dos pacientes                                                                                 |
-| **OS**                        | _Overall Survival_ — Sobrevida global: tempo de vida do paciente após o diagnóstico                                                                                                                                |
-| **DFS**                       | _Disease-Free Survival_ — Sobrevida livre de doença: tempo sem recorrência do câncer após o tratamento                                                                                                             |
-| **TIMER**                     | Banco de dados que avalia a correlação entre expressão gênica e infiltração de células do sistema imunológico no tumor                                                                                             |
-| **TCGA**                      | _The Cancer Genome Atlas_ — Projeto que sequenciou o genoma de amostras de 33 tipos de câncer de milhares de pacientes. SKCM = melanoma cutâneo no TCGA                                                            |
-| **TRRUST**                    | Banco de dados de redes de regulação por fatores de transcrição — diz quais "interruptores moleculares" controlam quais genes                                                                                      |
-| **Fator de transcrição (TF)** | Proteína que funciona como um "interruptor": ao se ligar ao DNA, ativa ou silencia outros genes                                                                                                                    |
-| **DGIdb**                     | Banco de dados de interações droga-gene: lista quais medicamentos conhecidos atuam sobre quais genes                                                                                                               |
-| **qPCR**                      | _Quantitative Polymerase Chain Reaction_ — Técnica laboratorial que mede com precisão a quantidade de RNA de um gene específico numa amostra. É usada para **validar** os resultados computacionais no tecido real |
-| **IHC**                       | _Immunohistochemistry_ — Imunohistoquímica: técnica que usa anticorpos marcados para visualizar ao microscópio onde e quanto uma proteína está presente em cortes de tecido                                        |
-| **Quimiocinas**               | Família de pequenas proteínas (~8-14 kDa) que funcionam como "sinais de navegação" para células imunes — recrutam linfócitos e outros leucócitos para o local da inflamação ou tumor                               |
-| **NF-κB**                     | Via de sinalização (conjunto de proteínas) que regula inflamação, resposta imune, proliferação celular e apoptose (morte celular programada)                                                                       |
-
----
-
 ## Problema Investigado
 
 Melanoma[^melanoma] é responsável por 75% das mortes por câncer de pele, apesar de representar apenas 4% dos casos. A maioria dos estudos foca em melanoma avançado ou metastático. Este trabalho investiga o processo menos estudado de **transição de pele normal para melanoma primário** — ou seja, o que acontece geneticamente no início do desenvolvimento do tumor.

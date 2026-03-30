@@ -16,26 +16,6 @@
 
 ---
 
-## Glossário de Termos
-
-| Termo                                 | O que significa                                                                                                                                                                                                                                               |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Melanoma**                          | Tipo mais agressivo de câncer de pele, originado nos melanócitos (células que produzem a pigmentação da pele)                                                                                                                                                 |
-| **Imunoterapia**                      | Tratamento que não ataca o tumor diretamente, mas "ensina" o sistema imunológico do paciente a reconhecer e combater as células cancerosas                                                                                                                    |
-| **Nivolumab**                         | Nome do medicamento de imunoterapia usado no estudo. É um anticorpo que bloqueia uma proteína chamada PD-1, que normalmente "desliga" o sistema imunológico — ao bloqueá-la, o sistema imune volta a atacar o tumor                                           |
-| **Gene**                              | Trecho do DNA que carrega a instrução para produzir uma proteína específica                                                                                                                                                                                   |
-| **Expressão gênica**                  | Medida de quão "ativo" um gene está — ou seja, o quanto ele está sendo lido e usado para produzir proteínas naquele momento                                                                                                                                   |
-| **RNA-seq**                           | Técnica laboratorial para medir a expressão de milhares de genes ao mesmo tempo. Funciona como um "censo" de quais genes estão mais ou menos ativos numa amostra de tecido                                                                                    |
-| **Rede de correlação**                | Um grafo (rede) em que cada nó é um gene e cada aresta representa o quanto a expressão de dois genes "anda junto" — se um sobe, o outro também sobe (ou desce)                                                                                                |
-| **Curvatura de Ollivier-Ricci (ORC)** | Medida geométrica que avalia o quão "bem conectados" são os vizinhos de dois nós ligados por uma aresta. Valores positivos indicam que os dois nós pertencem ao mesmo grupo (comunidade); valores negativos indicam que fazem a ponte entre grupos diferentes |
-| **Módulo gênico**                     | Grupo de genes que têm expressão coordenada — tendem a ser ativados ou silenciados juntos, geralmente porque participam do mesmo processo biológico                                                                                                           |
-| **Via NF-κB**                         | Conjunto de proteínas que funcionam como um "interruptor" molecular: quando ativado, comanda processos de inflamação e resposta imunológica. Também está envolvido no crescimento tumoral                                                                     |
-| **Clustering de Louvain**             | Algoritmo matemático que agrupa automaticamente os nós de uma rede em comunidades, maximizando conexões dentro de cada grupo e minimizando conexões entre grupos                                                                                              |
-| **DEG**                               | _Differentially Expressed Gene_ — gene diferencialmente expresso: um gene que está significativamente mais ativo (ou menos ativo) num grupo comparado ao outro (ex.: antes vs. depois do tratamento)                                                          |
-| **GO**                                | _Gene Ontology_ — sistema padronizado de classificação de genes por função biológica, componente celular ou processo em que participam                                                                                                                        |
-
----
-
 ## Problema Investigado
 
 O melanoma[^melanoma] é um câncer de pele muito agressivo. Embora imunoterapias[^imunoterapia] como o nivolumab[^nivolumab] funcionem em alguns pacientes, não sabemos bem por que funcionam em uns e não em outros — e quais genes estão por trás dessa resposta.

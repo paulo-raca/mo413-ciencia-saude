@@ -18,27 +18,6 @@
 
 ---
 
-## Glossário de Termos
-
-| Termo                         | O que significa                                                                                                                                                                                                                                                 |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **cSCC**                      | _Cutaneous Squamous Cell Carcinoma_ — Carcinoma Espinocelular Cutâneo: o segundo tipo de câncer de pele mais comum, originado nas células escamosas da camada externa da pele                                                                                   |
-| **AK**                        | _Actinic Keratosis_ — Queratose Actínica: lesão pré-cancerosa da pele causada por exposição crônica ao sol. É considerada o estágio precursor do cSCC                                                                                                           |
-| **Gene hub**                  | Gene altamente conectado dentro de uma rede biológica — funciona como um "nó central" que se comunica com muitos outros genes. Genes hub tendem a ser mais importantes para o funcionamento (ou mau funcionamento) do sistema                                   |
-| **WGCNA**                     | _Weighted Gene Co-expression Network Analysis_ — Análise de Rede de Co-expressão Gênica Ponderada: método que constrói uma rede de genes onde a "força" da conexão entre dois genes é proporcional ao quanto suas expressões se correlacionam entre as amostras |
-| **Módulo**                    | Grupo de genes altamente co-expressos entre si (conectados com alta correlação na rede). Cada módulo tende a representar um processo biológico específico                                                                                                       |
-| **GEO**                       | _Gene Expression Omnibus_: banco de dados público do NCBI onde pesquisadores depositam seus dados de expressão gênica para que outros possam reutilizá-los                                                                                                      |
-| **DEG**                       | _Differentially Expressed Gene_ — Gene diferencialmente expresso: gene que está significativamente mais ativo ou menos ativo em células cancerosas comparado a células normais                                                                                  |
-| **GO**                        | _Gene Ontology_: sistema de classificação que descreve as funções dos genes em três categorias: processo biológico, função molecular e componente celular                                                                                                       |
-| **KEGG**                      | _Kyoto Encyclopedia of Genes and Genomes_: banco de dados de vias moleculares (rotas de reações químicas e sinalizações dentro da célula). Permite descobrir em qual "circuito" celular um gene está envolvido                                                  |
-| **TCGA**                      | _The Cancer Genome Atlas_: projeto que sequenciou o genoma de amostras de 33 tipos de câncer de milhares de pacientes — um dos maiores bancos de dados genômicos de câncer                                                                                      |
-| **log2FC**                    | _log2 Fold Change_: medida de quanto a expressão de um gene mudou. Um valor de 1 significa que o gene está 2× mais expresso; 2 significa 4× mais expresso. Valores negativos indicam redução de expressão                                                       |
-| **FDR**                       | _False Discovery Rate_: correção estatística aplicada quando se testam milhares de genes simultaneamente, para reduzir o número de falsos positivos                                                                                                             |
-| **ME**                        | _Module Eigengene_: resumo matemático do comportamento de expressão de todos os genes de um módulo — funciona como um "representante único" do módulo para análises de correlação                                                                               |
-| **Escala livre (scale-free)** | Propriedade de redes biológicas em que poucos nós têm muitas conexões (hubs) e muitos nós têm poucas conexões — segue uma distribuição em lei de potência                                                                                                       |
-
----
-
 ## Problema Investigado
 
 O Carcinoma Espinocelular Cutâneo (cSCC[^cscc]) é o segundo câncer de pele mais comum e pode se espalhar para outros órgãos (metástase) em ~10% dos casos. Não existem biomarcadores clínicos confiáveis para diagnosticar e tratar o cSCC precocemente. Os autores queriam identificar genes-chave (hubs[^hub]) envolvidos no desenvolvimento do cSCC e da queratose actínica (AK[^ak]), sua lesão precursora.
