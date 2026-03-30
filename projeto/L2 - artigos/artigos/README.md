@@ -4,6 +4,28 @@ Revisão de artigos científicos que aplicam estratégias de redes complexas à 
 
 ---
 
+## Subgrupo A — Augusto José Peterlevitz, Felipe Kennedy Carvalho Torquato, Luis Henrique Angélico
+
+### Chen, Yang & Wu (2021) — Hub Genes em Carcinoma Espinocelular Cutâneo
+
+[artigo](https://doi.org/10.1186/s12885-021-08604-y) | [PDF](B/chen2021-hub-genes-cscc.pdf) | [resumo](B/chen2021-hub-genes-cscc-resumo.md)
+
+Usando dois datasets de microarray (GSE45216 + GSE98774 combinados) e um de RNA-seq (GSE108008) analisados separadamente com WGCNA, o estudo identifica módulos de co-expressão associados ao carcinoma espinocelular cutâneo (cSCC) e à queratose actínica (AK, lesão pré-cancerígena). A interseção dos resultados de ambas as análises revela sete hub genes — AURKA, BUB1, CCNB1, CDK1, KIF2C, TOP2A e TPX2 — validados por expressão proteica e análise de sobrevida.
+
+### Murgas et al. (2024) — Curvatura de Ricci e Resposta à Imunoterapia no Melanoma
+
+[artigo](https://doi.org/10.1038/s41598-024-56459-7) | [PDF](B/murgas2024-geometric-network-melanoma.pdf) | [resumo](B/murgas2024-geometric-network-melanoma-resumo.md)
+
+Aplica a curvatura de Ollivier-Ricci (ORC) — uma medida geométrica derivada do transporte ótimo — a redes de co-expressão gênica de pacientes com melanoma tratados com imunoterapia. A ORC captura a "saúde" local das arestas da rede e, combinada com detecção de comunidades por Louvain, identifica módulos de genes cujas propriedades geométricas distinguem respondedores de não-respondedores ao tratamento, revelando padrões de sinalização imune e NF-κB.
+
+### Xuan et al. (2021) — Genes de Tumorigenese do Melanoma por Co-expressão
+
+[artigo](https://doi.org/10.2147/IJGM.S336295) | [PDF](B/xuan2021-melanoma-coexpression-tumorigenesis.pdf) | [resumo](B/xuan2021-melanoma-coexpression-tumorigenesis-resumo.md)
+
+A partir do dataset GSE3189 (GEO), constrói uma rede de co-expressão para identificar genes diferencialmente expressos em melanoma, importa os candidatos no STRING e usa MCODE (detecção de módulos densos) e CytoHubba no Cytoscape para identificar nove hub genes — AURKA, CCNB1, CDK1, BUB1B, KIF2C, TOP2A, BUB1, CDCA8 e TPX2 — associados à tumorigenese do melanoma e validados por análise de sobrevida no TCGA.
+
+---
+
 ## Subgrupo B — Paulo Costa, Naruan Francisco Ferraz e Ferraz, Alan Freitas Ribeiro
 
 ### Kaushik et al. (2015) — Gene Network Rewiring in Melanoma
@@ -35,25 +57,3 @@ Apresenta o XGDAG, um framework que usa GraphSAGE (7 camadas) sobre a rede PPI d
 [artigo](https://doi.org/10.3390/genes16121428) | [resumo](A/speranza2025-melanoma-subtypes-network-resumo.md)
 
 A partir de 194 amostras de melanoma (dataset E-MTAB-6697), aplica K-Means para estratificar os tumores em três subtipos moleculares distintos e WGCNA para identificar os módulos de co-expressão específicos de cada subtipo. Os três clusters divergem em proliferação, metabolismo e plasticidade celular, mas compartilham perfis imunológicos "quentes" (IPS 7–8), sugerindo que todos podem responder à imunoterapia por mecanismos diferentes.
-
----
-
-## Subgrupo A — Augusto José Peterlevitz, Felipe Kennedy Carvalho Torquato, Luis Henrique Angélico
-
-### Chen, Yang & Wu (2021) — Hub Genes em Carcinoma Espinocelular Cutâneo
-
-[artigo](https://doi.org/10.1186/s12885-021-08604-y) | [PDF](B/chen2021-hub-genes-cscc.pdf) | [resumo](B/chen2021-hub-genes-cscc-resumo.md)
-
-Usando dois datasets de microarray (GSE45216 + GSE98774 combinados) e um de RNA-seq (GSE108008) analisados separadamente com WGCNA, o estudo identifica módulos de co-expressão associados ao carcinoma espinocelular cutâneo (cSCC) e à queratose actínica (AK, lesão pré-cancerígena). A interseção dos resultados de ambas as análises revela sete hub genes — AURKA, BUB1, CCNB1, CDK1, KIF2C, TOP2A e TPX2 — validados por expressão proteica e análise de sobrevida.
-
-### Murgas et al. (2024) — Curvatura de Ricci e Resposta à Imunoterapia no Melanoma
-
-[artigo](https://doi.org/10.1038/s41598-024-56459-7) | [PDF](B/murgas2024-geometric-network-melanoma.pdf) | [resumo](B/murgas2024-geometric-network-melanoma-resumo.md)
-
-Aplica a curvatura de Ollivier-Ricci (ORC) — uma medida geométrica derivada do transporte ótimo — a redes de co-expressão gênica de pacientes com melanoma tratados com imunoterapia. A ORC captura a "saúde" local das arestas da rede e, combinada com detecção de comunidades por Louvain, identifica módulos de genes cujas propriedades geométricas distinguem respondedores de não-respondedores ao tratamento, revelando padrões de sinalização imune e NF-κB.
-
-### Xuan et al. (2021) — Genes de Tumorigenese do Melanoma por Co-expressão
-
-[artigo](https://doi.org/10.2147/IJGM.S336295) | [PDF](B/xuan2021-melanoma-coexpression-tumorigenesis.pdf) | [resumo](B/xuan2021-melanoma-coexpression-tumorigenesis-resumo.md)
-
-A partir do dataset GSE3189 (GEO), constrói uma rede de co-expressão para identificar genes diferencialmente expressos em melanoma, importa os candidatos no STRING e usa MCODE (detecção de módulos densos) e CytoHubba no Cytoscape para identificar nove hub genes — AURKA, CCNB1, CDK1, BUB1B, KIF2C, TOP2A, BUB1, CDCA8 e TPX2 — associados à tumorigenese do melanoma e validados por análise de sobrevida no TCGA.
