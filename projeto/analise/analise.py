@@ -34,6 +34,32 @@ def _(mo):
     | [GSE8401](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE8401) | Melanoma | 83 | Melanoma primário vs. metástases — assinatura de agressividade (Affymetrix HG-U133A) |
     | [GSE7553](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE7553) | Melanoma | 87 | Espectro completo: pele normal, melanoma in situ, primário, metastático, BCC, SCC (Affymetrix U133 Plus 2.0) |
     | [GSE45216](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45216) | Não-melanoma | 40 | Queratose actínica vs. SCC cutâneo — 196 DEGs identificados (Affymetrix U133 Plus 2.0) |
+
+    ---
+
+    ## Pipeline
+
+    - [x] **1. Download dos datasets GEO** — GEOparse, cache local em `data/geo/`
+    - [ ] **2. Pré-processamento**
+        - [ ] Extrair matrizes de expressão (genes × amostras)
+        - [ ] Separar amostras por condição (saudável / melanoma / não-melanoma)
+        - [ ] Verificar normalização; normalizar se necessário
+        - [ ] Correção de batch effect entre datasets
+    - [ ] **3. Análise de Expressão Diferencial (DEA)**
+        - [ ] Saudável vs. Melanoma
+        - [ ] Saudável vs. Não-melanoma
+        - [ ] Critério: |logFC| > 1, p ajustado < 0.05
+    - [ ] **4. Construção da rede PPI**
+        - [ ] Query dos DEGs na API do STRING
+        - [ ] Filtrar por score de confiança
+    - [ ] **5. Análise de rede** (Cytoscape / Python)
+        - [ ] Identificação de hubs (grau, CytoHubba)
+        - [ ] Detecção de módulos (MCODE / Louvain)
+        - [ ] Métricas topológicas (NetworkAnalyzer)
+    - [ ] **6. Comparação entre redes**
+        - [ ] Hubs compartilhados vs. específicos por condição
+        - [ ] Diferenças topológicas (distribuição de grau, coeficiente de clustering)
+    - [ ] **7. Graph Attention Network (GAT)** — análise adicional sobre TCGA-SKCM
     """)
     return
 
