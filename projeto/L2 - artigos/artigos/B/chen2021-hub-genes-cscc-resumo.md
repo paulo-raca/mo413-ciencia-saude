@@ -40,11 +40,11 @@ O Carcinoma Espinocelular Cutâneo (cSCC) é o segundo câncer de pele mais comu
 
 Todos os dados foram obtidos do banco público **GEO**:
 
-| Dataset   | Amostras de cSCC | Amostras de AK | Amostras normais | Descrição                                                              |
-| --------- | ---------------- | -------------- | ---------------- | ---------------------------------------------------------------------- |
-| GSE45216  | 30               | 10             | —                | Microarray de pele (cSCC e AK); plataforma Affymetrix HG-U133 Plus 2  |
-| GSE98774  | —                | 28             | 36               | Microarray de AK vs. pele normal; plataforma Affymetrix HG-U133A 2.0  |
-| GSE108008 | 10               | 10             | 10               | RNA-seq de cSCC, AK e pele normal pareada do mesmo paciente            |
+| Dataset   | Amostras de cSCC | Amostras de AK | Amostras normais | Descrição                                                            |
+| --------- | ---------------- | -------------- | ---------------- | -------------------------------------------------------------------- |
+| GSE45216  | 30               | 10             | —                | Microarray de pele (cSCC e AK); plataforma Affymetrix HG-U133 Plus 2 |
+| GSE98774  | —                | 28             | 36               | Microarray de AK vs. pele normal; plataforma Affymetrix HG-U133A 2.0 |
+| GSE108008 | 10               | 10             | 10               | RNA-seq de cSCC, AK e pele normal pareada do mesmo paciente          |
 
 Os datasets GSE45216 e GSE98774 foram combinados num único dataset (GSE45216–98774) para aumentar o poder estatístico. Isso foi possível porque ambos usam a mesma tecnologia (microarray Affymetrix HG-U133), tornando os valores de expressão diretamente comparáveis. GSE108008, por ser RNA-seq, produz valores em escala e distribuição completamente distintas do microarray — combiná-lo com os outros introduziria ruído técnico que mascararia o sinal biológico, mesmo com correção de batch. Por isso o WGCNA foi rodado separadamente para GSE108008, e os resultados foram comparados ao final para identificar genes consistentes em ambas as análises.
 

@@ -10,3 +10,7 @@ O resultado deve ser apresentado na forma de um markdown no GitHub da equipe (ne
 - nome dos ~3 membros do subgrupo
 - resumo descritivo e ilustrações
 - referência(s)
+
+Se for produzida uma página no GitHub, deve ser submetido apenas o endereço da página específica (não do site principal). Se for produzido um PDF, deve ser submetido o PDF.
+
+Deve ser feita apenas uma submissão por subgrupo por qualquer um dos componentes.
