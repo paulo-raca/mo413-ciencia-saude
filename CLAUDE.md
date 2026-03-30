@@ -26,8 +26,15 @@ Este repositório é material de estudo da disciplina **MO413A — Ciência e Vi
 │   └── L2 - artigos/                  # Entrega L2
 │       ├── README.md
 │       └── artigos/
-│           ├── A/                     # Artigos do subgrupo A (Paulo, Naruan, Alan)
-│           └── B/                     # Artigos do subgrupo B
+│           ├── README.md              # Índice com resumo de um parágrafo por artigo
+│           ├── A/                     # Artigos do subgrupo A (Augusto, Felipe, Luis)
+│           │   └── {autor}{ano} - {Assunto}/
+│           │       ├── paper.pdf      # PDF do artigo
+│           │       └── README.md      # Resumo detalhado
+│           └── B/                     # Artigos do subgrupo B (Paulo, Naruan, Alan)
+│               └── {autor}{ano} - {Assunto}/
+│                   ├── paper.pdf
+│                   └── README.md
 └── datasci4health.github.io/          # Submodule — site oficial da disciplina
 ```
 
@@ -57,10 +64,12 @@ Se não houver gravação, omitir o link do YouTube e mencionar isso no README d
 ## Como Adicionar um Exercício
 
 Se o exercício for da mesma data de uma aula existente:
+
 - Criar subpasta `exercicios/` dentro da pasta da aula correspondente
 - Colocar os arquivos (`.cys`, `.csv`, `.md`, imagens) dentro
 
 Se for uma aula prática sem slides próprios (como 2026-03-18):
+
 - Criar subpasta nova em `aulas/YYYY-MM-DD - Assunto/`
 - Criar `README.md` mencionando qual aula usou os mesmos slides
 - Criar subpasta `exercicios/` com os arquivos
@@ -89,13 +98,14 @@ git commit -m "Atualiza submodule datasci4health.github.io"
 
 ## Convenções de Nomenclatura
 
-| Item | Padrão |
-| --- | --- |
-| Pasta de aula | `YYYY-MM-DD - Assunto` |
-| Slides | `slides.pdf` |
-| Resumo de aula | `README.md` |
-| Resumo de artigo | `autor{ano}-topico-resumo.md` |
-| PDF de artigo | `autor{ano}-topico.pdf` |
+| Item             | Padrão                                               |
+| ---------------- | ---------------------------------------------------- |
+| Pasta de aula    | `YYYY-MM-DD - Assunto`                               |
+| Slides           | `slides.pdf`                                         |
+| Resumo de aula   | `README.md`                                          |
+| Pasta de artigo  | `{autor}{ano} - {Assunto com espaços e maiúsculas}/` |
+| Resumo de artigo | `{autor}{ano} - {Assunto}/README.md`                 |
+| PDF de artigo    | `{autor}{ano} - {Assunto}/paper.pdf`                 |
 
 ---
 
@@ -112,7 +122,7 @@ git commit -m "Atualiza submodule datasci4health.github.io"
 
 ### Resumos de Artigos Científicos
 
-Estrutura padrão (`artigos/{subgrupo}/{autor}{ano}-{topico}-resumo.md`):
+Estrutura padrão (`artigos/{subgrupo}/{autor}{ano} - {Assunto}/README.md`):
 
 1. **Metadados** — tabela com título, autores, revista, ano, DOI, PMID
 2. **Glossário** — explicar cada sigla e termo técnico (biológico E computacional) para quem nunca estudou biologia ou computação avançada
@@ -132,13 +142,14 @@ Estrutura padrão (`artigos/{subgrupo}/{autor}{ano}-{topico}-resumo.md`):
 
 **Equipe ALFAK:** Alan Freitas Ribeiro, Augusto José Peterlevitz, Felipe Kennedy Carvalho Torquato, Luis Henrique Angélico, Naruan Francisco Ferraz e Ferraz, Paulo Costa
 
-**Subgrupo A (artigos L2):** Augusto José Peterlevitz, Felipe Kennedy Carvalho Torquato, Luis Henrique Angélico
+**Subgrupo A (artigos L2 — pasta `artigos/A/`):** Augusto José Peterlevitz, Felipe Kennedy Carvalho Torquato, Luis Henrique Angélico
 
-**Subgrupo B (artigos L2):** Paulo Costa, Naruan Francisco Ferraz e Ferraz, Alan Freitas Ribeiro
+**Subgrupo B (artigos L2 — pasta `artigos/B/`):** Paulo Costa, Naruan Francisco Ferraz e Ferraz, Alan Freitas Ribeiro
 
 **Objetivo:** Comparar redes de interação gênica de melanoma, não-melanoma e tecido saudável usando dados do GEO, STRING e Cytoscape. Identificar hubs, módulos e diferenças topológicas entre as redes. Análise adicional com Graph Attention Networks (GAT) sobre TCGA-SKCM.
 
 **Datasets GEO:**
+
 - Saudável: GSE4570, GSE2503, GSE53462
 - Melanoma: GSE4570, GSE8401, GSE7553
 - Não-melanoma: GSE2503, GSE45216, GSE53462
