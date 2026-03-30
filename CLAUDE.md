@@ -1,0 +1,159 @@
+# CLAUDE.md — Instruções para o Assistente
+
+## Contexto
+
+Este repositório é material de estudo da disciplina **MO413A — Ciência e Visualização de Dados em Saúde** (UNICAMP, 1º semestre de 2026). O usuário é estudante de **biologia computacional / bioinformática** mas **não tem background em biologia** — todos os termos e conceitos biológicos devem ser explicados como se o leitor nunca tivesse estudado biologia. Use analogias do cotidiano sempre que possível.
+
+---
+
+## Estrutura do Repositório
+
+```
+.
+├── README.md                          # Visão geral da disciplina
+├── CLAUDE.md                          # Este arquivo
+├── aulas/                             # Uma subpasta por aula
+│   └── YYYY-MM-DD - Assunto/
+│       ├── slides.pdf                 # Slides originais da aula
+│       ├── README.md                  # Resumo + links para slides e YouTube
+│       └── exercicios/                # Arquivos de exercício (se houver)
+│           └── ...
+├── projeto/                           # Projeto semestral da equipe ALFAK
+│   ├── README.md                      # Resumo do projeto semestral
+│   ├── slides.pdf                     # Slides de apresentação do projeto
+│   ├── L1 - How Wolves Chang Rivers/  # Entrega L1
+│   │   └── README.md
+│   └── L2 - artigos/                  # Entrega L2
+│       ├── README.md
+│       └── artigos/
+│           ├── A/                     # Artigos do subgrupo A (Paulo, Naruan, Alan)
+│           └── B/                     # Artigos do subgrupo B
+└── datasci4health.github.io/          # Submodule — site oficial da disciplina
+```
+
+---
+
+## Como Adicionar uma Nova Aula
+
+1. Criar subpasta: `aulas/YYYY-MM-DD - Assunto/`
+2. Copiar o PDF dos slides para `slides.pdf` dentro dessa pasta
+3. Criar `README.md` com o seguinte cabeçalho:
+
+```markdown
+# Título da Aula
+
+[slides](slides.pdf) | [YouTube](https://youtube.com/watch?v=ID)
+
+Aula de NOME (UNICAMP) — DD de mês de 2026
+```
+
+4. Ler o PDF dos slides e escrever o resumo em português, explicando **todos** os termos biológicos para leigos
+5. Adicionar a aula na seção "Aulas" do `README.md` raiz com um parágrafo de resumo e links
+
+Se não houver gravação, omitir o link do YouTube e mencionar isso no README da aula.
+
+---
+
+## Como Adicionar um Exercício
+
+Se o exercício for da mesma data de uma aula existente:
+- Criar subpasta `exercicios/` dentro da pasta da aula correspondente
+- Colocar os arquivos (`.cys`, `.csv`, `.md`, imagens) dentro
+
+Se for uma aula prática sem slides próprios (como 2026-03-18):
+- Criar subpasta nova em `aulas/YYYY-MM-DD - Assunto/`
+- Criar `README.md` mencionando qual aula usou os mesmos slides
+- Criar subpasta `exercicios/` com os arquivos
+
+---
+
+## Como Adicionar uma Nova Entrega de Projeto (L3, L4, ...)
+
+1. Criar subpasta em `projeto/L{N} - Titulo/`
+2. Criar `README.md` com enunciado e/ou resumo da entrega
+3. Adicionar seção correspondente no `README.md` raiz (em "Projeto Semestral")
+
+---
+
+## Como Atualizar o Submodule
+
+O diretório `datasci4health.github.io/` é um submodule apontando para o repositório oficial da disciplina. Para atualizar para a versão mais recente:
+
+```bash
+git submodule update --remote datasci4health.github.io
+git add datasci4health.github.io
+git commit -m "Atualiza submodule datasci4health.github.io"
+```
+
+---
+
+## Convenções de Nomenclatura
+
+| Item | Padrão |
+| --- | --- |
+| Pasta de aula | `YYYY-MM-DD - Assunto` |
+| Slides | `slides.pdf` |
+| Resumo de aula | `README.md` |
+| Resumo de artigo | `autor{ano}-topico-resumo.md` |
+| PDF de artigo | `autor{ano}-topico.pdf` |
+
+---
+
+## Como Escrever Resumos
+
+### Resumos de Aulas
+
+- Ler o PDF dos slides com a ferramenta `Read`
+- Escrever em **português**
+- Começar com o cabeçalho padrão (links para slides e YouTube)
+- Explicar **todo termo biológico** na primeira vez que aparecer — não assumir conhecimento prévio
+- Usar analogias simples: genes como "receitas", proteínas como "máquinas", redes como "mapas de metrô"
+- Estruturar com cabeçalhos `##` por tema
+
+### Resumos de Artigos Científicos
+
+Estrutura padrão (`artigos/{subgrupo}/{autor}{ano}-{topico}-resumo.md`):
+
+1. **Metadados** — tabela com título, autores, revista, ano, DOI, PMID
+2. **Glossário** — explicar cada sigla e termo técnico (biológico E computacional) para quem nunca estudou biologia ou computação avançada
+3. **Problema investigado** — o que o artigo tenta resolver e por quê importa
+4. **Dados utilizados** — fontes, tamanho, tipo
+5. **Pipeline/Metodologia** — diagrama ASCII do fluxo do trabalho
+6. **Estratégia de grafo** — que modelo de grafo foi usado e qual algoritmo de rede complexa foi aplicado
+7. **Resultados principais** — tabela com os achados mais importantes
+8. **Relevância para o projeto** — por que este artigo importa para o projeto de câncer de pele
+9. **Referência completa** — formatos ABNT, Vancouver e APA
+
+---
+
+## Contexto do Projeto Semestral
+
+**Título:** Câncer de Pele e seus Tipos: uma Análise do Perfil de Expressão Gênica em Redes
+
+**Equipe ALFAK:** Alan Freitas Ribeiro, Augusto José Peterlevitz, Felipe Kennedy Carvalho Torquato, Luis Henrique Angélico, Naruan Francisco Ferraz e Ferraz, Paulo Costa
+
+**Subgrupo A (artigos L2):** Paulo, Naruan Francisco Ferraz e Ferraz, Alan Freitas Ribeiro
+
+**Subgrupo B (artigos L2):** Augusto José Peterlevitz, Felipe Kennedy Carvalho Torquato, Luis Henrique Angélico
+
+**Objetivo:** Comparar redes de interação gênica de melanoma, não-melanoma e tecido saudável usando dados do GEO, STRING e Cytoscape. Identificar hubs, módulos e diferenças topológicas entre as redes. Análise adicional com Graph Attention Networks (GAT) sobre TCGA-SKCM.
+
+**Datasets GEO:**
+- Saudável: GSE4570, GSE2503, GSE53462
+- Melanoma: GSE4570, GSE8401, GSE7553
+- Não-melanoma: GSE2503, GSE45216, GSE53462
+
+**Ferramentas:** STRING, Cytoscape (CytoNCA, NetworkAnalyzer, MCODE), Python (PyTorch, Pandas, Scikit-learn)
+
+---
+
+## Nota sobre Biologia
+
+O usuário **não tem background em biologia**. Sempre que aparecer um termo biológico — gene, proteína, RNA, expressão gênica, melanoma, carcinoma, via metabólica, etc. — explicar como se fosse a primeira vez, usando linguagem simples e analogias. Exemplos:
+
+- **Gene**: como uma receita dentro de um livro de culinária (o DNA). A célula lê a receita para fabricar uma proteína.
+- **Expressão gênica**: o quanto um gene está sendo "lido" e executado pela célula. Um gene muito expresso está muito ativo.
+- **Proteína**: a molécula fabricada a partir da receita do gene. Faz o trabalho real na célula.
+- **Rede PPI**: mapa de quais proteínas trabalham juntas, como um organograma de uma empresa.
+- **Hub**: gene/proteína muito conectado na rede — como uma estação central de metrô.
+- **Melanoma**: câncer originado nos melanócitos (células que produzem o pigmento da pele).
