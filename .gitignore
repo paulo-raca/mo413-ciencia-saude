@@ -5,3 +5,9 @@ projeto/analise/data/
 projeto/analise/.venv/
 __pycache__/
 *.pyc
+
+# Marimo session state
+__marimo__/
+
+# Serena MCP
+.serena/
