@@ -1,5 +1,7 @@
 # Resumo: Xuan et al. (2021)
 
+[PDF](paper.pdf)
+
 ---
 
 ## Metadados

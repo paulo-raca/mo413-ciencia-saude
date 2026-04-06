@@ -1,5 +1,7 @@
 # Resumo: Murgas et al. (2024)
 
+[PDF](paper.pdf)
+
 ---
 
 ## Metadados

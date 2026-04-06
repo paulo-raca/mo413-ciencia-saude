@@ -1,5 +1,7 @@
 # Resumo: Genetic Insight into Expression-Defined Melanoma Subtypes and Network Mechanisms
 
+[PDF](paper.pdf)
+
 ---
 
 ## Metadados

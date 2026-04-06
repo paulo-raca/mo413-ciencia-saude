@@ -1,5 +1,7 @@
 # Resumo: Identifying Candidate Gene–Disease Associations via Graph Neural Networks
 
+[PDF](paper.pdf)
+
 ---
 
 ## Metadados

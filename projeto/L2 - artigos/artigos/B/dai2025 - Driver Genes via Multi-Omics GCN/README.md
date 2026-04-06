@@ -1,5 +1,7 @@
 # dai2025 — Driver Genes via Multi-Omics GCN (DriverOmicsNet)
 
+[PDF](paper.pdf)
+
 | Campo       | Informação |
 | ----------- | ---------- |
 | **Título**  | DriverOmicsNet: an integrated graph convolutional network for multi-omics exploration of cancer driver genes |

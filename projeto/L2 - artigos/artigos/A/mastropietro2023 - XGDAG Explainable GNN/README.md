@@ -1,5 +1,7 @@
 # Resumo: XGDAG — Explainable Gene-Disease Associations via Graph Neural Networks
 
+[PDF](paper.pdf)
+
 ---
 
 ## Metadados

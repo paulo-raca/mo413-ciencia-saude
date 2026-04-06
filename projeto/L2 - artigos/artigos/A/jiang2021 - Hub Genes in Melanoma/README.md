@@ -1,5 +1,7 @@
 # Resumo: Identification of Hub Genes Associated With Melanoma Development by Comprehensive Bioinformatics Analysis
 
+[PDF](paper.pdf)
+
 ---
 
 ## Metadados
