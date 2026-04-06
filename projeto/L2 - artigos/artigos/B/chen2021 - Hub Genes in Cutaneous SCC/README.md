@@ -108,6 +108,19 @@ Expressão gênica (amostras de cSCC, AK e normal)
         7 genes hub identificados
 ```
 
+```mermaid
+graph TD
+    A["Expressão gênica\ncSCC · AK · normal\n2 datasets GEO"] -->|"WGCNA"| B["Rede de co-expressão\nponderada"]
+    B -->|"agrupamento hierárquico"| C["12–36 módulos"]
+    C -->|"correlação módulo × clínica"| D["Módulo 5\nmais relevante para cSCC"]
+    A -->|"DEG analysis"| E["Genes diferencialmente\nexpressos (DEGs)"]
+    D --> F{"Interseção\nmódulo ∩ DEGs"}
+    E --> F
+    F -->|"MM > 0,8"| G["Genes hub candidatos"]
+    G -->|"validados nos 2 datasets"| H["7 genes hub validados"]
+    H -->|"TCGA pan-câncer\n33 tipos"| I["Validação externa"]
+```
+
 ![Figura 1 do artigo — fluxograma completo do processo de análise](zhang2021-hub-genes-cscc.pdf)
 
 ---

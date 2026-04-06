@@ -53,6 +53,16 @@ Genes (nós) → Rede de correlação (arestas = correlação de expressão)
          Associação com sobrevida e resposta clínica
 ```
 
+```mermaid
+graph TD
+    A["912 genes · 43 amostras\nRNA-seq pré/pós nivolumab"] -->|"correlação de Pearson"| B["Rede de correlação\n50.518 arestas"]
+    B -->|"Curvatura de Ollivier-Ricci"| C["Score ORC por aresta\npontes: ORC baixo\ninternas: ORC alto"]
+    C -->|"varredura de τ → τ_crit = 1,58"| D["Ponto crítico de escala"]
+    D -->|"Algoritmo de Louvain"| E["6 módulos de genes"]
+    E --> F["Enriquecimento GO\nvias biológicas"]
+    E --> G["Associação com\nsobrevida clínica"]
+```
+
 ---
 
 ## Resultados

@@ -129,6 +129,16 @@ A chave técnica do artigo é usar **GraphSAGE** (em vez de GCN simples) porque:
 
 O diferencial principal é que cada previsão vem acompanhada de um **subgrafo explicativo** — um subconjunto da rede PPI que "justifica" a classificação. Isso permite que um pesquisador entenda: "Este gene foi classificado como candidato porque interage com os genes X, Y e Z, que já são conhecidos como envolvidos na doença."
 
+```mermaid
+graph TD
+    A["Rede PPI humana\nBioGRID\nNós: genes/proteínas\nArestas: interações binárias"] -->|"GraphSAGE\n7 camadas"| B["Embedding de cada gene\ncaptura vizinhança de 7 saltos"]
+    C["Genes de doenças\nconhecidos\nabordagem NIAPU"] -->|"labels positivos"| D["Treinamento"]
+    B --> D
+    D --> E["Score por gene\nprobabilidade de associação"]
+    E --> F["Genes candidatos\nranqueados"]
+    F -->|"GNNExplainer\nGraphSVX · SubgraphX"| G["Subgrafo explicativo\npor candidato"]
+```
+
 ---
 
 ## Resultados Principais

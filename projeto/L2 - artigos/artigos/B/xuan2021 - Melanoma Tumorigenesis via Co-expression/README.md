@@ -83,6 +83,19 @@ Sobre essa rede foram aplicadas duas estratégias complementares:
 1. **MCODE** — detecta sub-redes densamente conectadas (módulos/comunidades): regiões onde cada nó se conecta a muitos outros nós do mesmo grupo
 2. **CytoHubba** — calcula 12 métricas de centralidade para cada nó (grau, betweenness, closeness, etc.) e elege os genes com maior importância estrutural na rede como "hubs"[^hub]
 
+```mermaid
+graph TD
+    A["3 datasets GEO\nmelanoma vs pele normal"] -->|"GEO2R / limma"| B["DEGs por dataset"]
+    B -->|"Diagrama de Venn"| C["295 ODEGs comuns"]
+    C -->|"STRING ≥ 0,70"| D["Rede PPI\n149 nós · 510 arestas"]
+    D -->|"MCODE"| E["Módulos densamente\nconectados"]
+    D -->|"CytoHubba\n12 métricas de centralidade"| F["Ranking de centralidade"]
+    E --> G{"Sobreposição"}
+    F --> G
+    G --> H["9 genes hub identificados"]
+    H -->|"GEPIA · TIMER · qPCR · IHC"| I["Validação multimodal"]
+```
+
 ---
 
 ## Resultados

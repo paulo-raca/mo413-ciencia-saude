@@ -134,6 +134,17 @@ O diferencial do artigo é a **combinação de duas estratégias**:
 - **K-Means**: clusteriza as _amostras_ com base em seus perfis de expressão → define os subtipos.
 - **WGCNA**: clusteriza os _genes_ em módulos e correlaciona os módulos com os subtipos → explica os mecanismos moleculares de cada subtipo.
 
+```mermaid
+graph TD
+    A["194 amostras\nTCGA-SKCM"] -->|"K-Means"| B["3 subtipos / clusters\nA · B · C"]
+    A -->|"WGCNA"| C["Rede de co-expressão\nponderada"]
+    C -->|"clusterização hierárquica\nsobre TOM"| D["Módulos de genes"]
+    B -->|"correlação\nmódulo × cluster"| D
+    D --> E["Módulos específicos\nde cada subtipo"]
+    E -->|"GO + KEGG"| F["Vias biológicas\npor subtipo"]
+    B -->|"IPS"| G["Imunofenótipo\nde cada cluster"]
+```
+
 ---
 
 ## Resultados Principais

@@ -185,6 +185,18 @@ A GCN opera da seguinte forma:
 
 Um passo de pré-processamento aprende a **matriz de pesos** a partir da topologia do grafo antes do treinamento principal. Isso permite que o modelo incorpore informações estruturais do grafo desde o início.
 
+```mermaid
+graph TD
+    A["DisGeNET\nGDAs conhecidas"] --> B["Grafo heterogêneo\nnão-direcionado"]
+    B -->|"Gene ↔ Doença"| C["Associações\ndiretas"]
+    B -->|"Gene ↔ Gene"| D["Interações\nmoleculares"]
+    B -->|"Doença ↔ Doença"| E["Relações entre\ndoenças"]
+    C & D & E -->|"GCN — Graph\nConvolutional Network"| F["Embeddings de genes\ne doenças"]
+    F -->|"produto interno\ngene × doença"| G["Score de associação"]
+    G -->|"Link Prediction"| H["Top-15 candidatos\nnovas GDAs"]
+    H -->|"validação na literatura"| I["Candidatos confirmados"]
+```
+
 ---
 
 ## Resultados Principais

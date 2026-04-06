@@ -147,6 +147,18 @@ O passo mais crucial do artigo é a identificação dos **hub genes** na rede PP
 
 O algoritmo **MCC** identifica genes que participam de muitos _cliques_ (subgrafos completos) na rede. Isso significa que o gene não apenas tem muitas conexões, mas que seus vizinhos também são muito conectados entre si — indicando um papel estruturalmente central e biologicamente crítico.
 
+```mermaid
+graph TD
+    A["Datasets GEO\nmelanoma vs normal"] -->|"DEG analysis"| B["DEGs comuns\nentre datasets"]
+    A -->|"WGCNA"| C["Rede de co-expressão\nNós: genes\nArestas: correlação de Pearson"]
+    C -->|"módulos correlacionados\ncom melanoma"| D["435 genes candidatos"]
+    B --> D
+    D -->|"STRING → Cytoscape"| E["Rede PPI\nNós: proteínas\nArestas: interações físicas"]
+    E -->|"CytoHubba\nalgoritmo MCC"| F["Top 10 hub genes"]
+    F -->|"GEPIA2 Kaplan-Meier"| G["5 genes com\nimpacto prognóstico"]
+    G -->|"imuno-histoquímica"| H["Validação experimental"]
+```
+
 ---
 
 ## Resultados Principais

@@ -152,6 +152,21 @@ A estratégia inovadora do artigo é **comparar as topologias das 4 redes** em v
 
 Além do rewiring, os autores identificaram **hubs**[^hub] **específicos de cada estágio** — os genes com maior grau em cada rede. Como hubs diferentes emergem em diferentes estágios da doença, eles representam os "motores" moleculares de cada fase da progressão.
 
+```mermaid
+graph TD
+    A["Dados de expressão\npor estágio de melanoma"] --> B["Normal\nN"]
+    A --> C["Não-cutâneo\nCnM"]
+    A --> D["Cutâneo\nCM"]
+    A --> E["Metástase linf.\nLN"]
+    B -->|"corr. ≥ limiar"| B2["Rede N"]
+    C -->|"corr. ≥ limiar"| C2["Rede CnM"]
+    D -->|"corr. ≥ limiar"| D2["Rede CM"]
+    E -->|"corr. ≥ limiar"| E2["Rede LN"]
+    B2 & C2 & D2 & E2 -->|"comparação\nde topologia"| F["Score de rewiring\npor gene"]
+    F -->|"alto rewiring\nbaixo DE"| G["Novos candidatos\nbiomarkers"]
+    B2 & C2 & D2 & E2 -->|"maior grau"| H["Hubs específicos\npor estágio"]
+```
+
 ---
 
 ## Resultados Principais

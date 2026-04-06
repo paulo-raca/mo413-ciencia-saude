@@ -136,6 +136,7 @@ git add .gitattributes
 - Explicar **todo termo biológico** na primeira vez que aparecer — não assumir conhecimento prévio
 - Usar analogias simples: genes como "receitas", proteínas como "máquinas", redes como "mapas de metrô"
 - Estruturar com cabeçalhos `##` por tema
+- Usar **diagramas Mermaid** (`graph TD`, `flowchart`, `sequenceDiagram`) sempre que possível para ilustrar fluxos, pipelines e relações entre conceitos
 
 ### Resumos de Artigos Científicos
 
@@ -144,8 +145,8 @@ Estrutura padrão (`artigos/{subgrupo}/{autor}{ano} - {Assunto}/README.md`):
 1. **Metadados** — tabela com título, autores, revista, ano, DOI, acesso
 2. **Problema investigado** — o que o artigo tenta resolver e por quê importa
 3. **Dados utilizados** — fontes, tamanho, tipo
-4. **Pipeline/Metodologia** — diagrama ASCII do fluxo do trabalho
-5. **Estratégia de grafo** — que modelo de grafo foi usado e qual algoritmo de rede complexa foi aplicado
+4. **Pipeline/Metodologia** — diagrama ASCII do fluxo do trabalho; **adicionar também um diagrama Mermaid** (`graph TD`) sempre que possível para melhor visualização
+5. **Estratégia de grafo** — que modelo de grafo foi usado e qual algoritmo de rede complexa foi aplicado; **obrigatoriamente incluir um diagrama Mermaid** (`graph TD`) mostrando nós, arestas e o pipeline do algoritmo
 6. **Resultados principais** — tabela com os achados mais importantes
 7. **Relevância para o projeto** — por que este artigo importa para o projeto de câncer de pele
 8. **Referência completa** — formatos ABNT, Vancouver e APA
