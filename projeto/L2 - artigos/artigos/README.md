@@ -57,3 +57,9 @@ Aplica a curvatura de Ollivier-Ricci (ORC) — uma medida geométrica derivada d
 [artigo](https://doi.org/10.2147/IJGM.S336295) | [PDF](B/xuan2021%20-%20Melanoma%20Tumorigenesis%20via%20Co-expression/paper.pdf) | [resumo](B/xuan2021%20-%20Melanoma%20Tumorigenesis%20via%20Co-expression/README.md)
 
 A partir do dataset GSE3189 (GEO), constrói uma rede de co-expressão para identificar genes diferencialmente expressos em melanoma, importa os candidatos no STRING e usa MCODE (detecção de módulos densos) e CytoHubba no Cytoscape para identificar nove hub genes — AURKA, CCNB1, CDK1, BUB1B, KIF2C, TOP2A, BUB1, CDCA8 e TPX2 — associados à tumorigenese do melanoma e validados por análise de sobrevida no TCGA.
+
+### Dai et al. (2025) — DriverOmicsNet: GCN Multi-Ômico para Genes Drivers de Câncer
+
+[artigo](https://doi.org/10.1093/bib/bbaf412) | [resumo](B/dai2025%20-%20Driver%20Genes%20via%20Multi-Omics%20GCN/README.md)
+
+Propõe o DriverOmicsNet, um framework de Graph Convolutional Network (GCN) que integra três fontes de rede (STRING PPI, WGCNA Pearson e WGCNA distância) e quatro tipos de dados multi-ômicos (expressão de mRNA, CNV, mutações e metilação de DNA comprimida por autoencoder) para prever características clínicas do tumor — incluindo resposta imune, estágio e sobrevida — a partir de 5.555 amostras de 15 tipos de câncer do TCGA. Para melanoma (SKCM), o modelo prediz clusters imunes com precisão de 91%, identificando ACTB como gene hub. A combinação de redes melhora o desempenho em até 15,2% sobre modelos de rede única; GNNExplainer fornece subgrafos explicativos por previsão.
