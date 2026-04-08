@@ -68,6 +68,12 @@ Continuação prática da aula de 30/03. Construção de redes de correlação d
 
 Análise quantitativa de redes complexas: quatro métricas de centralidade (grau, proximidade, intermediação, autovetor), PageRank como variante da centralidade de autovetor, quatro tipos de redes biológicas (PPI, metabólica, regulatória, RNA), medicina em redes (doenças como perturbações em redes moleculares), detecção de comunidades com o algoritmo de Louvain e modularidade, motivos de rede e predição de links por similaridade local e global.
 
+### 2026-04-08 — Enriquecimento Funcional e Comunidades em Redes
+
+[resumo](aulas/2026-04-08%20-%20Enriquecimento%20e%20Comunidades/README.md) | [slides: Enrichment](aulas/2026-04-08%20-%20Enriquecimento%20e%20Comunidades/slides-enrichment.pdf) | [slides: Comunidades](aulas/2026-04-08%20-%20Enriquecimento%20e%20Comunidades/slides-communities.pdf)
+
+Análise de enriquecimento funcional (ORA) com Teste Exato de Fisher e a ferramenta DAVID para identificar vias biológicas enriquecidas em listas de genes — com aplicação prática na via de sinalização do estrógeno em câncer de mama. Detecção de comunidades em redes: definição e tipos (clique, forte, fraca), modularidade como métrica de qualidade, algoritmo Edge Betweenness Community (Girvan-Newman), Louvain e Leiden. Estudo de caso duplo: redes de câncer de mama (Chuang 2007 e Taylor 2009) e Rede Sintoma-Doença Humana (Zhou 2014), com prática no Cytoscape usando CytoNCA, clusterMaker2 e Network Randomizer.
+
 ---
 
 ## Projeto Semestral
