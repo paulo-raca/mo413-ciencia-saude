@@ -50,6 +50,24 @@ Propriedades emergentes de redes complexas: redes livre de escala (scale-free), 
 
 Aula prática de análise de rede de interações gênicas em câncer de mama usando Cytoscape. Utilizou os slides da aula de redes complexas (11/03). Sem gravação.
 
+### 2026-03-30 — Redes PPI, Correlação e Workflow
+
+[resumo](aulas/2026-03-30%20-%20Redes%20PPI%2C%20Correla%C3%A7%C3%A3o%20e%20Workflow/README.md) | [slides PPI](aulas/2026-03-30%20-%20Redes%20PPI%2C%20Correla%C3%A7%C3%A3o%20e%20Workflow/slides-ppi.pdf) | [slides Correlação](aulas/2026-03-30%20-%20Redes%20PPI%2C%20Correla%C3%A7%C3%A3o%20e%20Workflow/slides-correlacao.pdf) | [slides Workflow](aulas/2026-03-30%20-%20Redes%20PPI%2C%20Correla%C3%A7%C3%A3o%20e%20Workflow/slides-workflow.pdf)
+
+Aula tripla cobrindo redes de interação proteína-proteína (PPI) e bancos como STRING, métodos de correlação para construir redes de co-expressão gênica (Pearson, Spearman, distância de Jensen-Shannon), e introdução ao Orange Data Mining com foco em reprodutibilidade de workflows científicos.
+
+### 2026-04-01 — Orange e Workflow (Aula Prática)
+
+[resumo](aulas/2026-04-01%20-%20Orange%20e%20Workflow%20(Pr%C3%A1tica)/README.md) | [slides](aulas/2026-04-01%20-%20Orange%20e%20Workflow%20(Pr%C3%A1tica)/slides-workflow.pdf)
+
+Continuação prática da aula de 30/03. Construção de redes de correlação de genes usando Orange Data Mining com datasets GEO reais (GSE45827 — câncer de mama), incluindo normalização de dados, seleção de genes diferencialmente expressos e exportação para o Cytoscape. Sem gravação.
+
+### 2026-04-06 — Análise de Redes — Centralidade e Modularidade
+
+[resumo](aulas/2026-04-06%20-%20An%C3%A1lise%20de%20Redes%20-%20Centralidade%20e%20Modularidade/README.md) | [slides](aulas/2026-04-06%20-%20An%C3%A1lise%20de%20Redes%20-%20Centralidade%20e%20Modularidade/slides.pdf)
+
+Análise quantitativa de redes complexas: quatro métricas de centralidade (grau, proximidade, intermediação, autovetor), PageRank como variante da centralidade de autovetor, quatro tipos de redes biológicas (PPI, metabólica, regulatória, RNA), medicina em redes (doenças como perturbações em redes moleculares), detecção de comunidades com o algoritmo de Louvain e modularidade, motivos de rede e predição de links por similaridade local e global.
+
 ---
 
 ## Projeto Semestral
