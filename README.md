@@ -74,6 +74,12 @@ Análise quantitativa de redes complexas: quatro métricas de centralidade (grau
 
 Análise de enriquecimento funcional (ORA) com Teste Exato de Fisher e a ferramenta DAVID para identificar vias biológicas enriquecidas em listas de genes — com aplicação prática na via de sinalização do estrógeno em câncer de mama. Detecção de comunidades em redes: definição e tipos (clique, forte, fraca), modularidade como métrica de qualidade, algoritmo Edge Betweenness Community (Girvan-Newman), Louvain e Leiden. Estudo de caso duplo: redes de câncer de mama (Chuang 2007 e Taylor 2009) e Rede Sintoma-Doença Humana (Zhou 2014), com prática no Cytoscape usando CytoNCA, clusterMaker2 e Network Randomizer.
 
+### 2026-04-13 — Mapeamento e Transformação de Redes
+
+[resumo](aulas/2026-04-13%20-%20Mapeamento%20e%20Transformacao%20de%20Redes/README.md) | [slides: Correlação](aulas/2026-04-13%20-%20Mapeamento%20e%20Transformacao%20de%20Redes/slides-correlation.pdf) | [slides: Mapeamento](aulas/2026-04-13%20-%20Mapeamento%20e%20Transformacao%20de%20Redes/slides-mapping.pdf)
+
+Aula dupla sobre como transformar dados do mundo real em redes: seis métodos de mapeamento (comunicação, coexistência, referência, confluência, correlação, adjacência) e três operações de transformação (junção, projeção, limiarização). Prática completa de construção de rede de correlação de expressão gênica em câncer de mama (GSE45827) usando Orange Data Mining e Cytoscape. Estudo de caso da Rede Sintoma-Doença Humana (Zhou 2014 / Goh 2007) com importação no Cytoscape, threshold por similaridade de sintomas, extração do maior componente conectado e clustering com Leiden (CPM e modularidade).
+
 ---
 
 ## Projeto Semestral
