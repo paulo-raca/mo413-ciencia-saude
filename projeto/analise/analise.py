@@ -73,15 +73,9 @@ def _(mo):
 
 
 @app.cell(hide_code=True)
-def _(mo):
-    mo.md("""
-    ## 1. Download dos Datasets GEO
-    """)
-    return
+def download_datasets(GEOparse, Path, mo):
+    mo.output.append(mo.md("## 1. Download dos Datasets GEO"))
 
-
-@app.cell
-def config(Path):
     GEO_DIR = Path("data/geo")
     GEO_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -90,15 +84,15 @@ def config(Path):
         "melanoma":     ["GSE4570", "GSE8401", "GSE7553"],
         "nao_melanoma": ["GSE2503", "GSE45216", "GSE53462"],
     }
-
     ALL_IDS = sorted({gse for ids in DATASETS.values() for gse in ids})
-    return ALL_IDS, GEO_DIR
 
-
-@app.cell
-def download(ALL_IDS, GEO_DIR, GEOparse, mo):
     gse_objects = {}
-    for _gse_id in mo.status.progress_bar(ALL_IDS, title="Baixando datasets GEO"):
+
+    for _gse_id in mo.status.progress_bar(
+        ALL_IDS,
+        title="Baixando datasets GEO",
+        remove_on_exit=True,
+    ):
         gse_objects[_gse_id] = GEOparse.get_GEO(
             geo=_gse_id,
             destdir=str(GEO_DIR),
@@ -107,17 +101,42 @@ def download(ALL_IDS, GEO_DIR, GEOparse, mo):
     return (gse_objects,)
 
 
-@app.cell
-def summary(gse_objects, mo):
-    _rows = []
-    for _gse_id, _gse in gse_objects.items():
-        _rows.append({
-            "Dataset": _gse_id,
-            "Título": _gse.metadata.get("title", [""])[0][:60],
-            "Amostras": len(_gse.gsms),
-            "Plataforma": ", ".join(_gse.metadata.get("platform_id", ["?"])),
-        })
-    mo.ui.table(_rows, label="Datasets carregados")
+@app.cell(hide_code=True)
+def datasets_summary(gse_objects, mo):
+    import pandas as pd
+
+    def _panel(gsid, gse):
+        title = gse.metadata.get("title", [""])[0]
+        platform = ", ".join(gse.metadata.get("platform_id", ["?"]))
+        submitted = gse.metadata.get("submission_date", ["?"])[0]
+        summary_text = gse.metadata.get("summary", [""])[0]
+        if len(summary_text) > 500:
+            summary_text = summary_text[:500].rstrip() + "…"
+
+        header = mo.md(f"""
+        **[{gsid}](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc={gsid})** — {title}
+
+        | Plataforma | Amostras | Submissão |
+        | --- | --- | --- |
+        | `{platform}` | {len(gse.gsms)} | {submitted} |
+
+        {summary_text}
+
+        #### Amostras
+        """)
+
+        samples_df = pd.DataFrame([
+            {
+                "GSM": gsm_id,
+                "Título": gsm.metadata.get("title", [""])[0],
+                "Características": " · ".join(gsm.metadata.get("characteristics_ch1", [])),
+            }
+            for gsm_id, gsm in gse.gsms.items()
+        ])
+
+        return mo.vstack([header, samples_df])
+
+    mo.ui.tabs({gsid: _panel(gsid, g) for gsid, g in gse_objects.items()})
     return
 
 
