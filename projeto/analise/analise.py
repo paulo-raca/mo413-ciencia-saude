@@ -73,19 +73,19 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def load_datasets(GEOparse, Path, mo, pd):
     from dataclasses import dataclass
 
     mo.output.append(mo.md("## 1. Download dos Datasets GEO"))
 
     ACCESSIONS: list[str] = [
-        # "GSE4570",
-        # "GSE2503",
-        # "GSE53462",
-        # "GSE8401",
+        "GSE4570",
+        "GSE2503",
+        "GSE53462",
+        "GSE8401",
         "GSE7553",
-        # "GSE45216",
+        "GSE45216",
     ]
 
     # Regras de categorização. Ordem importa: primeira substring que casar
@@ -132,30 +132,36 @@ def load_datasets(GEOparse, Path, mo, pd):
                 geo=acc, destdir=str(GEO_DIR), silent=True,
             )
 
-    # Monta Dataset (gse + samples categorizadas)
+    # Monta Dataset (gse + samples categorizadas). dtype="string" no
+    # construtor garante StringDtype para todas as colunas e missing
+    # uniforme como pd.NA — evita mix de None (object) e NaN (string)
+    # que o pandas 2.x gera ao inferir dtype por homogeneidade.
     datasets: dict[str, Dataset] = {}
     for acc in ACCESSIONS:
         gse = gse_objects[acc]
-        sample_df = pd.DataFrame([
-            {
-                "GSM": gsm_id,
-                "Título": gsm.metadata.get("title", [""])[0],
-                "Características": " · ".join(gsm.metadata.get("characteristics_ch1", [])),
-                "Categoria": categorize(gsm.metadata.get("characteristics_ch1", [])),
-            }
-            for gsm_id, gsm in gse.gsms.items()
-        ])
+        sample_df = pd.DataFrame(
+            [
+                {
+                    "GSM": gsm_id,
+                    "Título": gsm.metadata.get("title", [""])[0],
+                    "Características": " · ".join(gsm.metadata.get("characteristics_ch1", [])),
+                    "Categoria": categorize(gsm.metadata.get("characteristics_ch1", [])),
+                }
+                for gsm_id, gsm in gse.gsms.items()
+            ],
+            dtype="string",
+
+        ).set_index("GSM")
+
+
         datasets[acc] = Dataset(accession=acc, gse=gse, samples=sample_df)
 
     # Tabela master: concatena todos os .samples, coluna Dataset como
-    # desambiguador. Útil para groupby cross-dataset.
-    samples = (
-        pd.concat(
-            [ds.samples.assign(Dataset=acc) for acc, ds in datasets.items()],
-            ignore_index=True,
-        )
-        .loc[:, ["Dataset", "GSM", "Título", "Características", "Categoria"]]
-    )
+    # desambiguador. GSMs são globalmente únicos no GEO — preservamos
+    # como index (sem ignore_index=True).
+    samples = pd.concat(
+        [ds.samples.assign(Dataset=acc) for acc, ds in datasets.items()],
+    ).loc[:, ["Dataset", "Título", "Características", "Categoria"]]
     return datasets, samples
 
 
@@ -188,27 +194,31 @@ def datasets_summary(datasets: "dict[str, Dataset]", mo):
             summary_text = summary_text[:500].rstrip() + "…"
 
         # Contagem por categoria (inclui `None` como "(sem categoria)")
-        _counts = (
+        category_counts = (
             ds.samples["Categoria"]
             .value_counts(dropna=False)
-            .rename_axis("Categoria")
             .reset_index(name="N")
         )
-        _counts["Categoria"] = _counts["Categoria"].fillna("(sem categoria)")
+        category_counts["Categoria"] = category_counts["Categoria"].fillna("(sem categoria)")
 
         header = mo.md(f"""
-        **[{acc}](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc={acc})** — {title}
-
-        | Plataforma | Amostras | Submissão |
-        | --- | --- | --- |
-        | `{platform}` | {len(gse.gsms)} | {submitted} |
+        |  |  |
+        | ---: | :--- |
+        | **Accession** | [{acc}](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc={acc}) |
+        | **Title** | {title} |
+        | **Platform** | `{platform}` |
+        | **Samples** | {len(gse.gsms)} |
+        | **Submitted** | {submitted} |
 
         {summary_text}
-
-        #### Amostras por categoria
         """)
 
-        return mo.vstack([header, _counts, mo.md("#### Amostras"), ds.samples])
+        return mo.vstack([
+            header, 
+            mo.md("### Amostras por categoria"),
+            category_counts, 
+            mo.md("### Amostras"), 
+            ds.samples])
 
     mo.ui.tabs({acc: _panel(acc, ds) for acc, ds in datasets.items()})
     return
@@ -237,16 +247,13 @@ def _(mo):
 
 @app.cell
 def mm_samples(datasets: "dict[str, Dataset]"):
-    _mm = datasets["GSE7553"]
-    gse_mm = _mm.gse
+    gse7553 = datasets["GSE7553"]
+    cat = gse7553.samples["Categoria"]
 
-    metastatic_gsms = _mm.samples.loc[
-        _mm.samples["Categoria"] == "Metastatic Melanoma", "GSM"
-    ].tolist()
-    normal_gsms = _mm.samples.loc[
-        _mm.samples["Categoria"] == "Normal", "GSM"
-    ].tolist()
-    return gse_mm, metastatic_gsms, normal_gsms
+    # GSM agora é o index -> filtra por categoria e pega .index
+    metastatic_gsms = gse7553.samples.index[cat == "Metastatic Melanoma"].tolist()
+    normal_gsms     = gse7553.samples.index[cat == "Normal"].tolist()
+    return gse7553, metastatic_gsms, normal_gsms
 
 
 @app.cell(hide_code=True)
@@ -261,10 +268,10 @@ def mm_samples_show(metastatic_gsms, mo, normal_gsms):
 
 
 @app.cell
-def mm_expression(gse_mm, metastatic_gsms, normal_gsms, pd):
+def mm_expression(gse7553, metastatic_gsms, normal_gsms, pd):
     selected = metastatic_gsms + normal_gsms
     cols = [
-        gse_mm.gsms[gid].table.set_index("ID_REF")["VALUE"].rename(gid)
+        gse7553.gse.gsms[gid].table.set_index("ID_REF")["VALUE"].rename(gid)
         for gid in selected
     ]
     expr_mm = pd.concat(cols, axis=1)
@@ -280,12 +287,12 @@ def mm_expression(gse_mm, metastatic_gsms, normal_gsms, pd):
 
 
 @app.cell
-def mm_platform(gse_mm):
+def mm_platform(gse7553):
     # GPL570 (HG-U133 Plus 2.0) — mapeia probe ID -> Gene Symbol + Entrez ID.
     # Sondas multi-mapeadas (p.ex. 'DDR1 /// MIR4640') ficam com o primeiro gene
     # só — mesmo comportamento de deduplicação do Orange.
-    gpl_id = next(iter(gse_mm.gpls))
-    gpl_table = gse_mm.gpls[gpl_id].table
+    gpl_id = next(iter(gse7553.gse.gpls))
+    gpl_table = gse7553.gse.gpls[gpl_id].table
     probe_map = gpl_table.set_index("ID")[["Gene Symbol", "ENTREZ_GENE_ID"]].copy()
     probe_map["Gene Symbol"] = (
         probe_map["Gene Symbol"].astype(str).str.split(" /// ").str[0].str.strip()
