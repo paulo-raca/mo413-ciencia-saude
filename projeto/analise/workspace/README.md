@@ -1,12 +1,19 @@
 # Workspace — arquivos de trabalho da análise
 
-Materiais intermediários da análise do projeto semestral (câncer de pele) — dados processados, sessões Cytoscape, workflow Orange e screenshots que o grupo usou durante a construção das redes.
+Materiais intermediários da análise do projeto semestral (câncer de pele) — dados processados, sessões Cytoscape, workflow Orange, dumps GEO e screenshots que o grupo usou durante a construção das redes.
 
-Os *dumps brutos* do GEO (`*.soft.gz`) **não** ficam aqui; são baixáveis pelo accession e vão para [`../data/geo/`](../data/) (cache local, gitignored).
+Os `.soft.gz` aqui são os **exatos** que acompanharam o workspace (para que `skin_cancer.ows` rode de cara, já que ele aponta para caminhos relativos locais). Rastreados via **Git LFS** (pattern `*.gz` em `.gitattributes`). Outros dumps GEO que o grupo usa como cache de análise ficam em `../data/geo/` e continuam gitignored — são baixáveis pelo accession.
 
 ---
 
 ## Inventário
+
+### Dumps GEO (via LFS)
+
+| Arquivo | Tamanho | Accession |
+| --- | --- | --- |
+| [`GSE7553_family.soft.gz`](GSE7553_family.soft.gz) | 52 MB | [GSE7553](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE7553) — todos os tipos/estágios de câncer de pele; lido pelos 3 ramos do workflow |
+| [`GSE45216_family.soft.gz`](GSE45216_family.soft.gz) | 26 MB | [GSE45216](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45216) — carcinoma espinocelular + queratose actínica |
 
 ### Sessões e workflows
 
