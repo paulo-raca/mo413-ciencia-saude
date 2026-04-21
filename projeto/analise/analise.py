@@ -122,30 +122,30 @@ def load_datasets(GEOparse, Path, mo, pd):
     GEO_DIR = Path("data/geo")
     GEO_DIR.mkdir(parents=True, exist_ok=True)
     with mo.persistent_cache("geo_datasets"):
-        _gse_objects = {}
-        for _acc in mo.status.progress_bar(
+        gse_objects = {}
+        for acc in mo.status.progress_bar(
             ACCESSIONS,
             title="Baixando datasets GEO",
             remove_on_exit=True,
         ):
-            _gse_objects[_acc] = GEOparse.get_GEO(
-                geo=_acc, destdir=str(GEO_DIR), silent=True,
+            gse_objects[acc] = GEOparse.get_GEO(
+                geo=acc, destdir=str(GEO_DIR), silent=True,
             )
 
     # Monta Dataset (gse + samples categorizadas)
     datasets: dict[str, Dataset] = {}
-    for _acc in ACCESSIONS:
-        _gse = _gse_objects[_acc]
-        _samples = pd.DataFrame([
+    for acc in ACCESSIONS:
+        gse = gse_objects[acc]
+        sample_df = pd.DataFrame([
             {
                 "GSM": gsm_id,
                 "Título": gsm.metadata.get("title", [""])[0],
                 "Características": " · ".join(gsm.metadata.get("characteristics_ch1", [])),
                 "Categoria": categorize(gsm.metadata.get("characteristics_ch1", [])),
             }
-            for gsm_id, gsm in _gse.gsms.items()
+            for gsm_id, gsm in gse.gsms.items()
         ])
-        datasets[_acc] = Dataset(accession=_acc, gse=_gse, samples=_samples)
+        datasets[acc] = Dataset(accession=acc, gse=gse, samples=sample_df)
 
     # Tabela master: concatena todos os .samples, coluna Dataset como
     # desambiguador. Útil para groupby cross-dataset.
