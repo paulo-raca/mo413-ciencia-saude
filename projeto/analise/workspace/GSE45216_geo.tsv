@@ -1,0 +1,501 @@
+ID	Gene.symbol	Gene.title	log2(fold change)	-log(pvalue)
+213256_at	Mar/03	membrane associated ring-CH-type finger 3	2.835	3.473
+208657_s_at	Sep/09	septin 9	-1.006	3.558
+240420_at	AADACL2	arylacetamide deacetylase like 2	4.095	4.195
+43427_at	ACACB	acetyl-CoA carboxylase beta	1.848	3.503
+49452_at	ACACB	acetyl-CoA carboxylase beta	2.007	3.527
+225663_at	ACBD5	acyl-CoA binding domain containing 5	0.869	3.731
+200793_s_at	ACO2	aconitase 2	-1.158	3.546
+201629_s_at	ACP1	acid phosphatase 1, soluble	-1.165	4.379
+215227_x_at	ACP1	acid phosphatase 1, soluble	-0.65	3.434
+AFFX-HSAC07/X00351_5_at	ACTB	actin beta	-1.12	4.111
+AFFX-HSAC07/X00351_M_at	ACTB	actin beta	-0.972	5.446
+208637_x_at	ACTN1	actinin alpha 1	-2.238	3.719
+211160_x_at	ACTN1	actinin alpha 1	-2.327	4.455
+205327_s_at	ACVR2A	activin A receptor type 2A	1.181	4.288
+213217_at	ADCY2	adenylate cyclase 2	1.222	3.797
+204333_s_at	AGA	aspartylglucosaminidase	1.472	3.729
+219953_s_at	AKIP1	A-kinase interacting protein 1	-1.81	4.837
+203180_at	ALDH1A3	aldehyde dehydrogenase 1 family member A3	-3.295	3.421
+226319_s_at	ALYREF	Aly/REF export factor	-1.079	3.848
+226320_at	ALYREF	Aly/REF export factor	-0.806	3.844
+212201_at	ANKLE2	ankyrin repeat and LEM domain containing 2	-1.247	3.454
+1568126_at	ANXA2	annexin A2	-2.203	4.415
+211779_x_at	AP2A2	adaptor related protein complex 2 alpha 2 subunit	-0.999	4.21
+206592_s_at	AP3D1	adaptor related protein complex 3 delta 1 subunit	-0.796	4.024
+211621_at	AR	androgen receptor	0.761	4.457
+226192_at	AR	androgen receptor	2.919	4.745
+226197_at	AR	androgen receptor	2.187	4.125
+226057_at	ARHGAP31	Rho GTPase activating protein 31	0.688	4.388
+227197_at	ARHGEF26	Rho guanine nucleotide exchange factor 26	2.662	4.141
+203263_s_at	ARHGEF9	Cdc42 guanine nucleotide exchange factor 9	0.905	3.985
+201658_at	ARL1	ADP ribosylation factor like GTPase 1	0.663	3.629
+1563101_at	ARNTL2-AS1	ARNTL2 antisense RNA 1	-0.95	3.321
+200950_at	ARPC1A	actin related protein 2/3 complex subunit 1A	-0.925	5.6
+215684_s_at	ASCC2	activating signal cointegrator 1 complex subunit 2	-0.811	3.42
+232908_at	ATAD2B	ATPase family, AAA domain containing 2B	1.257	4.363
+226684_at	ATG2B	autophagy related 2B	1.126	4.052
+218052_s_at	ATP13A1	ATPase 13A1	-0.72	3.519
+205198_s_at	ATP7A	ATPase copper transporting alpha	1.507	3.414
+209309_at	AZGP1	alpha-2-glycoprotein 1, zinc-binding	4.886	3.947
+217014_s_at	AZGP1P1///AZGP1	alpha-2-glycoprotein 1, zinc-binding pseudogene 1///alpha-2-glycoprotein 1, zinc-binding	4.402	4.057
+227372_s_at	BAIAP2L1	BAI1 associated protein 2 like 1	-1.35	3.728
+213224_s_at	BBIP1	BBSome interacting protein 1	0.954	3.959
+227273_at	BMPR1A	bone morphogenetic protein receptor type 1A	0.792	3.907
+225334_at	BORCS7	BLOC-1 related complex subunit 7	1.193	5.751
+220155_s_at	BRD9	bromodomain containing 9	-0.966	3.53
+1556000_s_at	BTBD7	BTB domain containing 7	-0.864	3.352
+232730_at	C19orf44	chromosome 19 open reading frame 44	-0.691	4.565
+222277_at	C1QTNF9B-AS1	C1QTNF9B antisense RNA 1	1.369	3.67
+226464_at	C3orf58	chromosome 3 open reading frame 58	1.246	3.425
+1553133_at	C9orf72	chromosome 9 open reading frame 72	1.94	4.186
+243244_at	CACNB4	calcium voltage-gated channel auxiliary subunit beta 4	2.166	3.806
+202715_at	CAD	carbamoyl-phosphate synthetase 2, aspartate transcarbamylase, and dihydroorotase	-1.133	3.951
+213798_s_at	CAP1	adenylate cyclase associated protein 1	-0.582	3.474
+1557321_a_at	CAPN14	calpain 14	1.506	4.301
+201950_x_at	CAPZB	capping actin protein of muscle Z-line beta subunit	-0.573	4.109
+37012_at	CAPZB	capping actin protein of muscle Z-line beta subunit	-0.768	4.404
+218384_at	CARHSP1	calcium regulated heat stable protein 1	-1.925	5.029
+224910_at	CARHSP1	calcium regulated heat stable protein 1	-1.674	5.813
+213626_at	CBR4	carbonyl reductase 4	0.825	3.363
+210072_at	CCL19	C-C motif chemokine ligand 19	1.618	4.048
+221156_x_at	CCPG1	cell cycle progression 1	0.893	3.514
+1553697_at	CCSAP	centriole, cilia and spindle associated protein	1.702	4.004
+208696_at	CCT5	chaperonin containing TCP1 subunit 5	-0.691	4.027
+206488_s_at	CD36	CD36 molecule	4.416	3.641
+209554_at	CD36	CD36 molecule	1.75	3.422
+209555_s_at	CD36	CD36 molecule	4.328	3.398
+228766_at	CD36	CD36 molecule	4.672	4.153
+242197_x_at	CD36	CD36 molecule	2.197	3.627
+217879_at	CDC27	cell division cycle 27	-1.042	3.357
+217849_s_at	CDC42BPB	CDC42 binding protein kinase beta	-1.441	3.909
+234932_s_at	CDCP1	CUB domain containing protein 1	-1.578	5.003
+203256_at	CDH3	cadherin 3	-1.485	3.621
+207239_s_at	CDK16	cyclin dependent kinase 16	-1.256	3.994
+208824_x_at	CDK16	cyclin dependent kinase 16	-1.22	4.912
+212675_s_at	CEP68	centrosomal protein 68	1.157	4.791
+217720_at	CHCHD2	coiled-coil-helix-coiled-coil-helix domain containing 2	-0.761	3.783
+209927_s_at	CHTOP	chromatin target of PRMT1	-0.598	3.5
+212752_at	CLASP1	cytoplasmic linker associated protein 1	-0.806	3.483
+208659_at	CLIC1	chloride intracellular channel 1	-0.742	4.037
+238438_at	CNOT6L	CCR4-NOT transcription complex subunit 6 like	0.895	4.278
+220647_s_at	COA4	cytochrome c oxidase assembly factor 4 homolog	-0.711	3.489
+214336_s_at	COPA	coatomer protein complex subunit alpha	-1.152	4.269
+222386_s_at	COPZ1	coatomer protein complex subunit zeta 1	-0.666	3.67
+201989_s_at	CREBL2	cAMP responsive element binding protein like 2	1.663	4.535
+201990_s_at	CREBL2	cAMP responsive element binding protein like 2	1.764	3.95
+206777_s_at	CRYBB2P1///CRYBB2	crystallin beta B2 pseudogene 1///crystallin beta B2	-1.443	3.574
+221021_s_at	CTNNBL1	catenin beta like 1	-0.744	4.688
+200838_at	CTSB	cathepsin B	-1.241	3.668
+200839_s_at	CTSB	cathepsin B	-0.916	4.043
+213274_s_at	CTSB	cathepsin B	-1.287	3.742
+1563445_x_at	CTSLP8	cathepsin L pseudogene 8	-0.987	3.864
+204470_at	CXCL1	C-X-C motif chemokine ligand 1	-4.116	3.328
+229800_at	DCLK1	doublecortin like kinase 1	2.096	3.706
+205337_at	DCT	dopachrome tautomerase	3.181	3.459
+201584_s_at	DDX39A	DEAD-box helicase 39A	-1.518	4.495
+217754_at	DDX56	DEAD-box helicase 56	-0.821	4.29
+209250_at	DEGS1	delta 4-desaturase, sphingolipid 1	1.007	3.498
+234347_s_at	DENR	density regulated re-initiation and release factor	-0.781	4.345
+205545_x_at	DNAJC8	DnaJ heat shock protein family (Hsp40) member C8	-0.827	6.268
+212491_s_at	DNAJC8	DnaJ heat shock protein family (Hsp40) member C8	-1.208	5.09
+226916_x_at	DPP9	dipeptidyl peptidase 9	-0.829	3.539
+207654_x_at	DR1	down-regulator of transcription 1	-0.87	3.418
+209188_x_at	DR1	down-regulator of transcription 1	-0.995	3.592
+216652_s_at	DR1	down-regulator of transcription 1	-1.112	3.842
+217309_s_at	DSCR3	DSCR3 arrestin fold containing	-0.865	3.571
+1553984_s_at	DTYMK	deoxythymidylate kinase	-0.956	4.487
+211928_at	DYNC1H1	dynein cytoplasmic 1 heavy chain 1	-0.607	3.893
+204271_s_at	EDNRB	endothelin receptor type B	2.912	6.19
+204273_at	EDNRB	endothelin receptor type B	1.619	4.981
+206701_x_at	EDNRB	endothelin receptor type B	2.869	5.922
+201983_s_at	EGFR	epidermal growth factor receptor	-0.93	3.346
+206115_at	EGR3	early growth response 3	2.694	3.527
+205341_at	EHD2	EH domain containing 2	-1.451	3.688
+45297_at	EHD2	EH domain containing 2	-1.391	3.342
+208756_at	EIF3I	eukaryotic translation initiation factor 3 subunit I	-0.846	4.092
+221539_at	EIF4EBP1	eukaryotic translation initiation factor 4E binding protein 1	-2.164	4.912
+201231_s_at	ENO1	enolase 1	-1.212	5.055
+216554_s_at	ENO1	enolase 1	-1.605	5.622
+217294_s_at	ENO1	enolase 1	-1.275	5.155
+218498_s_at	ERO1A	endoplasmic reticulum oxidoreductase 1 alpha	-1.196	3.523
+222646_s_at	ERO1A	endoplasmic reticulum oxidoreductase 1 alpha	-1.388	3.457
+225750_at	ERO1A	endoplasmic reticulum oxidoreductase 1 alpha	-2.202	5.341
+201329_s_at	ETS2	ETS proto-oncogene 2, transcription factor	-1.16	3.967
+241193_at	ETS2	ETS proto-oncogene 2, transcription factor	-1.688	3.416
+210011_s_at	EWSR1	EWS RNA binding protein 1	-0.63	3.64
+207547_s_at	FAM107A	family with sequence similarity 107 member A	0.94	3.817
+1554547_at	FAM13C	family with sequence similarity 13 member C	2.201	8.761
+209683_at	FAM49A	family with sequence similarity 49 member A	1.152	3.711
+238460_at	FAM83A	family with sequence similarity 83 member A	-2.502	4.086
+238741_at	FAM83A	family with sequence similarity 83 member A	-2.354	3.914
+239586_at	FAM83A	family with sequence similarity 83 member A	-3.057	5.171
+242944_at	FAM83A	family with sequence similarity 83 member A	-2.033	3.64
+203420_at	FAM8A1	family with sequence similarity 8 member A1	0.763	3.457
+220127_s_at	FBXL12	F-box and leucine rich repeat protein 12	-1.07	3.777
+205510_s_at	FLJ10038	uncharacterized protein FLJ10038	0.975	5.373
+213746_s_at	FLNA	filamin A	-2.133	3.413
+208613_s_at	FLNB	filamin B	-1.272	3.485
+1570156_s_at	FMN1	formin 1	1.708	3.522
+226145_s_at	FRAS1	Fraser extracellular matrix complex subunit 1	2.64	3.777
+212788_x_at	FTL	ferritin light chain	-1.338	4.774
+213187_x_at	FTL	ferritin light chain	-1.644	3.984
+203091_at	FUBP1	far upstream element binding protein 1	-0.866	4.139
+200959_at	FUS	FUS RNA binding protein	-0.732	3.749
+217370_x_at	FUS	FUS RNA binding protein	-0.667	3.548
+218084_x_at	FXYD5	FXYD domain containing ion transport regulator 5	-1.923	3.388
+201514_s_at	G3BP1	G3BP stress granule assembly factor 1	-1.102	3.486
+202528_at	GALE	UDP-galactose-4-epimerase	-0.724	3.617
+202192_s_at	GAS7	growth arrest specific 7	2.495	3.578
+210872_x_at	GAS7	growth arrest specific 7	2.179	3.46
+216733_s_at	GATM	glycine amidinotransferase	2.9	3.969
+231686_at	GATM	glycine amidinotransferase	2.39	3.681
+226214_at	GDE1	glycerophosphodiester phosphodiesterase 1	1.19	5.419
+228376_at	GGTA1P	glycoprotein, alpha-galactosyltransferase 1 pseudogene	1.767	7.202
+229367_s_at	GIMAP6	GTPase, IMAP family member 6	0.903	4.334
+225706_at	GLCCI1	glucocorticoid induced 1	0.968	3.974
+230360_at	GLDN	gliomedin	1.942	3.702
+206662_at	GLRX	glutaredoxin	2.247	3.988
+207157_s_at	GNG5	G protein subunit gamma 5	-0.957	5.225
+224634_at	GPATCH4	G-patch domain containing 4	-0.729	4.008
+229055_at	GPR68	G protein-coupled receptor 68	-2.678	4.01
+203108_at	GPRC5A	G protein-coupled receptor class C group 5 member A	-2.9	3.407
+235563_at	GPRC5A	G protein-coupled receptor class C group 5 member A	-3.031	3.664
+219313_at	GRAMD1C	GRAM domain containing 1C	2.372	4.15
+204315_s_at	GTSE1	G2 and S-phase expressed 1	-0.81	4.638
+223252_at	HDGFRP2	hepatoma-derived growth factor-related protein 2	-0.73	3.405
+221767_x_at	HDLBP	high density lipoprotein binding protein	-0.597	3.424
+208583_x_at	HIST1H2AJ	histone cluster 1, H2aj	-1.392	3.415
+208576_s_at	HIST1H3B	histone cluster 1, H3b	-2.46	3.428
+204753_s_at	HLF	HLF, PAR bZIP transcription factor	1.897	3.365
+204755_x_at	HLF	HLF, PAR bZIP transcription factor	2.458	4.344
+217755_at	HN1	hematological and neurological expressed 1	-1.671	5.345
+222396_at	HN1	hematological and neurological expressed 1	-0.994	4.216
+212109_at	HN1L	hematological and neurological expressed 1 like	-1.129	4.785
+204112_s_at	HNMT	histamine N-methyltransferase	1.906	4.733
+228772_at	HNMT	histamine N-methyltransferase	0.774	4.15
+236104_at	HNRNPLL	heterogeneous nuclear ribonucleoprotein L like	1.775	5.617
+200072_s_at	HNRNPM	heterogeneous nuclear ribonucleoprotein M	-0.696	4.982
+216855_s_at	HNRNPU	heterogeneous nuclear ribonucleoprotein U	-1.09	3.484
+203913_s_at	HPGD	hydroxyprostaglandin dehydrogenase 15-(NAD)	3.773	3.842
+203914_x_at	HPGD	hydroxyprostaglandin dehydrogenase 15-(NAD)	3.58	3.809
+205580_s_at	HRH1	histamine receptor H1	-2.072	3.959
+200942_s_at	HSBP1	heat shock factor binding protein 1	-0.56	3.808
+230621_at	IAH1	isoamyl acetate-hydrolyzing esterase 1 homolog	-0.578	4.414
+209291_at	ID4	inhibitor of DNA binding 4, HLH protein	2.476	3.395
+209292_at	ID4	inhibitor of DNA binding 4, HLH protein	1.917	4.594
+209100_at	IFRD2	interferon related developmental regulator 2	-1.256	3.898
+206693_at	IL7	interleukin 7	1.495	4.614
+210511_s_at	INHBA	inhibin beta A subunit	-3.673	3.621
+213446_s_at	IQGAP1	IQ motif containing GTPase activating protein 1	-0.709	4.888
+1556151_at	ITFG1	integrin alpha FG-GAP repeat containing 1	0.944	3.928
+201389_at	ITGA5	integrin subunit alpha 5	-2.1	4.133
+1557080_s_at	ITGBL1	integrin subunit beta like 1	1.714	4.895
+205422_s_at	ITGBL1	integrin subunit beta like 1	1.948	6.443
+214927_at	ITGBL1	integrin subunit beta like 1	2.575	4.76
+231993_at	ITGBL1	integrin subunit beta like 1	2.223	7.542
+202746_at	ITM2A	integral membrane protein 2A	2.879	7.278
+202747_s_at	ITM2A	integral membrane protein 2A	2.252	4.992
+217731_s_at	ITM2B	integral membrane protein 2B	0.809	4.792
+209171_at	ITPA	inosine triphosphatase	-0.807	3.592
+201751_at	JOSD1	Josephin domain containing 1	-1.352	4.217
+201464_x_at	JUN	Jun proto-oncogene, AP-1 transcription factor subunit	-0.888	4.17
+201465_s_at	JUN	Jun proto-oncogene, AP-1 transcription factor subunit	-1.484	5.391
+201466_s_at	JUN	Jun proto-oncogene, AP-1 transcription factor subunit	-1.383	3.414
+213281_at	JUN	Jun proto-oncogene, AP-1 transcription factor subunit	-1.307	4.825
+223208_at	KCTD10	potassium channel tetramerization domain containing 10	-0.556	3.325
+212441_at	KIAA0232	KIAA0232	0.979	3.72
+208961_s_at	KLF6	Kruppel like factor 6	-1.384	3.703
+1555420_a_at	KLF7	Kruppel like factor 7	-2.063	4.05
+204334_at	KLF7	Kruppel like factor 7	-1.589	4.33
+238482_at	KLF7	Kruppel like factor 7	-1.725	4.072
+238517_at	KLF7	Kruppel like factor 7	-1.945	3.928
+240432_x_at	KLF7	Kruppel like factor 7	-1.399	3.739
+237120_at	KRT77	keratin 77	5.422	5.264
+208188_at	KRT9	keratin 9	5.832	5.168
+202267_at	LAMC2	laminin subunit gamma 2	-3.073	3.968
+227819_at	LGR6	leucine rich repeat containing G protein-coupled receptor 6	2.537	8.068
+224446_at	LLPH	LLP homolog, long-term synaptic facilitation	-0.936	3.414
+200805_at	LMAN2	lectin, mannose binding 2	-1.053	3.355
+216952_s_at	LMNB2	lamin B2	-1.429	3.354
+202350_s_at	LOC100506558///MATN2	uncharacterized LOC100506558///matrilin 2	2.192	3.957
+229006_at	LOC100507487	uncharacterized LOC100507487	1.348	3.56
+238559_at	LOC101927402	uncharacterized LOC101927402	1.095	4.608
+225520_at	LOC101928195///LOC100996643///MTHFD1L	methylenetetrahydrofolate dehydrogenase (NADP+ dependent) 1-like pseudogene///monofunctional C1-tetrahydrofolate synthase, mitochondrial-like///methylenetetrahydrofolate dehydrogenase (NADP+ dependent) 1-like	-2.176	3.627
+218150_at	LOC101929356///ARL5A	uncharacterized LOC101929356///ADP ribosylation factor like GTPase 5A	1.678	3.895
+226617_at	LOC101929356///ARL5A	uncharacterized LOC101929356///ADP ribosylation factor like GTPase 5A	1.838	3.518
+224752_at	LOC101930655///C7orf73	uncharacterized LOC101930655///chromosome 7 open reading frame 73	-0.854	3.464
+226038_at	LONRF1	LON peptidase N-terminal domain and ring finger 1	2.346	4.758
+224624_at	LRRC8A	leucine rich repeat containing 8 family member A	-1.223	3.988
+227513_s_at	LRRFIP1	LRR binding FLII interacting protein 1	-0.942	4.426
+223413_s_at	LYAR	Ly1 antibody reactive	-1.754	4.679
+223414_s_at	LYAR	Ly1 antibody reactive	-1.12	3.659
+230174_at	LYPLAL1	lysophospholipase like 1	1.856	4.273
+47550_at	LZTS1	leucine zipper tumor suppressor 1	1.026	4.88
+226190_at	MAP3K13	mitogen-activated protein kinase kinase kinase 13	-1.267	3.399
+1552264_a_at	MAPK1	mitogen-activated protein kinase 1	-1.171	5.45
+201670_s_at	MARCKS	myristoylated alanine rich protein kinase C substrate	-0.635	4.102
+221047_s_at	MARK1	microtubule affinity regulating kinase 1	-1.54	3.359
+226797_at	MBTD1	mbt domain containing 1	1.1	4.22
+227175_at	MCL1	BCL2 family apoptosis regulator	-1.07	4.468
+222175_s_at	MED15	mediator complex subunit 15	-1.35	3.817
+207761_s_at	METTL7A	methyltransferase like 7A	2.648	3.784
+205442_at	MFAP3L	microfibrillar associated protein 3 like	2.726	3.792
+210843_s_at	MFAP3L	microfibrillar associated protein 3 like	3.303	3.604
+221862_at	MIER2	MIER family member 2	0.869	3.626
+217871_s_at	MIF	macrophage migration inhibitory factor (glycosylation-inhibiting factor)	-2.151	3.667
+1556316_s_at	MIF-AS1	MIF antisense RNA 1	-2.31	4.183
+36830_at	MIPEP	mitochondrial intermediate peptidase	1.275	3.471
+200874_s_at	MIR1292///SNORD110///SNORD86///SNORD57///NOP56	microRNA 1292///small nucleolar RNA, C/D box 110///small nucleolar RNA, C/D box 86///small nucleolar RNA, C/D box 57///NOP56 ribonucleoprotein	-1.781	5.477
+200875_s_at	MIR1292///SNORD110///SNORD86///SNORD57///NOP56	microRNA 1292///small nucleolar RNA, C/D box 110///small nucleolar RNA, C/D box 86///small nucleolar RNA, C/D box 57///NOP56 ribonucleoprotein	-0.874	3.625
+209825_s_at	MIR3658///UCK2	microRNA 3658///uridine-cytidine kinase 2	-1.437	3.862
+237974_at	MIR4454///ABHD12B	microRNA 4454///abhydrolase domain containing 12B	2.969	3.962
+212594_at	MIR4680///PDCD4	microRNA 4680///programmed cell death 4 (neoplastic transformation inhibitor)	1.028	3.678
+202189_x_at	MIR4745///PTBP1	microRNA 4745///polypyrimidine tract binding protein 1	-0.641	5.709
+211271_x_at	MIR4745///PTBP1	microRNA 4745///polypyrimidine tract binding protein 1	-0.842	6.35
+212015_x_at	MIR4745///PTBP1	microRNA 4745///polypyrimidine tract binding protein 1	-0.668	4.706
+212016_s_at	MIR4745///PTBP1	microRNA 4745///polypyrimidine tract binding protein 1	-1.082	3.362
+216306_x_at	MIR4745///PTBP1	microRNA 4745///polypyrimidine tract binding protein 1	-0.644	5.216
+201475_x_at	MIR6758///MARS	microRNA 6758///methionyl-tRNA synthetase	-0.878	3.831
+203857_s_at	MIR7110///PDIA5	microRNA 7110///protein disulfide isomerase family A member 5	-2.002	4.968
+212563_at	MIR7112///BOP1	microRNA 7112///block of proliferation 1	-1.45	3.552
+215292_s_at	MKL1	megakaryoblastic leukemia (translocation) 1	-1.474	3.488
+204475_at	MMP1	matrix metallopeptidase 1	-4.626	3.429
+205680_at	MMP10	matrix metallopeptidase 10	-4.39	4.063
+221381_s_at	MORF4L1	mortality factor 4 like 1	-0.697	3.521
+212185_x_at	MT2A	metallothionein 2A	-1.356	3.546
+222153_at	MYEF2	myelin expression factor 2	1.554	3.891
+222771_s_at	MYEF2	myelin expression factor 2	2.758	4.249
+232676_x_at	MYEF2	myelin expression factor 2	2.876	4.29
+204601_at	N4BP1	NEDD4 binding protein 1	-1.212	4.404
+218200_s_at	NDUFB2	NADH:ubiquinone oxidoreductase subunit B2	-0.62	3.365
+235321_at	NDUFS1	NADH:ubiquinone oxidoreductase core subunit S1	1.333	3.368
+236356_at	NDUFS1	NADH:ubiquinone oxidoreductase core subunit S1	0.995	4.503
+205895_s_at	NOLC1	nucleolar and coiled-body phosphoprotein 1	-1.314	4.008
+211949_s_at	NOLC1	nucleolar and coiled-body phosphoprotein 1	-1.015	4.018
+223405_at	NPL	N-acetylneuraminate pyruvate lyase	1.803	4.215
+242303_at	NRG2	neuregulin 2	1.829	5.077
+202599_s_at	NRIP1	nuclear receptor interacting protein 1	-1.172	3.447
+222900_at	NRIP3	nuclear receptor interacting protein 3	-1.501	3.362
+218622_at	NUP37	nucleoporin 37	-1.013	3.497
+218295_s_at	NUP50	nucleoporin 50	-0.718	4.487
+222583_s_at	NUP50	nucleoporin 50	-0.754	3.948
+218708_at	NXT1	nuclear transport factor 2 like export factor 1	-1.241	3.859
+201599_at	OAT	ornithine aminotransferase	0.786	3.716
+215952_s_at	OAZ1	ornithine decarboxylase antizyme 1	-1.166	4.153
+225225_at	OIP5-AS1	OIP5 antisense RNA 1	0.739	3.355
+202093_s_at	PAF1	PAF1 homolog, Paf1/RNA polymerase II complex component	-0.64	3.415
+1559052_s_at	PAK2	p21 (RAC1) activated kinase 2	-1.137	3.373
+218969_at	PAM16	presequence translocase associated motor 16 homolog	-1.187	3.402
+226649_at	PANK1	pantothenate kinase 1	1.929	3.434
+221751_at	PANK3	pantothenate kinase 3	0.982	3.678
+225809_at	PARM1	prostate androgen-regulated mucin-like protein 1	1.53	4.137
+210022_at	PCGF1	polycomb group ring finger 1	-1.101	3.932
+210023_s_at	PCGF1	polycomb group ring finger 1	-1.239	3.721
+219275_at	PDCD5	programmed cell death 5	-0.831	5.667
+211048_s_at	PDIA4	protein disulfide isomerase family A member 4	-0.776	3.484
+202671_s_at	PDXK	pyridoxal (pyridoxine, vitamin B6) kinase	-2.239	4.781
+222492_at	PDXK	pyridoxal (pyridoxine, vitamin B6) kinase	-1.159	4.41
+209493_at	PDZD2	PDZ domain containing 2	2.91	6.083
+210825_s_at	PEBP1	phosphatidylethanolamine binding protein 1	0.52	3.975
+218336_at	PFDN2	prefoldin subunit 2	-0.797	4.731
+213227_at	PGRMC2	progesterone receptor membrane component 2	1.623	3.609
+215129_at	PIK3C2G	phosphatidylinositol-4-phosphate 3-kinase catalytic subunit type 2 gamma	1.919	4.555
+1553917_at	PIKFYVE	phosphoinositide kinase, FYVE-type zinc finger containing	0.519	3.502
+201251_at	PKM	pyruvate kinase, muscle	-1.065	3.461
+210845_s_at	PLAUR	plasminogen activator, urokinase receptor	-2.835	4.673
+211924_s_at	PLAUR	plasminogen activator, urokinase receptor	-2.82	4.087
+216971_s_at	PLEC	plectin	-1.262	3.423
+210198_s_at	PLP1	proteolipid protein 1	2.117	6.384
+208890_s_at	PLXNB2	plexin B2	-0.988	3.336
+211472_at	PLXNB2	plexin B2	-1.048	3.389
+203201_at	PMM2	phosphomannomutase 2	-1.098	3.654
+217635_s_at	POLG	DNA polymerase gamma, catalytic subunit	-0.796	3.51
+209511_at	POLR2F	RNA polymerase II subunit F	-0.555	3.799
+228108_at	PPM1L	protein phosphatase, Mg2+/Mn2+ dependent 1L	2.303	3.735
+212680_x_at	PPP1R14B	protein phosphatase 1 regulatory inhibitor subunit 14B	-1.149	3.854
+227629_at	PRLR	prolactin receptor	1.958	4.037
+209162_s_at	PRPF4	pre-mRNA processing factor 4	-1.664	3.869
+211947_s_at	PRRC2C	proline rich coiled-coil 2C	-0.787	5.905
+211270_x_at	PTBP1	polypyrimidine tract binding protein 1	-0.596	5.471
+226491_x_at	PTBP1	polypyrimidine tract binding protein 1	-0.871	4.693
+210355_at	PTHLH	parathyroid hormone like hormone	-4.052	3.493
+212662_at	PVR	poliovirus receptor	-1.144	4.285
+201606_s_at	PWP1	PWP1 homolog, endonuclein	-0.63	3.495
+205174_s_at	QPCT	glutaminyl-peptide cyclotransferase	2.542	3.697
+217763_s_at	RAB31	RAB31, member RAS oncogene family	-2.117	3.651
+202483_s_at	RANBP1	RAN binding protein 1	-1.353	6.392
+221915_s_at	RANBP1	RAN binding protein 1	-1.4	5.979
+220027_s_at	RASIP1	Ras interacting protein 1	-1.839	3.346
+204178_s_at	RBM14	RNA binding motif protein 14	-0.775	3.364
+206499_s_at	RCC1	regulator of chromosome condensation 1	-1.228	3.361
+227758_at	RERG	RAS like estrogen regulated growth inhibitor	1.63	4.055
+244745_at	RERG	RAS like estrogen regulated growth inhibitor	1.35	3.612
+218353_at	RGS5	regulator of G-protein signaling 5	1.146	3.983
+212122_at	RHOQ	ras homolog family member Q	1.263	3.493
+218323_at	RHOT1	ras homolog family member T1	1.066	4.23
+222148_s_at	RHOT1	ras homolog family member T1	0.98	3.727
+227268_at	RNFT1	ring finger protein, transmembrane 1	1.169	3.818
+223824_at	RNLS	renalase, FAD dependent amine oxidase	1.192	3.445
+226709_at	ROBO2	roundabout guidance receptor 2	0.59	3.469
+226766_at	ROBO2	roundabout guidance receptor 2	2.041	5.457
+210426_x_at	RORA	RAR related orphan receptor A	2.139	3.332
+210479_s_at	RORA	RAR related orphan receptor A	2.284	3.589
+226682_at	RORA	RAR related orphan receptor A	2.555	4.448
+235567_at	RORA	RAR related orphan receptor A	2.216	3.533
+1562682_at	RORA-AS1	RORA antisense RNA 1	1.862	3.878
+218830_at	RPL26L1	ribosomal protein L26 like 1	-0.777	3.358
+201203_s_at	RRBP1	ribosome binding protein 1	-1.477	3.649
+201204_s_at	RRBP1	ribosome binding protein 1	-1.079	3.565
+201206_s_at	RRBP1	ribosome binding protein 1	-1.267	5.418
+218758_s_at	RRP1	ribosomal RNA processing 1	-1.108	4.217
+241450_at	RSPO1	R-spondin 1	1.067	3.426
+203485_at	RTN1	reticulon 1	2.25	5.249
+226298_at	RUNDC1	RUN domain containing 1	0.875	4.417
+201614_s_at	RUVBL1	RuvB like AAA ATPase 1	-1.134	3.45
+200872_at	S100A10	S100 calcium binding protein A10	-1.131	4.945
+200660_at	S100A11	S100 calcium binding protein A11	-0.859	7.038
+202598_at	S100A13	S100 calcium binding protein A13	-1.19	3.478
+217728_at	S100A6	S100 calcium binding protein A6	-1.437	3.723
+219197_s_at	SCUBE2	signal peptide, CUB domain and EGF like domain containing 2	2.773	3.723
+202071_at	SDC4	syndecan 4	-1.447	3.796
+222385_x_at	SEC61A1	Sec61 translocon alpha 1 subunit	-1.246	3.946
+219499_at	SEC61A2	Sec61 translocon alpha 2 subunit	1.059	3.577
+203484_at	SEC61G	Sec61 translocon gamma subunit	-0.541	4.128
+212450_at	SECISBP2L	SECIS binding protein 2 like	1.303	6.094
+1552544_at	SERPINA12	serpin family A member 12	3.605	3.628
+212268_at	SERPINB1	serpin family B member 1	-2.333	3.498
+213572_s_at	SERPINB1	serpin family B member 1	-1.977	3.509
+1553057_at	SERPINB12	serpin family B member 12	5.172	4.709
+202628_s_at	SERPINE1	serpin family E member 1	-2.926	3.801
+229674_at	SERTAD4	SERTA domain containing 4	1.927	4.141
+230660_at	SERTAD4	SERTA domain containing 4	1.96	3.506
+235337_at	SERTAD4	SERTA domain containing 4	1.963	3.601
+226763_at	SESTD1	SEC14 and spectrin domain containing 1	-1.841	3.773
+226836_at	SFT2D1	SFT2 domain containing 1	-1.168	3.688
+230973_at	SH2D5	SH2 domain containing 5	-3.464	4.443
+214853_s_at	SHC1	SHC adaptor protein 1	-0.852	3.366
+218765_at	SIDT2	SID1 transmembrane family member 2	0.733	3.436
+56256_at	SIDT2	SID1 transmembrane family member 2	1.335	4.441
+219915_s_at	SLC16A10	solute carrier family 16 member 10	2.888	3.496
+238029_s_at	SLC16A14	solute carrier family 16 member 14	2.706	4.065
+212907_at	SLC30A1	solute carrier family 30 member 1	1.559	4.083
+201195_s_at	SLC7A5	solute carrier family 7 member 5	-1.432	4.235
+209453_at	SLC9A1	solute carrier family 9 member A1	-1.231	3.636
+212520_s_at	SMARCA4	SWI/SNF related, matrix associated, actin dependent regulator of chromatin, subfamily a, member 4	-1.405	3.507
+212167_s_at	SMARCB1	SWI/SNF related, matrix associated, actin dependent regulator of chromatin, subfamily b, member 1	-1.032	3.354
+236016_at	SMARCE1	SWI/SNF related, matrix associated, actin dependent regulator of chromatin, subfamily e, member 1	1.332	3.423
+201077_s_at	SNU13///ANXA2	SNU13 homolog, small nuclear ribonucleoprotein (U4/U6.U5)///annexin A2	-1.057	5.896
+1553148_a_at	SNX13	sorting nexin 13	0.559	4.778
+200991_s_at	SNX17	sorting nexin 17	-1.487	4.007
+229331_at	SPATA18	spermatogenesis associated 18	1.495	6.384
+238459_x_at	SPATA6	spermatogenesis associated 6	1.735	3.914
+213003_s_at	SPIDR	scaffolding protein involved in DNA repair	-1.003	3.741
+1569138_a_at	SRCAP	Snf2-related CREBBP activator protein	-0.895	3.858
+233888_s_at	SRGAP1	SLIT-ROBO Rho GTPase activating protein 1	-1.902	3.446
+201516_at	SRM	spermidine synthase	-1.372	4.098
+226662_at	STX17	syntaxin 17	0.826	3.415
+200739_s_at	SUMO3	small ubiquitin-like modifier 3	-1.149	4.344
+225720_at	SYNPO2	synaptopodin 2	2.053	4.928
+225895_at	SYNPO2	synaptopodin 2	1.452	4.545
+244108_at	SYNPO2	synaptopodin 2	0.995	3.977
+200916_at	TAGLN2	transgelin 2	-1.08	3.877
+225308_s_at	TANC1	tetratricopeptide repeat, ankyrin repeat and coiled-coil containing 1	1.14	3.474
+209451_at	TANK	TRAF family member associated NFKB activator	0.781	4.012
+209152_s_at	TCF3	transcription factor 3	-1.148	4.15
+213730_x_at	TCF3	transcription factor 3	-0.93	3.437
+213811_x_at	TCF3	transcription factor 3	-0.845	3.871
+202385_s_at	TCOF1	treacle ribosome biogenesis factor 1	-1.541	4.917
+1553861_at	TCP11L2	t-complex 11 like 2	1.355	4.074
+202719_s_at	TES	testin LIM domain protein	-1.227	3.885
+205015_s_at	TGFA	transforming growth factor alpha	-1.742	3.681
+204731_at	TGFBR3	transforming growth factor beta receptor 3	2.913	7.882
+226625_at	TGFBR3	transforming growth factor beta receptor 3	3.038	5.054
+222439_s_at	THRAP3	thyroid hormone receptor associated protein 3	-0.734	3.381
+213191_at	TICAM1	toll like receptor adaptor molecule 1	-1.127	4.953
+222845_x_at	TMBIM4	transmembrane BAX inhibitor motif containing 4	0.605	3.404
+219750_at	TMEM144	transmembrane protein 144	1.253	3.605
+217899_at	TMEM214	transmembrane protein 214	-0.97	4.062
+226338_at	TMEM55A	transmembrane protein 55A	1.164	3.561
+217733_s_at	TMSB10	thymosin beta 10	-0.948	6.737
+218368_s_at	TNFRSF12A	TNF receptor superfamily member 12A	-1.626	3.487
+224090_s_at	TNFRSF19	TNF receptor superfamily member 19	2.337	4.363
+227812_at	TNFRSF19	TNF receptor superfamily member 19	3.35	4.045
+224705_s_at	TNRC6A	trinucleotide repeat containing 6A	0.81	3.67
+201379_s_at	TPD52L2	tumor protein D52 like 2	-0.987	3.469
+222976_s_at	TPM3	tropomyosin 3	-0.69	5.341
+209344_at	TPM4	tropomyosin 4	-1.138	4.676
+244334_at	TRAM1L1	translocation associated membrane protein 1-like 1	2.181	3.734
+202734_at	TRIP10	thyroid hormone receptor interactor 10	-2.032	5.338
+222768_s_at	TRMT6	tRNA methyltransferase 6	-0.783	3.415
+201504_s_at	TSN	translin	-0.691	3.724
+213104_at	TSR3	TSR3, acp transferase ribosome maturation factor	-1.006	4.146
+201090_x_at	TUBA1B	tubulin alpha 1b	-0.538	4.77
+211058_x_at	TUBA1B	tubulin alpha 1b	-0.538	4.779
+211072_x_at	TUBA1B	tubulin alpha 1b	-0.581	4.871
+212639_x_at	TUBA1B	tubulin alpha 1b	-0.786	5.623
+213646_x_at	TUBA1B	tubulin alpha 1b	-0.585	4.447
+209251_x_at	TUBA1C	tubulin alpha 1c	-0.603	5.015
+211750_x_at	TUBA1C	tubulin alpha 1c	-0.7	5.404
+209026_x_at	TUBB	tubulin beta class I	-1.082	4.225
+211714_x_at	TUBB	tubulin beta class I	-1.021	4.157
+209191_at	TUBB6	tubulin beta 6 class V	-0.634	3.641
+222244_s_at	TUG1	taurine up-regulated 1 (non-protein coding)	-0.576	4.445
+217497_at	TYMP	thymidine phosphorylase	-1.882	3.908
+218289_s_at	UBA5	ubiquitin like modifier activating enzyme 5	0.772	3.395
+221962_s_at	UBE2H	ubiquitin conjugating enzyme E2 H	-0.998	4.404
+211575_s_at	UBE3A	ubiquitin protein ligase E3A	0.604	3.662
+201534_s_at	UBL3	ubiquitin like 3	1.302	4.192
+201535_at	UBL3	ubiquitin like 3	1.906	3.44
+218011_at	UBL5	ubiquitin like 5	-0.603	3.519
+230029_x_at	UBR3	ubiquitin protein ligase E3 component n-recognin 3 (putative)	0.952	4.286
+203234_at	UPP1	uridine phosphorylase 1	-3.03	3.353
+1554016_a_at	USB1	U6 snRNA biogenesis phosphodiesterase 1	-1.753	5.962
+218060_s_at	USB1	U6 snRNA biogenesis phosphodiesterase 1	-1.642	4.208
+227572_at	USP30	ubiquitin specific peptidase 30	1.095	4.743
+214792_x_at	VAMP2	vesicle associated membrane protein 2	0.849	3.336
+221704_s_at	VPS37B	VPS37B, ESCRT-I subunit	-0.635	3.33
+1560060_s_at	VPS37C	VPS37C, ESCRT-I subunit	0.513	3.372
+202261_at	VPS72	vacuolar protein sorting 72 homolog	-1.139	4.064
+238660_at	WDFY3	WD repeat and FYVE domain containing 3	1.122	3.623
+223055_s_at	XPO5	exportin 5	-1.069	4.383
+222581_at	XPR1	xenotropic and polytropic retrovirus receptor 1	-1.363	3.966
+200792_at	XRCC6	X-ray repair cross complementing 6	-0.581	3.32
+217784_at	YKT6	YKT6 v-SNARE homolog (S. cerevisiae)	-1.691	4.725
+201020_at	YWHAH	tyrosine 3-monooxygenase/tryptophan 5-monooxygenase activation protein eta	-0.946	4.023
+222757_s_at	ZAK	sterile alpha motif and leucine zipper containing kinase AZK	-1.767	3.655
+223519_at	ZAK	sterile alpha motif and leucine zipper containing kinase AZK	-2.06	4.067
+225662_at	ZAK	sterile alpha motif and leucine zipper containing kinase AZK	-1.904	4.151
+238613_at	ZAK	sterile alpha motif and leucine zipper containing kinase AZK	-1.675	4.189
+204799_at	ZBED4	zinc finger BED-type containing 4	-0.995	3.607
+1559399_s_at	ZCCHC10	zinc finger CCHC-type containing 10	-1.388	3.488
+226912_at	ZDHHC23	zinc finger DHHC-type containing 23	1.546	3.43
+212124_at	ZMIZ1	zinc finger MIZ-type containing 1	0.824	3.913
+1563745_a_at	ZMIZ1-AS1	ZMIZ1 antisense RNA 1	0.641	6.979
+200828_s_at	ZNF207	zinc finger protein 207	-0.663	3.837
+204175_at	ZNF593	zinc finger protein 593	-1.032	3.93
+225266_at	ZNF652	zinc finger protein 652	1	5.972
+235577_at	ZNF652	zinc finger protein 652	1.057	5.6
+243495_s_at	ZNF652	zinc finger protein 652	0.882	4.754
+242915_at	ZNF682	zinc finger protein 682	2.66	4.391
+208540_x_at			-0.701	6.27
+209535_s_at			1.174	3.905
+210748_at			-0.858	4.798
+213813_x_at			-1.078	4.009
+216297_at			1.15	5.909
+224346_at			-1.4	4.499
+226138_s_at			-1.336	3.675
+226579_at			-0.724	3.613
+230410_at			-2.024	3.781
+230599_at			1.347	3.376
+230714_s_at			-1.356	3.496
+231615_at			0.85	5.199
+234357_at			1.172	3.862
+235422_at			1.243	3.895
+238492_at			0.937	3.553
+240977_at			1.157	4.666
+241721_at			1.184	4.424
+242379_at			2.605	5.065
+243718_at			1.173	3.595
+244534_at			0.965	3.356
+244757_at			0.56	3.352

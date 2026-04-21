@@ -60,11 +60,24 @@ Comparar redes de interação gênica derivadas de amostras de câncer de pele m
 
 ## Datasets (GEO)
 
+### Por comparação
+
 | Grupo        | Datasets                    |
 | ------------ | --------------------------- |
 | Saudável     | GSE4570, GSE2503, GSE53462  |
 | Melanoma     | GSE4570, GSE8401, GSE7553   |
 | Não-melanoma | GSE2503, GSE45216, GSE53462 |
+
+### Por dataset — subgrupos de amostra
+
+| Dataset       | Subgrupos / classes de amostra | Observações |
+| ------------- | ------------------------------ | ----------- |
+| **GSE4570**   | Melanócitos saudáveis · Melanoma primário · Melanoma metastático | Cobre o eixo sadio → primário → metastático no mesmo estudo |
+| **GSE2503**   | Pele saudável (NO) · Carcinoma espinocelular (SCC) · Queratose actínica (AK) | **AK descartada** — lesão pré-cancerígena fora do escopo das comparações principais |
+| **GSE7553**   | Pele normal · Carcinoma basocelular · Carcinoma espinocelular · Melanoma in situ · Melanoma primário · Melanoma metastático | Dataset mais rico — cobre todos os tipos e estágios |
+| **GSE8401**   | Melanoma primário · Melanoma metastático | Só melanoma |
+| **GSE45216**  | Carcinoma espinocelular · Queratose actínica | AK aqui **é aproveitada** como precursora de ~65% dos casos de espinocelular — permite estudar características adquiridas na progressão AK → SCC. Também traz estágio de diferenciação e imunossupressão (esta última fora do escopo) |
+| **GSE53462**  | *(a confirmar na coleta)* | — |
 
 ---
 
