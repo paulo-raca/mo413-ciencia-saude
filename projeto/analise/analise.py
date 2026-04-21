@@ -73,27 +73,65 @@ def _(mo):
     return
 
 
+@app.cell
+def config(GEOparse, pd):
+    from dataclasses import dataclass
+
+    ACCESSIONS: list[str] = [
+        "GSE4570",
+        "GSE2503",
+        "GSE53462",
+        "GSE8401",
+        "GSE7553",
+        "GSE45216",
+    ]
+
+    # Regras de categorização de amostras. Ordem importa: a primeira substring
+    # que casar (case-insensitive) em `characteristics_ch1` vence.
+    CATEGORY_RULES: list[tuple[str, str]] = [
+        ("metastatic melanoma", "Metastatic Melanoma"),
+        ("primary melanoma",    "Primary Melanoma"),
+        ("melanoma in situ",    "Melanoma in situ"),
+        ("melanocyte",          "Normal"),
+        ("normal skin",         "Normal"),
+        ("actinic keratosis",   "Actinic Keratosis"),
+        ("squamous cell",       "Squamous Cell Carcinoma"),
+        ("basal cell",          "Basal Cell Carcinoma"),
+    ]
+
+    def categorize(characteristics: list[str]) -> str | None:
+        """Retorna a categoria pela primeira regra que casar com algum
+        valor de `characteristics_ch1`; `None` se nenhuma casar."""
+        text = " · ".join(characteristics).lower()
+        for substr, cat in CATEGORY_RULES:
+            if substr in text:
+                return cat
+        return None
+
+    @dataclass
+    class Dataset:
+        """Agregado por dataset: objeto GEOparse + DataFrame de amostras."""
+        accession: str
+        gse: GEOparse.GSE           # dataset completo: .gsms, .gpls, .metadata
+        samples: pd.DataFrame       # colunas: GSM, Título, Características, Categoria
+
+    return ACCESSIONS, Dataset, categorize
+
+
 @app.cell(hide_code=True)
-def download_datasets(GEOparse, Path, mo):
+def download_datasets(ACCESSIONS: list[str], GEOparse, Path, mo):
     mo.output.append(mo.md("## 1. Download dos Datasets GEO"))
 
     GEO_DIR = Path("data/geo")
     GEO_DIR.mkdir(parents=True, exist_ok=True)
 
-    DATASETS = {
-        "saudavel":     ["GSE4570", "GSE2503", "GSE53462"],
-        "melanoma":     ["GSE4570", "GSE8401", "GSE7553"],
-        "nao_melanoma": ["GSE2503", "GSE45216", "GSE53462"],
-    }
-    ALL_IDS = sorted({gse for ids in DATASETS.values() for gse in ids})
-
-    # Cache persistente: o parsing do .soft.gz é caro (~30s no total), mas o
-    # resultado só muda se ALL_IDS mudar. Primeiro run baixa+parseia; depois
-    # restaura do pickle em __marimo__/cache/.
+    # Cache persistente: o parsing do .soft.gz é caro (~50s pros 6 datasets),
+    # mas o resultado só muda se ACCESSIONS mudar. Primeiro run baixa+parseia;
+    # depois restaura do pickle em __marimo__/cache/.
     with mo.persistent_cache("geo_datasets"):
         gse_objects = {}
         for _gse_id in mo.status.progress_bar(
-            ALL_IDS,
+            ACCESSIONS,
             title="Baixando datasets GEO",
             remove_on_exit=True,
         ):
@@ -105,9 +143,49 @@ def download_datasets(GEOparse, Path, mo):
     return (gse_objects,)
 
 
+@app.cell
+def build_datasets(
+    ACCESSIONS: list[str],
+    Dataset,
+    categorize,
+    gse_objects,
+    pd,
+):
+    datasets = {}
+    for _acc in ACCESSIONS:
+        _gse = gse_objects[_acc]
+        _samples = pd.DataFrame([
+            {
+                "GSM": gsm_id,
+                "Título": gsm.metadata.get("title", [""])[0],
+                "Características": " · ".join(gsm.metadata.get("characteristics_ch1", [])),
+                "Categoria": categorize(gsm.metadata.get("characteristics_ch1", [])),
+            }
+            for gsm_id, gsm in _gse.gsms.items()
+        ])
+        datasets[_acc] = Dataset(accession=_acc, gse=_gse, samples=_samples)
+    return (datasets,)
+
+
+@app.cell
+def samples_all(datasets, pd):
+    # Concatena os samples de todos os datasets num DataFrame único, com a
+    # coluna `Dataset` como desambiguador. Útil para groupby cross-dataset
+    # (contagem por categoria, overlap de GSMs, etc.).
+    samples: pd.DataFrame = (
+        pd.concat(
+            [ds.samples.assign(Dataset=acc) for acc, ds in datasets.items()],
+            ignore_index=True,
+        )
+        .loc[:, ["Dataset", "GSM", "Título", "Características", "Categoria"]]
+    )
+    return
+
+
 @app.cell(hide_code=True)
-def datasets_summary(gse_objects, mo, pd):
-    def _panel(gsid, gse):
+def datasets_summary(datasets, mo):
+    def _panel(acc, ds):
+        gse = ds.gse
         title = gse.metadata.get("title", [""])[0]
         platform = ", ".join(gse.metadata.get("platform_id", ["?"]))
         submitted = gse.metadata.get("submission_date", ["?"])[0]
@@ -115,8 +193,17 @@ def datasets_summary(gse_objects, mo, pd):
         if len(summary_text) > 500:
             summary_text = summary_text[:500].rstrip() + "…"
 
+        # Contagem por categoria (inclui `None` como "(sem categoria)")
+        _counts = (
+            ds.samples["Categoria"]
+            .value_counts(dropna=False)
+            .rename_axis("Categoria")
+            .reset_index(name="N")
+        )
+        _counts["Categoria"] = _counts["Categoria"].fillna("(sem categoria)")
+
         header = mo.md(f"""
-        **[{gsid}](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc={gsid})** — {title}
+        **[{acc}](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc={acc})** — {title}
 
         | Plataforma | Amostras | Submissão |
         | --- | --- | --- |
@@ -124,21 +211,12 @@ def datasets_summary(gse_objects, mo, pd):
 
         {summary_text}
 
-        #### Amostras
+        #### Amostras por categoria
         """)
 
-        samples_df = pd.DataFrame([
-            {
-                "GSM": gsm_id,
-                "Título": gsm.metadata.get("title", [""])[0],
-                "Características": " · ".join(gsm.metadata.get("characteristics_ch1", [])),
-            }
-            for gsm_id, gsm in gse.gsms.items()
-        ])
+        return mo.vstack([header, _counts, mo.md("#### Amostras"), ds.samples])
 
-        return mo.vstack([header, samples_df])
-
-    mo.ui.tabs({gsid: _panel(gsid, g) for gsid, g in gse_objects.items()})
+    mo.ui.tabs({acc: _panel(acc, ds) for acc, ds in datasets.items()})
     return
 
 
@@ -164,17 +242,16 @@ def _(mo):
 
 
 @app.cell
-def mm_samples(gse_objects):
-    gse_mm = gse_objects["GSE7553"]
+def mm_samples(datasets):
+    _mm = datasets["GSE7553"]
+    gse_mm = _mm.gse
 
-    def _has_char(gsm, substr):
-        return any(substr.lower() in c.lower()
-                   for c in gsm.metadata.get("characteristics_ch1", []))
-
-    metastatic_gsms = [gid for gid, gsm in gse_mm.gsms.items()
-                       if _has_char(gsm, "metastatic melanoma")]
-    normal_gsms = [gid for gid, gsm in gse_mm.gsms.items()
-                   if _has_char(gsm, "normal skin")]
+    metastatic_gsms = _mm.samples.loc[
+        _mm.samples["Categoria"] == "Metastatic Melanoma", "GSM"
+    ].tolist()
+    normal_gsms = _mm.samples.loc[
+        _mm.samples["Categoria"] == "Normal", "GSM"
+    ].tolist()
     return gse_mm, metastatic_gsms, normal_gsms
 
 
