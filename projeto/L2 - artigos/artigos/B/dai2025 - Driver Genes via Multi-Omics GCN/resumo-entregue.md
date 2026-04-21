@@ -6,45 +6,69 @@ Para compreender o comportamento e as interações dos genes condutores do cânc
 
 A ilustração a seguir descreve a arquitetura e o modelo gráfico adotados no DriverOmicsNet:
 
-simple text  
-\========================================================================  
-\[Entrada de dados multiômicos\]  
-(Expressão Gênica, CNV, Mutação, Perfis de Metilação)  
-|  
-em  
-\[Extração de Características dos Nós\]  
-(8 características distintas por gene condutor do câncer)  
-|  
-\+---------------------+---------------------+  
-| |  
-v v  
-\[ Modelo gráfico 1: STRING PPI \] \[ Modelo gráfico 2: WGCNA \]  
-(Nós \= CDgs) (Nós \= CDgs)  
-(Arestas \= Interações Proteicas Conhecidas) (Arestas \= Similaridade de Coexpressão)  
-| |  
-v v  
-\[ GCN de 4 camadas \] \[ GCN de 4 camadas \]  
-(Transmissão de mensagens \+ Releitura) (Transmissão de mensagens \+ Releitura)  
-\+ \+  
-\[ TopKPooling \] \[ TopKPooling \]  
-(Retém os nós mais informativos) (Retém os nós mais informativos)  
-| |  
-v v  
-\[ Representação em nível de grafo \] \[ Representação em nível de grafo \]  
-| |  
-\+---------------------+---------------------+  
-|  
-em  
-\[ Concatenação \]  
-(Fusão de caminhos PPI e WGCNA)  
-|  
-em  
-\[ Perceptron Multicamadas (MLP) \]  
-|  
-em  
-\[Saída da Classificação\]  
-(ex.: status HRD, clusters imunológicos, resultados de sobrevivência)  
-\========================================================================
+> **Nota:** O diagrama enviado originalmente chegou corrompido (escapes de Markdown e setas `v` trocadas pela palavra "em"). Versão recuperada abaixo — ASCII (bloco de código) e Mermaid equivalente.
+
+```text
+========================================================================
+                [Entrada de dados multiômicos]
+      (Expressão Gênica, CNV, Mutação, Perfis de Metilação)
+                             |
+                             v
+               [Extração de Características dos Nós]
+          (8 características distintas por gene condutor)
+                             |
+               +-------------+-------------+
+               |                           |
+               v                           v
+   [Modelo gráfico 1: STRING PPI]    [Modelo gráfico 2: WGCNA]
+        (Nós = CDgs)                      (Nós = CDgs)
+   (Arestas = Interações Proteicas   (Arestas = Similaridade
+          Conhecidas)                     de Coexpressão)
+               |                           |
+               v                           v
+        [GCN de 4 camadas]           [GCN de 4 camadas]
+    (Transmissão de mensagens     (Transmissão de mensagens
+            + Releitura)                 + Releitura)
+               |                           |
+               v                           v
+         [TopKPooling]                 [TopKPooling]
+    (Retém nós informativos)      (Retém nós informativos)
+               |                           |
+               v                           v
+  [Representação em nível de       [Representação em nível de
+            grafo]                          grafo]
+               |                           |
+               +-------------+-------------+
+                             |
+                             v
+                      [Concatenação]
+             (Fusão de caminhos PPI e WGCNA)
+                             |
+                             v
+               [Perceptron Multicamadas (MLP)]
+                             |
+                             v
+                  [Saída da Classificação]
+     (ex.: status HRD, clusters imunológicos, sobrevida)
+========================================================================
+```
+
+```mermaid
+flowchart TD
+    A["Entrada de dados multiômicos<br/>Expressão, CNV, Mutação, Metilação"] --> B["Extração de Características dos Nós<br/>8 features por gene condutor (CDg)"]
+    B --> S["Modelo gráfico 1: STRING PPI<br/>Nós = CDgs<br/>Arestas = Interações Proteicas"]
+    B --> W["Modelo gráfico 2: WGCNA<br/>Nós = CDgs<br/>Arestas = Co-expressão"]
+    S --> GCN1["GCN de 4 camadas<br/>Message passing + Readout"]
+    W --> GCN2["GCN de 4 camadas<br/>Message passing + Readout"]
+    GCN1 --> TK1["TopKPooling<br/>Retém nós informativos"]
+    GCN2 --> TK2["TopKPooling<br/>Retém nós informativos"]
+    TK1 --> R1["Representação<br/>em nível de grafo"]
+    TK2 --> R2["Representação<br/>em nível de grafo"]
+    R1 --> C["Concatenação<br/>Fusão PPI + WGCNA"]
+    R2 --> C
+    C --> MLP["Perceptron Multicamadas (MLP)"]
+    MLP --> OUT["Saída da Classificação<br/>HRD · clusters imunes · sobrevida"]
+```
 
 ### **Detalhes da estratégia e do modelo de grafo**
 
