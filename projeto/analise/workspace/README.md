@@ -12,7 +12,7 @@ Os *dumps brutos* do GEO (`*.soft.gz`) **não** ficam aqui; são baixáveis pelo
 
 | Arquivo | O que é |
 | --- | --- |
-| [`skin_cancer.ows`](skin_cancer.ows) | Workflow Orange com 3 ramos paralelos (Melanoma in situ, Metastático, + um ramo ainda não finalizado). Cada ramo: `GEO SOFT Extractor → Unique → Differential Expression (×2, com/sem filtro p ≤ 0.001) → Merge → junta com Open Targets oncogenes → Save Data`. |
+| [`skin_cancer.ows`](skin_cancer.ows) | Workflow Orange com 3 ramos paralelos, todos lendo `GSE7553_family.soft.gz` local e filtrando por `sample_substring`: (1) Pele normal vs. metastático, (2) Pele normal vs. in situ, (3) Pele normal vs. primário — o 3º ramo está com **título herdado** dizendo "in situ (1)" mas o substring configurado é `'Normal Skin, Primary'`. Cada ramo: `GEO SOFT Extractor (arquivo local, não baixa do GEO) → Unique → Differential Expression (×2, com/sem filtro p ≤ 0.001) → Merge → junta com Open Targets oncogenes → Save Data`. |
 | [`GSE45216_cytoscape.cys`](GSE45216_cytoscape.cys) | Sessão Cytoscape já montada para GSE45216 (carcinoma espinocelular). |
 
 ### Tabelas de expressão diferencial (saída intermediária Orange/GEO)
