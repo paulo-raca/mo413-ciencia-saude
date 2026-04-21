@@ -74,20 +74,22 @@ def _(mo):
 
 
 @app.cell
-def config(GEOparse, pd):
+def load_datasets(GEOparse, Path, mo, pd):
     from dataclasses import dataclass
 
+    mo.output.append(mo.md("## 1. Download dos Datasets GEO"))
+
     ACCESSIONS: list[str] = [
-        "GSE4570",
-        "GSE2503",
-        "GSE53462",
-        "GSE8401",
+        # "GSE4570",
+        # "GSE2503",
+        # "GSE53462",
+        # "GSE8401",
         "GSE7553",
-        "GSE45216",
+        # "GSE45216",
     ]
 
-    # Regras de categorização de amostras. Ordem importa: a primeira substring
-    # que casar (case-insensitive) em `characteristics_ch1` vence.
+    # Regras de categorização. Ordem importa: primeira substring que casar
+    # (case-insensitive) em `characteristics_ch1` vence.
     CATEGORY_RULES: list[tuple[str, str]] = [
         ("metastatic melanoma", "Metastatic Melanoma"),
         ("primary melanoma",    "Primary Melanoma"),
@@ -115,45 +117,25 @@ def config(GEOparse, pd):
         gse: GEOparse.GSE           # dataset completo: .gsms, .gpls, .metadata
         samples: pd.DataFrame       # colunas: GSM, Título, Características, Categoria
 
-    return ACCESSIONS, Dataset, categorize
-
-
-@app.cell(hide_code=True)
-def download_datasets(ACCESSIONS: list[str], GEOparse, Path, mo):
-    mo.output.append(mo.md("## 1. Download dos Datasets GEO"))
-
+    # Download + parsing com cache persistente. O parsing custa ~10s/dataset;
+    # resultado só muda se ACCESSIONS mudar.
     GEO_DIR = Path("data/geo")
     GEO_DIR.mkdir(parents=True, exist_ok=True)
-
-    # Cache persistente: o parsing do .soft.gz é caro (~50s pros 6 datasets),
-    # mas o resultado só muda se ACCESSIONS mudar. Primeiro run baixa+parseia;
-    # depois restaura do pickle em __marimo__/cache/.
     with mo.persistent_cache("geo_datasets"):
-        gse_objects = {}
-        for _gse_id in mo.status.progress_bar(
+        _gse_objects = {}
+        for _acc in mo.status.progress_bar(
             ACCESSIONS,
             title="Baixando datasets GEO",
             remove_on_exit=True,
         ):
-            gse_objects[_gse_id] = GEOparse.get_GEO(
-                geo=_gse_id,
-                destdir=str(GEO_DIR),
-                silent=True,
+            _gse_objects[_acc] = GEOparse.get_GEO(
+                geo=_acc, destdir=str(GEO_DIR), silent=True,
             )
-    return (gse_objects,)
 
-
-@app.cell
-def build_datasets(
-    ACCESSIONS: list[str],
-    Dataset,
-    categorize,
-    gse_objects,
-    pd,
-):
-    datasets = {}
+    # Monta Dataset (gse + samples categorizadas)
+    datasets: dict[str, Dataset] = {}
     for _acc in ACCESSIONS:
-        _gse = gse_objects[_acc]
+        _gse = _gse_objects[_acc]
         _samples = pd.DataFrame([
             {
                 "GSM": gsm_id,
@@ -164,26 +146,38 @@ def build_datasets(
             for gsm_id, gsm in _gse.gsms.items()
         ])
         datasets[_acc] = Dataset(accession=_acc, gse=_gse, samples=_samples)
-    return (datasets,)
 
-
-@app.cell
-def samples_all(datasets, pd):
-    # Concatena os samples de todos os datasets num DataFrame único, com a
-    # coluna `Dataset` como desambiguador. Útil para groupby cross-dataset
-    # (contagem por categoria, overlap de GSMs, etc.).
-    samples: pd.DataFrame = (
+    # Tabela master: concatena todos os .samples, coluna Dataset como
+    # desambiguador. Útil para groupby cross-dataset.
+    samples = (
         pd.concat(
             [ds.samples.assign(Dataset=acc) for acc, ds in datasets.items()],
             ignore_index=True,
         )
         .loc[:, ["Dataset", "GSM", "Título", "Características", "Categoria"]]
     )
+    return datasets, samples
+
+
+@app.cell(hide_code=True)
+def show_all_samples(mo, samples):
+    # Consumidora trivial para garantir que `samples` seja exportado por
+    # load_datasets e fique disponível em cells futuras. De brinde, mostra
+    # a contagem por (Dataset, Categoria) antes da aba-por-dataset abaixo.
+    _pivot = (
+        samples
+        .assign(Categoria=lambda s: s["Categoria"].fillna("(sem categoria)"))
+        .groupby(["Dataset", "Categoria"]).size().unstack(fill_value=0)
+    )
+    mo.vstack([
+        mo.md(f"**Total:** {len(samples)} amostras em {samples['Dataset'].nunique()} dataset(s)"),
+        _pivot,
+    ])
     return
 
 
 @app.cell(hide_code=True)
-def datasets_summary(datasets, mo):
+def datasets_summary(datasets: "dict[str, Dataset]", mo):
     def _panel(acc, ds):
         gse = ds.gse
         title = gse.metadata.get("title", [""])[0]
@@ -242,7 +236,7 @@ def _(mo):
 
 
 @app.cell
-def mm_samples(datasets):
+def mm_samples(datasets: "dict[str, Dataset]"):
     _mm = datasets["GSE7553"]
     gse_mm = _mm.gse
 
