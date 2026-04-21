@@ -32,8 +32,15 @@ Redes PPI mapeiam quais proteínas "trabalham juntas" dentro da célula — func
 
 - **O que é:** repositório público do NCBI com dados de expressão gênica[^expr] (microarray e RNA-Seq) de milhares de estudos.
 - **URL:** https://www.ncbi.nlm.nih.gov/geo/
-- **Aulas:** `2026-03-30`, `2026-04-01`, `2026-04-13`
-- **Uso:** fonte primária de dados de expressão. Formato de download: SOFT.
+- **Aulas:** `2026-03-30`, `2026-04-01`, `2026-04-13`, `2026-04-15`
+- **Uso:** fonte primária de dados de expressão. Formato de download: SOFT. Na aula de miRNAs, usado para *data mining* de alvos de miRNAs do locus DLK1-DIO3 em câncer de tireoide.
+
+### TCGA (The Cancer Genome Atlas)
+
+- **O que é:** atlas genômico de câncer do NCI/NIH — perfis moleculares (mutações, expressão, metilação, miRNA-seq) de mais de 33 tipos de tumor em ~20.000 amostras pareadas tumor/normal.
+- **URL:** https://portal.gdc.cancer.gov/ (GDC Data Portal)
+- **Aulas:** `2026-04-15`
+- **Uso:** na aula de miRNAs, fonte dos dados de 57 carcinomas papilares de tireoide (PTC) vs. tireoide normal pareada para mostrar queda dos miRNAs do locus 14q32. Também aparece no projeto semestral (TCGA-SKCM para análise de melanoma com GAT).
 
 #### Dataset específico: **GSE45827** (câncer de mama)
 
@@ -52,8 +59,8 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 - **O que é:** enciclopédia de vias metabólicas, de sinalização e regulatórias. Cada via tem um diagrama interativo.
 - **URL:** https://www.kegg.jp/
-- **Aulas:** `2026-03-02`, `2026-03-04`, `2026-03-09`, `2026-04-06`, `2026-04-08`
-- **Uso:** fonte de conjuntos de genes por via (ex.: hsa05218 — Melanoma; NF-κB; MAPK) e alvo de análise de enriquecimento no DAVID.
+- **Aulas:** `2026-03-02`, `2026-03-04`, `2026-03-09`, `2026-04-06`, `2026-04-08`, `2026-04-15`
+- **Uso:** fonte de conjuntos de genes por via (ex.: hsa05218 — Melanoma; NF-κB; MAPK) e alvo de análise de enriquecimento no DAVID. Na aula de miRNAs, enriquecimento em Hippo, PI3K-Akt, Focal adhesion, VEGF signaling em câncer de tireoide.
 
 ### Reactome
 
@@ -73,15 +80,15 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 - **O que é:** vocabulário controlado que classifica genes em três eixos — processo biológico, função molecular, componente celular.
 - **URLs:** https://geneontology.org/ · Navegador: https://www.ebi.ac.uk/QuickGO/
-- **Aulas:** `2026-02-23`, `2026-02-25`, `2026-03-04`, `2026-03-09`, `2026-04-08`
+- **Aulas:** `2026-02-23`, `2026-02-25`, `2026-03-04`, `2026-03-09`, `2026-04-08`, `2026-04-15`
 - **Uso:** anotação funcional de genes e análise de enriquecimento (termos GO sobre-representados em listas de genes).
 
 ### DAVID (Database for Annotation, Visualization and Integrated Discovery)
 
 - **O que é:** ferramenta de enriquecimento funcional que integra KEGG, Reactome, WikiPathways e GO em um mesmo teste de sobre-representação[^ora].
 - **URL:** https://davidbioinformatics.nih.gov/
-- **Aulas:** `2026-02-25`, `2026-03-04`, `2026-04-08`
-- **Uso:** dado uma lista de genes, DAVID retorna vias/termos GO enriquecidos com p-valor (teste exato de Fisher).
+- **Aulas:** `2026-02-25`, `2026-03-04`, `2026-04-08`, `2026-04-15`
+- **Uso:** dado uma lista de genes, DAVID retorna vias/termos GO enriquecidos com p-valor (teste exato de Fisher). Na aula de miRNAs, usado para enriquecer alvos dos 12 miRNAs mais expressos do locus DLK1-DIO3.
 
 ---
 
@@ -199,6 +206,39 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 ---
 
+## 7b. Bases e Ferramentas de microRNAs
+
+### miRBase
+
+- **O que é:** banco de dados central de sequências e anotações de microRNAs — nomenclatura oficial (`hsa-miR-485-5p`, `cel-let-7` etc.), sequências pre- e maduras, homologias entre espécies.
+- **URL:** https://mirbase.org/
+- **Aulas:** `2026-04-15`
+- **Uso:** referência para identificar miRNAs mencionados na literatura e recuperar suas sequências.
+
+### TargetScan
+
+- **O que é:** preditor de alvos de miRNAs baseado em *seed region* e conservação evolutiva. Variantes por organismo (TargetScanHuman, Mouse, Worm, Fly, Fish).
+- **URL:** https://www.targetscan.org/
+- **Referências:** Agarwal et al. (2015); McGeary, Lin et al. (2019).
+- **Aulas:** `2026-04-15`
+- **Uso:** dado um miRNA, retorna lista de mRNAs-alvo conservados com *context score*. Ex.: let-7/98 → 819 alvos conservados (HMGA2, LIN28B, IGF2BP1, TRIM71…).
+
+### miRWalk
+
+- **O que é:** plataforma que agrega predições de múltiplos algoritmos (12) de alvos de miRNA.
+- **URL:** http://mirwalk.umm.uni-heidelberg.de/
+- **Aulas:** `2026-04-15`
+- **Uso:** predição de alvos complementar ao TargetScan para gerar a lista de ~1.200 mRNAs-alvo dos miRNAs do locus DLK1-DIO3.
+
+### miTEA-HiRes
+
+- **O que é:** ferramenta computacional que infere **atividade de miRNAs em nível de célula única ou *spot* espacial** a partir de dados de transcriptômica (Visium, scRNA-seq) — sem precisar sequenciar os próprios miRNAs.
+- **Referência:** Herbst et al. (2025), *Communications Biology*, https://doi.org/10.1038/s42003-025-07454-9
+- **Aulas:** `2026-04-15`
+- **Uso:** mapa de atividade de miRNAs (ex.: miR-7a-1-3, miR-590-3p) em cérebro de camundongo sobreposto à histologia H&E.
+
+---
+
 ## 8. Ferramentas que dão acesso a dados
 
 Não são bases em si, mas intermediam o acesso a várias bases acima:
@@ -247,14 +287,15 @@ Não são bases em si, mas intermediam o acesso a várias bases acima:
 
 - **Interação proteína-proteína:** STRING (principal), BioGRID, IntAct, MINT, BIND, HPRD, DIP
 - **Vias / Função:** KEGG, Reactome, WikiPathways, Gene Ontology (+ DAVID como integrador)
-- **Expressão gênica:** GEO (dataset-chave das aulas: **GSE45827**)
+- **Expressão gênica e câncer:** GEO (dataset-chave das aulas: **GSE45827**), TCGA
+- **microRNAs:** miRBase, TargetScan, miRWalk, miTEA-HiRes
 - **Grafos de conhecimento:** Rede Zhou 2014 (sintoma-doença), Diseasome, PrimeKG
 - **Ontologias:** GO, MeSH, MONDO, WordNet, DBpedia
 - **Referência genômica/proteica:** NCBI (Entrez/RefSeq), UniProt, UCSC, Pfam
 - **Fármaco-alvo:** Open Targets
 - **Literatura:** PubMed
 
-**Datasets do projeto semestral (não cobertos nas aulas, referidos no [README do projeto](projeto/README.md)):** GSE4570, GSE2503, GSE53462, GSE8401, GSE7553, GSE45216 (melanoma/não-melanoma/pele saudável) e TCGA-SKCM (projeto GAT).
+**Datasets do projeto semestral (referidos no [README do projeto](projeto/README.md)):** GSE4570, GSE2503, GSE53462, GSE8401, GSE7553, GSE45216 (melanoma/não-melanoma/pele saudável) e TCGA-SKCM (projeto GAT — TCGA também aparece em aula; ver seção 2).
 
 ---
 

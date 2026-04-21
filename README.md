@@ -80,6 +80,12 @@ Análise de enriquecimento funcional (ORA) com Teste Exato de Fisher e a ferrame
 
 Aula dupla sobre como transformar dados do mundo real em redes: seis métodos de mapeamento (comunicação, coexistência, referência, confluência, correlação, adjacência) e três operações de transformação (junção, projeção, limiarização). Prática completa de construção de rede de correlação de expressão gênica em câncer de mama (GSE45827) usando Orange Data Mining e Cytoscape. Estudo de caso da Rede Sintoma-Doença Humana (Zhou 2014 / Goh 2007) com importação no Cytoscape, threshold por similaridade de sintomas, extração do maior componente conectado e clustering com Leiden (CPM e modularidade).
 
+### 2026-04-15 — microRNAs: História e Conceitos Gerais
+
+[resumo](aulas/2026-04-15%20-%20microRNAs/README.md) | [slides](aulas/2026-04-15%20-%20microRNAs/slides.pdf)
+
+Aula-convidada de Murilo Geraldo (RNA Biology Lab, IB-UNICAMP) sobre **microRNAs** — RNAs pequenos (19-25 nt) que silenciam mRNAs pós-transcricionalmente. Cobre história (lin-4 em 1993, let-7 em 2000, Nobel 2024), biogênese (DROSHA → DICER → Argonauta/RISC), miRNAs como oncogenes e supressores tumorais, biomarcadores circulantes, análise em larga escala com TargetScan e miRWalk, e estudo de caso completo no câncer de tireoide: locus imprinted DLK1-DIO3 (14q32), pipeline bioinformático sobre TCGA/GEO e validação experimental do eixo **miR-485-5p ⊣ ICAM1 → migração celular** em linhagens TPC-1 e BCPAP. Sem gravação.
+
 ---
 
 ## Projeto Semestral
