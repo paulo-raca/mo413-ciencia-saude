@@ -6,53 +6,6 @@ Para compreender o comportamento e as interações dos genes condutores do cânc
 
 A ilustração a seguir descreve a arquitetura e o modelo gráfico adotados no DriverOmicsNet:
 
-> **Nota:** O diagrama enviado originalmente chegou corrompido (escapes de Markdown e setas `v` trocadas pela palavra "em"). Versão recuperada abaixo — ASCII (bloco de código) e Mermaid equivalente.
-
-```text
-========================================================================
-                [Entrada de dados multiômicos]
-      (Expressão Gênica, CNV, Mutação, Perfis de Metilação)
-                             |
-                             v
-               [Extração de Características dos Nós]
-          (8 características distintas por gene condutor)
-                             |
-               +-------------+-------------+
-               |                           |
-               v                           v
-   [Modelo gráfico 1: STRING PPI]    [Modelo gráfico 2: WGCNA]
-        (Nós = CDgs)                      (Nós = CDgs)
-   (Arestas = Interações Proteicas   (Arestas = Similaridade
-          Conhecidas)                     de Coexpressão)
-               |                           |
-               v                           v
-        [GCN de 4 camadas]           [GCN de 4 camadas]
-    (Transmissão de mensagens     (Transmissão de mensagens
-            + Releitura)                 + Releitura)
-               |                           |
-               v                           v
-         [TopKPooling]                 [TopKPooling]
-    (Retém nós informativos)      (Retém nós informativos)
-               |                           |
-               v                           v
-  [Representação em nível de       [Representação em nível de
-            grafo]                          grafo]
-               |                           |
-               +-------------+-------------+
-                             |
-                             v
-                      [Concatenação]
-             (Fusão de caminhos PPI e WGCNA)
-                             |
-                             v
-               [Perceptron Multicamadas (MLP)]
-                             |
-                             v
-                  [Saída da Classificação]
-     (ex.: status HRD, clusters imunológicos, sobrevida)
-========================================================================
-```
-
 ```mermaid
 flowchart TD
     A["Entrada de dados multiômicos<br/>Expressão, CNV, Mutação, Metilação"] --> B["Extração de Características dos Nós<br/>8 features por gene condutor (CDg)"]
