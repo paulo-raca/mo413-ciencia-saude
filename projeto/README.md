@@ -43,18 +43,25 @@ Comparar redes de interação gênica derivadas de amostras de câncer de pele m
 
 ## Metodologia
 
-1. **Obtenção de dados** via Gene Expression Omnibus (GEO) — grupos: Saudável, Melanoma, Não-melanoma
-2. **Expressão diferencial** — comparações: Saudável vs Melanoma, Saudável vs Não-melanoma, Melanoma vs Não-melanoma
-3. **Consulta ao STRING** — interações proteína-proteína com scores de confiança
-4. **Análise no Cytoscape:**
+1. **Obtenção de dados** via Gene Expression Omnibus (GEO), com download automatizado pelo accession (GEOparse)
+2. **Expressão diferencial** — comparações com granularidade por **estágio/tipo** (e não por grupo agregado):
+   - Pele normal × Melanoma in situ
+   - Pele normal × Melanoma primário
+   - Pele normal × Melanoma metastático
+   - Pele normal × Carcinoma basocelular (BCC)
+   - Pele normal × Carcinoma espinocelular (SCC)
+   - *(Opcional)* Comparações de progressão: in situ → primário → metastático; AK → SCC
+3. **Anotação externa — Open Targets**: anexa ao nó o `globalScore` de associação com a doença (EFO_0000756 = melanoma; EFO/MONDO correspondentes para BCC/SCC) como atributo de *drogabilidade*/relevância clínica
+4. **Consulta ao STRING** — interações proteína-proteína com scores de confiança (`combined_score`)
+5. **Análise no Cytoscape:**
    - Eigenvector centrality (CytoNCA)
    - Degree e clustering coefficient (NetworkAnalyzer)
-   - Clusterização (clusterMaker2 / MCODE)
-5. **Comparação entre redes:**
-   - Genes ganhos/perdidos (saudável vs não-saudável)
-   - Genes centrais e arestas exclusivas
-   - Métricas: degree, betweenness centrality, closeness centrality
-   - Semelhanças entre melanoma e tecido saudável
+   - Clusterização (clusterMaker2 / MCODE / Leiden)
+6. **Comparação entre redes:**
+   - Genes ganhos/perdidos entre estágios (saudável → in situ → primário → metastático)
+   - Hubs compartilhados vs. específicos por tipo/estágio
+   - Métricas: degree, betweenness, closeness, eigenvector
+   - Semelhanças estágio-a-estágio e entre tipos (melanoma vs. não-melanoma)
 
 ---
 
@@ -92,9 +99,9 @@ Comparar redes de interação gênica derivadas de amostras de câncer de pele m
 
 ## Ferramentas
 
-- **Dados:** GEO, Excel
+- **Dados:** GEO (via [GEOparse](https://geoparse.readthedocs.io/)), [Open Targets Platform](https://platform.opentargets.org/) (anotação `globalScore` por gene-doença)
 - **Redes:** STRING, Cytoscape (CytoNCA, NetworkAnalyzer, MCODE, clusterMaker2)
-- **Programação:** Python — PyTorch, Pandas, Scikit-learn
+- **Programação:** Python — Pandas, NumPy, Marimo (notebook), PyTorch / PyTorch Geometric (GAT), Scikit-learn
 
 ---
 

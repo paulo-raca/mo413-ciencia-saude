@@ -41,25 +41,33 @@ def _(mo):
 
     - [x] **1. Download dos datasets GEO** — GEOparse, cache local em `data/geo/`
     - [ ] **2. Pré-processamento**
-        - [ ] Extrair matrizes de expressão (genes × amostras)
-        - [ ] Separar amostras por condição (saudável / melanoma / não-melanoma)
-        - [ ] Verificar normalização; normalizar se necessário
-        - [ ] Correção de batch effect entre datasets
-    - [ ] **3. Análise de Expressão Diferencial (DEA)**
-        - [ ] Saudável vs. Melanoma
-        - [ ] Saudável vs. Não-melanoma
-        - [ ] Critério: |logFC| > 1, p ajustado < 0.05
-    - [ ] **4. Construção da rede PPI**
+        - [ ] Extrair matrizes de expressão (genes × amostras) de cada `.soft.gz`
+        - [ ] Mapear subgrupo de amostra (ex.: *in situ*, primário, metastático, BCC, SCC, normal) a partir da metadata `characteristics_ch1`
+        - [ ] Verificar normalização (log2 já aplicado pelo depositante?) e aplicar se necessário
+        - [ ] Deduplicar sondas por gene (equivalente ao widget `Unique` do Orange)
+        - [ ] *(Depois, ao integrar múltiplos GEOs)* correção de batch effect
+    - [ ] **3. Análise de Expressão Diferencial (DEA)** — granularidade fina, por estágio/tipo
+        - [ ] Pele normal × Melanoma in situ *(GSE7553)*
+        - [ ] Pele normal × Melanoma primário *(GSE7553, GSE4570, GSE8401)*
+        - [ ] Pele normal × Melanoma metastático *(GSE7553, GSE8401)*
+        - [ ] Pele normal × Carcinoma basocelular (BCC) *(GSE7553, GSE53462)*
+        - [ ] Pele normal × Carcinoma espinocelular (SCC) *(GSE7553, GSE2503, GSE45216, GSE53462)*
+        - [ ] *(Opcional)* progressões: in situ → primário → metastático; AK → SCC *(GSE45216)*
+        - [ ] Dois passes por comparação: completo + filtrado por `p ≤ 0.001` (replica o Orange); avaliar também `|logFC| > 1`
+    - [ ] **4. Anotação externa — Open Targets**
+        - [ ] Baixar alvos associados às doenças via API (melanoma: `EFO_0000756`; BCC/SCC: MONDO correspondentes)
+        - [ ] Anexar `globalScore` a cada gene como atributo de nó (0–1, drogabilidade/relevância clínica)
+    - [ ] **5. Construção da rede PPI**
         - [ ] Query dos DEGs na API do STRING
-        - [ ] Filtrar por score de confiança
-    - [ ] **5. Análise de rede** (Cytoscape / Python)
-        - [ ] Identificação de hubs (grau, CytoHubba)
-        - [ ] Detecção de módulos (MCODE / Louvain)
-        - [ ] Métricas topológicas (NetworkAnalyzer)
-    - [ ] **6. Comparação entre redes**
-        - [ ] Hubs compartilhados vs. específicos por condição
-        - [ ] Diferenças topológicas (distribuição de grau, coeficiente de clustering)
-    - [ ] **7. Graph Attention Network (GAT)** — análise adicional sobre TCGA-SKCM
+        - [ ] Filtrar por `combined_score` (ex.: ≥ 0.4 = confiança média)
+    - [ ] **6. Análise de rede** (Cytoscape / Python — NetworkX, igraph)
+        - [ ] Hubs (degree, betweenness, closeness, eigenvector)
+        - [ ] Detecção de módulos (MCODE / Louvain / Leiden)
+    - [ ] **7. Comparação entre redes**
+        - [ ] Hubs compartilhados vs. específicos por tipo/estágio
+        - [ ] Genes ganhos/perdidos entre estágios
+        - [ ] Diferenças topológicas (distribuição de grau, clustering)
+    - [ ] **8. Graph Attention Network (GAT)** — análise adicional sobre TCGA-SKCM
     """)
     return
 
