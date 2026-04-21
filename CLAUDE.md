@@ -12,6 +12,7 @@ Este repositório é material de estudo da disciplina **MO413A — Ciência e Vi
 .
 ├── README.md                          # Visão geral da disciplina
 ├── CLAUDE.md                          # Este arquivo
+├── DATASETS.md                        # Índice de bases de dados usadas nas aulas
 ├── aulas/                             # Uma subpasta por aula
 │   └── YYYY-MM-DD - Assunto/
 │       ├── slides.pdf                 # Slides originais da aula
@@ -56,6 +57,7 @@ Aula de NOME (UNICAMP) — DD de mês de 2026
 
 4. Ler o PDF dos slides e escrever o resumo em português, explicando **todos** os termos biológicos para leigos
 5. Adicionar a aula na seção "Aulas" do `README.md` raiz com um parágrafo de resumo e links
+6. Atualizar o `DATASETS.md` da raiz (ver seção "Como Atualizar o DATASETS.md" abaixo) com qualquer base de dados, ontologia, dataset específico ou ferramenta de acesso a dados nova que apareça na aula
 
 Se não houver gravação, omitir o link do YouTube e mencionar isso no README da aula.
 
@@ -73,6 +75,34 @@ Se for uma aula prática sem slides próprios (como 2026-03-18):
 - Criar subpasta nova em `aulas/YYYY-MM-DD - Assunto/`
 - Criar `README.md` mencionando qual aula usou os mesmos slides
 - Criar subpasta `exercicios/` com os arquivos
+
+Se o exercício trouxer um arquivo novo baixado de uma base pública (ex.: export do Open Targets, TSV do Reactome, CSV do GEO), **adicionar a linha correspondente na tabela "Datasets dos Exercícios" do `DATASETS.md`**.
+
+---
+
+## Como Atualizar o DATASETS.md
+
+O arquivo `DATASETS.md` na raiz é o **índice único** de todas as bases de dados, ontologias, datasets específicos e ferramentas de acesso a dados mencionadas nas aulas. Ele deve ser mantido sincronizado com as aulas.
+
+**Quando atualizar:**
+
+- Ao adicionar uma aula nova que mencione qualquer base ou ferramenta não listada
+- Ao adicionar um exercício que use um arquivo baixado de uma base pública
+- Ao perceber que uma entrada existente ficou incompleta ou desatualizada
+
+**Como atualizar uma base já listada:**
+
+- Acrescentar a data da aula nova ao campo "**Aulas:**" da seção correspondente
+- Complementar o campo "**Uso:**" se a aula trouxer uso novo relevante
+
+**Como adicionar uma base nova:**
+
+- Escolher a seção temática apropriada (PPI, Expressão, Vias, Grafos de Conhecimento, Ontologias, Referência, Fármaco-alvo, Ferramentas)
+- Seguir o mesmo template das entradas existentes: **O que é**, **URL**, **Aulas**, **Uso** (+ **Referência** quando for um dataset/artigo específico)
+- Se for um dataset específico (ex.: GSE45827), aninhá-lo sob a base que o hospeda (ex.: sob GEO)
+- Atualizar a tabela final "Resumo por Categoria" se for uma categoria nova
+- Se houver arquivo de exercício novo, adicionar também na tabela "Datasets dos Exercícios"
+- Se introduzir uma sigla nova, criar footnote `[^KEY]: definição` no final do arquivo — em linguagem simples, sem assumir background em biologia
 
 ---
 
