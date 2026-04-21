@@ -96,8 +96,8 @@ Aula-convidada de Murilo Geraldo (RNA Biology Lab, IB-UNICAMP) sobre **microRNAs
 
 ### Entregas
 
-- **E1 — Projeto inicial**: [resumo](projeto/entregas/E1%20-%20Projeto%20inicial/README.md) · [slides](projeto/entregas/E1%20-%20Projeto%20inicial/slides.pdf) — proposta inicial com contexto, perguntas, metodologia, datasets e modelo lógico de grafos.
-- **E2 — Segunda entrega**: [resumo](projeto/entregas/E2%20-%20Segunda%20entrega/README.md) · [slides](projeto/entregas/E2%20-%20Segunda%20entrega/slides.pdf) — mesmo escopo + primeira rede PPI construída (GSE4216, Eigenvector Centrality no Cytoscape).
+- **P1 — Projeto inicial**: [resumo](projeto/entregas/P1%20-%20Projeto%20inicial/README.md) · [slides](projeto/entregas/P1%20-%20Projeto%20inicial/slides.pdf) — proposta inicial com contexto, perguntas, metodologia, datasets e modelo lógico de grafos.
+- **P2 — Segunda entrega**: [resumo](projeto/entregas/P2%20-%20Segunda%20entrega/README.md) · [slides](projeto/entregas/P2%20-%20Segunda%20entrega/slides.pdf) — mesmo escopo + primeira rede PPI construída (GSE4216, Eigenvector Centrality no Cytoscape).
 
 ### Laboratórios
 

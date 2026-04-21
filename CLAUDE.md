@@ -22,7 +22,7 @@ Este repositório é material de estudo da disciplina **MO413A — Ciência e Vi
 ├── projeto/                           # Projeto semestral da equipe ALFAK
 │   ├── README.md                      # Resumo do projeto semestral
 │   ├── entregas/                      # Apresentações sucessivas do projeto
-│   │   └── E{N} - Titulo/
+│   │   └── P{N} - Titulo/
 │   │       ├── slides.pdf             # Slides da apresentação
 │   │       └── README.md              # Resumo da entrega (o que mudou em relação à anterior)
 │   ├── laboratorios/                  # Exercícios L1, L2, ... ligados ao projeto
@@ -111,13 +111,13 @@ O arquivo `DATASETS.md` na raiz é o **índice único** de todas as bases de dad
 
 ---
 
-## Como Adicionar uma Nova Entrega do Projeto (E3, E4, ...)
+## Como Adicionar uma Nova Entrega do Projeto (P3, P4, ...)
 
-Entregas = apresentações sucessivas do projeto semestral (capa + slides revisados).
+Entregas = apresentações sucessivas do projeto semestral (capa + slides revisados). O prefixo `P` (de *Projeto*) segue a nomenclatura usada nos arquivos enviados pelo professor (ex.: `P2 2.zip`).
 
-1. Criar subpasta em `projeto/entregas/E{N} - Titulo/`
+1. Criar subpasta em `projeto/entregas/P{N} - Titulo/`
 2. Copiar os slides como `slides.pdf`
-3. Criar `README.md` com cabeçalho, link para slides, autores e — principalmente — **o que mudou** em relação à entrega anterior (links relativos `../E{N-1}%20-%20.../README.md`)
+3. Criar `README.md` com cabeçalho, link para slides, autores e — principalmente — **o que mudou** em relação à entrega anterior (links relativos `../P{N-1}%20-%20.../README.md`)
 4. Adicionar linha na tabela de **Entregas** em `projeto/README.md`
 5. Adicionar bullet na seção **Entregas** em `README.md` raiz
 

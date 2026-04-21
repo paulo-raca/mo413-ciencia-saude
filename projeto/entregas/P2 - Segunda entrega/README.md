@@ -8,7 +8,7 @@ Segunda apresentação do projeto semestral da equipe ALFAK — MO413A, 1º seme
 
 ---
 
-## O que há de novo em relação à [primeira entrega](../E1%20-%20Projeto%20inicial/README.md)
+## O que há de novo em relação à [primeira entrega](../P1%20-%20Projeto%20inicial/README.md)
 
 Mantém a proposta, as perguntas de pesquisa, a metodologia, os datasets GEO e o modelo lógico da base de grafos apresentados na entrega anterior. Acrescenta a seção **Resultados** com o primeiro produto da análise:
 

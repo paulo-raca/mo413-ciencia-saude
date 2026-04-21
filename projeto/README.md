@@ -123,8 +123,8 @@ Apresentações sucessivas do projeto ao longo do semestre — na pasta [`entreg
 
 | Entrega | Descrição | Links |
 | --- | --- | --- |
-| **E1** | Proposta inicial — contexto, perguntas, metodologia, datasets, ferramentas, modelo lógico de grafos | [resumo](entregas/E1%20-%20Projeto%20inicial/README.md) · [slides](entregas/E1%20-%20Projeto%20inicial/slides.pdf) |
-| **E2** | Segunda entrega — mesmo escopo + primeira rede PPI construída (GSE4216, Eigenvector Centrality) | [resumo](entregas/E2%20-%20Segunda%20entrega/README.md) · [slides](entregas/E2%20-%20Segunda%20entrega/slides.pdf) |
+| **P1** | Proposta inicial — contexto, perguntas, metodologia, datasets, ferramentas, modelo lógico de grafos | [resumo](entregas/P1%20-%20Projeto%20inicial/README.md) · [slides](entregas/P1%20-%20Projeto%20inicial/slides.pdf) |
+| **P2** | Segunda entrega — mesmo escopo + primeira rede PPI construída (GSE4216, Eigenvector Centrality) | [resumo](entregas/P2%20-%20Segunda%20entrega/README.md) · [slides](entregas/P2%20-%20Segunda%20entrega/slides.pdf) |
 
 ---
 
