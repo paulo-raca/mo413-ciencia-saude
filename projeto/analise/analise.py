@@ -4,15 +4,16 @@ __generated_with = "0.21.1"
 app = marimo.App(width="medium")
 
 
-@app.cell
+@app.cell(hide_code=True)
 def imports():
     import marimo as mo
     import GEOparse
     import pandas as pd
     import numpy as np
     from pathlib import Path
+    from scipy import stats
 
-    return GEOparse, Path, mo
+    return GEOparse, Path, mo, np, pd, stats
 
 
 @app.cell(hide_code=True)
@@ -102,9 +103,7 @@ def download_datasets(GEOparse, Path, mo):
 
 
 @app.cell(hide_code=True)
-def datasets_summary(gse_objects, mo):
-    import pandas as pd
-
+def datasets_summary(gse_objects, mo, pd):
     def _panel(gsid, gse):
         title = gse.metadata.get("title", [""])[0]
         platform = ", ".join(gse.metadata.get("platform_id", ["?"]))
@@ -188,9 +187,7 @@ def mm_samples_show(metastatic_gsms, mo, normal_gsms):
 
 
 @app.cell
-def mm_expression(gse_mm, metastatic_gsms, normal_gsms):
-    import pandas as pd
-
+def mm_expression(gse_mm, metastatic_gsms, normal_gsms, pd):
     selected = metastatic_gsms + normal_gsms
     cols = [
         gse_mm.gsms[gid].table.set_index("ID_REF")["VALUE"].rename(gid)
@@ -228,10 +225,7 @@ def mm_platform(gse_mm):
 
 
 @app.cell
-def mm_dea(expr_mm, metastatic_gsms, normal_gsms, probe_map):
-    import pandas as pd
-    from scipy import stats
-
+def mm_dea(expr_mm, metastatic_gsms, normal_gsms, np, pd, probe_map, stats):
     m_cols = [c for c in expr_mm.columns if c in metastatic_gsms]
     n_cols = [c for c in expr_mm.columns if c in normal_gsms]
 
@@ -240,7 +234,6 @@ def mm_dea(expr_mm, metastatic_gsms, normal_gsms, probe_map):
 
     # LogFC no estilo Orange: log2 da razão entre médias brutas.
     # NB: não equivale a mean(log2(A)) - mean(log2(B)).
-    import numpy as np
     logfc = np.log2(m.mean(axis=1) / n.mean(axis=1))
 
     # Student's t-test (equal_var=True) em valores brutos — é o que o widget
@@ -273,9 +266,7 @@ def mm_filter(dea_mm):
 
 
 @app.cell
-def mm_opentargets(Path):
-    import pandas as pd
-
+def mm_opentargets(Path, pd):
     ot_path = Path("workspace/Metastatic Melanoma/OT-EFO_0000756-associated-targets-4_20_2026-v26_03.tsv")
     ot = pd.read_csv(ot_path, sep="\t")
     ot_scores = (
@@ -288,9 +279,7 @@ def mm_opentargets(Path):
 
 
 @app.cell
-def mm_final(filtered_mm, ot_scores):
-    import pandas as pd
-
+def mm_final(filtered_mm, ot_scores, pd):
     final_mm = (
         filtered_mm
         .merge(ot_scores, on="Gene Symbol", how="left")
@@ -303,9 +292,7 @@ def mm_final(filtered_mm, ot_scores):
 
 
 @app.cell(hide_code=True)
-def mm_validate(Path, final_mm, mo):
-    import pandas as pd
-
+def mm_validate(Path, final_mm, mo, pd):
     expected = pd.read_csv(Path("workspace/Metastatic Melanoma/Nodes_cytoscape.csv"))
 
     got_genes = set(final_mm["Gene Symbol"].dropna())
