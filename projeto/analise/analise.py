@@ -87,18 +87,21 @@ def download_datasets(GEOparse, Path, mo):
     }
     ALL_IDS = sorted({gse for ids in DATASETS.values() for gse in ids})
 
-    gse_objects = {}
-
-    for _gse_id in mo.status.progress_bar(
-        ALL_IDS,
-        title="Baixando datasets GEO",
-        remove_on_exit=True,
-    ):
-        gse_objects[_gse_id] = GEOparse.get_GEO(
-            geo=_gse_id,
-            destdir=str(GEO_DIR),
-            silent=True,
-        )
+    # Cache persistente: o parsing do .soft.gz é caro (~30s no total), mas o
+    # resultado só muda se ALL_IDS mudar. Primeiro run baixa+parseia; depois
+    # restaura do pickle em __marimo__/cache/.
+    with mo.persistent_cache("geo_datasets"):
+        gse_objects = {}
+        for _gse_id in mo.status.progress_bar(
+            ALL_IDS,
+            title="Baixando datasets GEO",
+            remove_on_exit=True,
+        ):
+            gse_objects[_gse_id] = GEOparse.get_GEO(
+                geo=_gse_id,
+                destdir=str(GEO_DIR),
+                silent=True,
+            )
     return (gse_objects,)
 
 

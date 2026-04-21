@@ -21,3 +21,9 @@ dependencies = [
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.marimo.runtime]
+auto_instantiate = true      # roda tudo ao abrir o notebook
+on_cell_change = "autorun"   # re-executa dependentes ao editar uma cell
+watcher_on_save = "autorun"  # re-executa quando o .py e salvo por fora (VS Code etc)
