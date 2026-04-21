@@ -246,7 +246,7 @@ def _(mo):
 
 
 @app.cell
-def mm_samples(datasets: "dict[str, Dataset]"):
+def metastatic_samples(datasets: "dict[str, Dataset]"):
     gse7553 = datasets["GSE7553"]
     cat = gse7553.samples["Categoria"]
 
@@ -257,7 +257,7 @@ def mm_samples(datasets: "dict[str, Dataset]"):
 
 
 @app.cell(hide_code=True)
-def mm_samples_show(metastatic_gsms, mo, normal_gsms):
+def metastatic_samples_show(metastatic_gsms, mo, normal_gsms):
     mo.md(f"""
     **Seleção de amostras do GSE7553** (espelha `sample_substring` do Orange):
 
@@ -268,26 +268,26 @@ def mm_samples_show(metastatic_gsms, mo, normal_gsms):
 
 
 @app.cell
-def mm_expression(gse7553, metastatic_gsms, normal_gsms, pd):
+def metastatic_expression(gse7553, metastatic_gsms, normal_gsms, pd):
     selected = metastatic_gsms + normal_gsms
     cols = [
         gse7553.gse.gsms[gid].table.set_index("ID_REF")["VALUE"].rename(gid)
         for gid in selected
     ]
-    expr_mm = pd.concat(cols, axis=1)
+    metastatic_expr = pd.concat(cols, axis=1)
 
     # Unique do Orange: deduplica sondas (primeira ocorrência vence)
-    expr_mm = expr_mm[~expr_mm.index.duplicated(keep="first")]
+    metastatic_expr = metastatic_expr[~metastatic_expr.index.duplicated(keep="first")]
 
     # IMPORTANTE: mantemos valores brutos — no Melanoma.ows o GEO SOFT Extractor
     # está com transform_log2=False, e a fórmula do Orange para LogFC é
     # log2(mean_a / mean_b) calculada sobre valores brutos.
-    expr_mm = expr_mm.dropna(how="all")
-    return (expr_mm,)
+    metastatic_expr = metastatic_expr.dropna(how="all")
+    return (metastatic_expr,)
 
 
 @app.cell
-def mm_platform(gse7553):
+def metastatic_platform(gse7553):
     # GPL570 (HG-U133 Plus 2.0) — mapeia probe ID -> Gene Symbol + Entrez ID.
     # Sondas multi-mapeadas (p.ex. 'DDR1 /// MIR4640') ficam com o primeiro gene
     # só — mesmo comportamento de deduplicação do Orange.
@@ -306,12 +306,20 @@ def mm_platform(gse7553):
 
 
 @app.cell
-def mm_dea(expr_mm, metastatic_gsms, normal_gsms, np, pd, probe_map, stats):
-    m_cols = [c for c in expr_mm.columns if c in metastatic_gsms]
-    n_cols = [c for c in expr_mm.columns if c in normal_gsms]
+def metastatic_dea(
+    metastatic_expr,
+    metastatic_gsms,
+    normal_gsms,
+    np,
+    pd,
+    probe_map,
+    stats,
+):
+    m_cols = [c for c in metastatic_expr.columns if c in metastatic_gsms]
+    n_cols = [c for c in metastatic_expr.columns if c in normal_gsms]
 
-    m = expr_mm[m_cols].to_numpy()
-    n = expr_mm[n_cols].to_numpy()
+    m = metastatic_expr[m_cols].to_numpy()
+    n = metastatic_expr[n_cols].to_numpy()
 
     # LogFC no estilo Orange: log2 da razão entre médias brutas.
     # NB: não equivale a mean(log2(A)) - mean(log2(B)).
@@ -321,33 +329,33 @@ def mm_dea(expr_mm, metastatic_gsms, normal_gsms, np, pd, probe_map, stats):
     # 'Differential Expression' da Orange3-Bioinformatics usa por padrão.
     _t, pval = stats.ttest_ind(m, n, axis=1, equal_var=True, nan_policy="omit")
 
-    dea_mm = pd.DataFrame(
+    metastatic_de = pd.DataFrame(
         {"LogFC": logfc, "p-value": pval},
-        index=expr_mm.index,
+        index=metastatic_expr.index,
     ).join(probe_map, how="left")
-    return (dea_mm,)
+    return (metastatic_de,)
 
 
 @app.cell
-def mm_filter(dea_mm):
+def metastatic_filter(metastatic_de):
     # Replica o Merge do Orange: filtros combinados |logFC| >= 2.3 E p <= 0.001
-    mask = (dea_mm["LogFC"].abs() >= 2.3) & (dea_mm["p-value"] <= 0.001)
-    filtered_mm = dea_mm.loc[mask].copy()
+    mask = (metastatic_de["LogFC"].abs() >= 2.3) & (metastatic_de["p-value"] <= 0.001)
+    metastatic_filtered = metastatic_de.loc[mask].copy()
 
     # Agrega por gene: múltiplas sondas -> mantém a de maior |LogFC|
-    filtered_mm["_abs_fc"] = filtered_mm["LogFC"].abs()
-    filtered_mm = (
-        filtered_mm
+    metastatic_filtered["_abs_fc"] = metastatic_filtered["LogFC"].abs()
+    metastatic_filtered = (
+        metastatic_filtered
         .sort_values("_abs_fc", ascending=False)
         .drop_duplicates(subset="Entrez ID", keep="first")
         .drop(columns="_abs_fc")
         .dropna(subset=["Entrez ID", "Gene Symbol"])
     )
-    return (filtered_mm,)
+    return (metastatic_filtered,)
 
 
 @app.cell
-def mm_opentargets(Path, pd):
+def metastatic_opentargets(Path, pd):
     ot_path = Path("workspace/Metastatic Melanoma/OT-EFO_0000756-associated-targets-4_20_2026-v26_03.tsv")
     ot = pd.read_csv(ot_path, sep="\t")
     ot_scores = (
@@ -360,23 +368,23 @@ def mm_opentargets(Path, pd):
 
 
 @app.cell
-def mm_final(filtered_mm, ot_scores, pd):
-    final_mm = (
-        filtered_mm
+def metastatic_final(metastatic_filtered, ot_scores, pd):
+    metastatic_nodes = (
+        metastatic_filtered
         .merge(ot_scores, on="Gene Symbol", how="left")
         .loc[:, ["Entrez ID", "Gene Symbol", "LogFC", "p-value", "oncogeneScore"]]
         .reset_index(drop=True)
     )
     # Entrez ID no baseline do Orange é inteiro — coage para permitir comparação.
-    final_mm["Entrez ID"] = pd.to_numeric(final_mm["Entrez ID"], errors="coerce").astype("Int64")
-    return (final_mm,)
+    metastatic_nodes["Entrez ID"] = pd.to_numeric(metastatic_nodes["Entrez ID"], errors="coerce").astype("Int64")
+    return (metastatic_nodes,)
 
 
 @app.cell(hide_code=True)
-def mm_validate(Path, final_mm, mo, pd):
+def metastatic_validate(Path, metastatic_nodes, mo, pd):
     expected = pd.read_csv(Path("workspace/Metastatic Melanoma/Nodes_cytoscape.csv"))
 
-    got_genes = set(final_mm["Gene Symbol"].dropna())
+    got_genes = set(metastatic_nodes["Gene Symbol"].dropna())
     exp_genes = set(expected["Gene Symbol"].dropna())
 
     common = got_genes & exp_genes
@@ -391,7 +399,7 @@ def mm_validate(Path, final_mm, mo, pd):
 
     | Métrica | Valor |
     | --- | --- |
-    | Genes no notebook | {len(final_mm)} |
+    | Genes no notebook | {len(metastatic_nodes)} |
     | Genes esperados (Orange) | {len(expected)} |
     | Em comum | {len(common)} |
     | Só no notebook | {len(only_got)} |
@@ -411,11 +419,11 @@ def mm_validate(Path, final_mm, mo, pd):
 
 
 @app.cell
-def mm_save(Path, final_mm):
+def metastatic_save(Path, metastatic_nodes):
     # Salva a saída do notebook para conferência lado a lado com o Nodes_cytoscape.csv
     out_dir = Path("output/Metastatic Melanoma")
     out_dir.mkdir(parents=True, exist_ok=True)
-    final_mm.to_csv(out_dir / "Nodes_cytoscape.csv", index=False)
+    metastatic_nodes.to_csv(out_dir / "Nodes_cytoscape.csv", index=False)
     return
 
 
