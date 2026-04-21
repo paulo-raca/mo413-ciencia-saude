@@ -90,18 +90,25 @@ Aula-convidada de Murilo Geraldo (RNA Biology Lab, IB-UNICAMP) sobre **microRNAs
 
 ## Projeto Semestral
 
-[README](projeto/README.md) | [slides](projeto/slides.pdf)
+[README](projeto/README.md)
 
 **Câncer de Pele e seus Tipos: uma Análise do Perfil de Expressão Gênica em Redes** — comparação de redes de interação gênica derivadas de amostras de melanoma, não-melanoma e tecido saudável, usando dados do GEO, STRING e Cytoscape. O projeto investiga diferenças topológicas entre as redes, identifica genes centrais (hubs) e módulos biológicos específicos de cada condição, com análise adicional via Graph Attention Networks (GAT) sobre dados do TCGA-SKCM.
 
-### L1 — How Wolves Change Rivers
+### Entregas
 
-[README](projeto/L1%20-%20How%20Wolves%20Chang%20Rivers/README.md)
+- **E1 — Projeto inicial**: [resumo](projeto/entregas/E1%20-%20Projeto%20inicial/README.md) · [slides](projeto/entregas/E1%20-%20Projeto%20inicial/slides.pdf) — proposta inicial com contexto, perguntas, metodologia, datasets e modelo lógico de grafos.
+- **E2 — Segunda entrega**: [resumo](projeto/entregas/E2%20-%20Segunda%20entrega/README.md) · [slides](projeto/entregas/E2%20-%20Segunda%20entrega/slides.pdf) — mesmo escopo + primeira rede PPI construída (GSE4216, Eigenvector Centrality no Cytoscape).
+
+### Laboratórios
+
+#### L1 — How Wolves Change Rivers
+
+[README](projeto/laboratorios/L1%20-%20How%20Wolves%20Chang%20Rivers/README.md)
 
 Modelagem de um ecossistema como grafo no Cytoscape, inspirado no fenômeno de trophic cascade do Parque Yellowstone. O subgrupo construiu tabelas de nós, arestas e expressão das populações, representando relações ecológicas (não apenas alimentares) e visualizando estados inicial, intermediário e final do sistema após a reintrodução dos lobos.
 
-### L2 — Artigos: Redes Complexas em Expressão Gênica
+#### L2 — Artigos: Redes Complexas em Expressão Gênica
 
-[README](projeto/L2%20-%20artigos/README.md)
+[README](projeto/laboratorios/L2%20-%20artigos/README.md)
 
 Revisão de artigos científicos que aplicam estratégias de redes complexas (hubs, comunidades, rewiring, GNNs) à análise de expressão gênica em câncer de pele. O subgrupo (Paulo, Naruan, Alan) revisou 5 artigos cobrindo WGCNA, CytoHubba, GraphSAGE, GCN e K-Means em melanoma e carcinoma espinocelular cutâneo, com resumos detalhados explicando metodologia e relevância para o projeto.

@@ -21,21 +21,26 @@ Este repositório é material de estudo da disciplina **MO413A — Ciência e Vi
 │           └── ...
 ├── projeto/                           # Projeto semestral da equipe ALFAK
 │   ├── README.md                      # Resumo do projeto semestral
-│   ├── slides.pdf                     # Slides de apresentação do projeto
-│   ├── L1 - How Wolves Chang Rivers/  # Entrega L1
-│   │   └── README.md
-│   └── L2 - artigos/                  # Entrega L2
-│       ├── README.md
-│       └── artigos/
-│           ├── README.md              # Índice com resumo de um parágrafo por artigo
-│           ├── A/                     # Artigos do subgrupo A (Augusto, Felipe, Luis)
-│           │   └── {autor}{ano} - {Assunto}/
-│           │       ├── paper.pdf      # PDF do artigo
-│           │       └── README.md      # Resumo detalhado
-│           └── B/                     # Artigos do subgrupo B (Paulo, Naruan, Alan)
-│               └── {autor}{ano} - {Assunto}/
-│                   ├── paper.pdf
-│                   └── README.md
+│   ├── entregas/                      # Apresentações sucessivas do projeto
+│   │   └── E{N} - Titulo/
+│   │       ├── slides.pdf             # Slides da apresentação
+│   │       └── README.md              # Resumo da entrega (o que mudou em relação à anterior)
+│   ├── laboratorios/                  # Exercícios L1, L2, ... ligados ao projeto
+│   │   ├── L1 - How Wolves Chang Rivers/
+│   │   │   └── README.md
+│   │   └── L2 - artigos/
+│   │       ├── README.md
+│   │       └── artigos/
+│   │           ├── README.md          # Índice com resumo de um parágrafo por artigo
+│   │           ├── A/                 # Artigos do subgrupo A (Augusto, Felipe, Luis)
+│   │           │   └── {autor}{ano} - {Assunto}/
+│   │           │       ├── paper.pdf  # PDF do artigo
+│   │           │       └── README.md  # Resumo detalhado
+│   │           └── B/                 # Artigos do subgrupo B (Paulo, Naruan, Alan)
+│   │               └── {autor}{ano} - {Assunto}/
+│   │                   ├── paper.pdf
+│   │                   └── README.md
+│   └── analise/                       # Projeto Python (Poetry + Marimo) da análise
 └── datasci4health.github.io/          # Submodule — site oficial da disciplina
 ```
 
@@ -106,11 +111,24 @@ O arquivo `DATASETS.md` na raiz é o **índice único** de todas as bases de dad
 
 ---
 
-## Como Adicionar uma Nova Entrega de Projeto (L3, L4, ...)
+## Como Adicionar uma Nova Entrega do Projeto (E3, E4, ...)
 
-1. Criar subpasta em `projeto/L{N} - Titulo/`
-2. Criar `README.md` com enunciado e/ou resumo da entrega
-3. Adicionar seção correspondente no `README.md` raiz (em "Projeto Semestral")
+Entregas = apresentações sucessivas do projeto semestral (capa + slides revisados).
+
+1. Criar subpasta em `projeto/entregas/E{N} - Titulo/`
+2. Copiar os slides como `slides.pdf`
+3. Criar `README.md` com cabeçalho, link para slides, autores e — principalmente — **o que mudou** em relação à entrega anterior (links relativos `../E{N-1}%20-%20.../README.md`)
+4. Adicionar linha na tabela de **Entregas** em `projeto/README.md`
+5. Adicionar bullet na seção **Entregas** em `README.md` raiz
+
+## Como Adicionar um Novo Laboratório (L3, L4, ...)
+
+Laboratórios = exercícios de laboratório ligados ao projeto (faixa paralela às entregas).
+
+1. Criar subpasta em `projeto/laboratorios/L{N} - Titulo/`
+2. Criar `README.md` com enunciado e/ou resumo do exercício
+3. Adicionar linha na tabela de **Laboratórios** em `projeto/README.md`
+4. Adicionar seção correspondente em `README.md` raiz
 
 ---
 
