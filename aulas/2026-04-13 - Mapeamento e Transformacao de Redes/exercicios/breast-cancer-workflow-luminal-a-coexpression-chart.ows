@@ -660,7 +660,7 @@ aW5nc5R9lIwSY29udHJvbEFyZWFWaXNpYmxllIiMEW91dHB1dF90YWJsZV9uYW1llIwAlIwTc2F2
 ZWRXaWRnZXRHZW9tZXRyeZRDQgHZ0MsAAwAAAAACKgAAANkAAAVVAAADXgAAAioAAADZAAAFVQAA
 A14AAAABAAAAAAeAAAACKgAAANkAAAVVAAADXpSMC19fdmVyc2lvbl9flEsFdS4=
 </properties>
-		<properties node_id="16" format="literal">{'add_type_annotations': False, 'auto_save': False, 'controlAreaVisible': True, 'filter': 'Comma-separated values (*.csv)', 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x02\xec\x00\x00\x01\xb6\x00\x00\x04f\x00\x00\x02c\x00\x00\x02\xec\x00\x00\x01\xd2\x00\x00\x04f\x00\x00\x02c\x00\x00\x00\x00\x00\x00\x00\x00\x08\xd0\x00\x00\x02\xec\x00\x00\x01\xd2\x00\x00\x04f\x00\x00\x02c', 'stored_name': 'selected-coexpression-cytoscape.csv', 'stored_path': '/home/paulo/Workspace/ciencia_saude/datasci4health.github.io/networks/breast-cancer/geo-subtypes/05-expression-correlation', '__version__': 3}</properties>
+		<properties node_id="16" format="literal">{'add_type_annotations': False, 'auto_save': False, 'controlAreaVisible': True, 'filter': 'Comma-separated values (*.csv)', 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x02\xec\x00\x00\x01\xb6\x00\x00\x04f\x00\x00\x02c\x00\x00\x02\xec\x00\x00\x01\xd2\x00\x00\x04f\x00\x00\x02c\x00\x00\x00\x00\x00\x00\x00\x00\x08\xd0\x00\x00\x02\xec\x00\x00\x01\xd2\x00\x00\x04f\x00\x00\x02c', 'stored_name': 'selected-coexpression-cytoscape.csv', 'stored_path': '.', '__version__': 3}</properties>
 		<properties node_id="17" format="pickle">gASVywEAAAAAAAB9lCiMC2F1dG9fY29tbWl0lIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBBwdXJn
 ZV9hdHRyaWJ1dGVzlImMDXB1cmdlX2NsYXNzZXOUiYwTc2F2ZWRXaWRnZXRHZW9tZXRyeZRDQgHZ
 0MsAAwAAAAAI+gAAARYAAAyDAAADLQAACPoAAAE7AAAMgwAAAy0AAAAAAAAAAAeAAAAI+gAAATsA
