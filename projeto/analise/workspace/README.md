@@ -1,65 +1,62 @@
-# Workspace — arquivos de trabalho da análise
+# Workspace — pipelines de análise por subgrupo
 
-Materiais intermediários da análise do projeto semestral (câncer de pele) — dados processados, sessões Cytoscape, workflow Orange, dumps GEO e screenshots que o grupo usou durante a construção das redes.
+Materiais de trabalho da análise, organizados por **subgrupo de amostra**. Cada subpasta contém dados, workflow Orange, rede STRING e sessão Cytoscape que levaram à rede PPI final daquele subgrupo.
 
-Os `.soft.gz` aqui são os **exatos** que acompanharam o workspace (para que `skin_cancer.ows` rode de cara, já que ele aponta para caminhos relativos locais). Rastreados via **Git LFS** (pattern `*.gz` em `.gitattributes`). Outros dumps GEO que o grupo usa como cache de análise ficam em `../data/geo/` e continuam gitignored — são baixáveis pelo accession.
+Os `.soft.gz` ficam dentro de cada subpasta (Orange aponta para caminho relativo) e são rastreados via **Git LFS** (pattern `*.gz` em `.gitattributes`). Cache paralelo de análise fica em `../data/geo/` (gitignored).
 
 ---
 
-## Inventário
+## Subgrupos
 
-### Dumps GEO (via LFS)
+### [`Metastatic Melanoma/`](Metastatic%20Melanoma/)
 
-| Arquivo | Tamanho | Accession |
-| --- | --- | --- |
-| [`GSE7553_family.soft.gz`](GSE7553_family.soft.gz) | 52 MB | [GSE7553](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE7553) — todos os tipos/estágios de câncer de pele; lido pelos 3 ramos do workflow |
-| [`GSE45216_family.soft.gz`](GSE45216_family.soft.gz) | 26 MB | [GSE45216](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45216) — carcinoma espinocelular + queratose actínica |
-
-### Sessões e workflows
+Pipeline completo para **melanoma metastático** (subgrupo do GSE7553): vai do `.soft.gz` até a rede PPI renderizada no Cytoscape.
 
 | Arquivo | O que é |
 | --- | --- |
-| [`skin_cancer.ows`](skin_cancer.ows) | Workflow Orange com 3 ramos paralelos, todos lendo `GSE7553_family.soft.gz` local e filtrando por `sample_substring`: (1) Pele normal vs. metastático, (2) Pele normal vs. in situ, (3) Pele normal vs. primário — o 3º ramo está com **título herdado** dizendo "in situ (1)" mas o substring configurado é `'Normal Skin, Primary'`. Cada ramo: `GEO SOFT Extractor (arquivo local, não baixa do GEO) → Unique → Differential Expression (×2, com/sem filtro p ≤ 0.001) → Merge → junta com Open Targets oncogenes → Save Data`. |
-| [`GSE45216_cytoscape.cys`](GSE45216_cytoscape.cys) | Sessão Cytoscape já montada para GSE45216 (carcinoma espinocelular). |
+| [`GSE7553_family.soft.gz`](Metastatic%20Melanoma/GSE7553_family.soft.gz) | Dump bruto do GSE7553 (52 MB via LFS). |
+| [`OT-EFO_0000756-associated-targets-4_20_2026-v26_03.tsv`](Metastatic%20Melanoma/OT-EFO_0000756-associated-targets-4_20_2026-v26_03.tsv) | Alvos de melanoma no Open Targets (EFO_0000756), export de 20/abr/2026. |
+| [`Melanoma.ows`](Metastatic%20Melanoma/Melanoma.ows) | Workflow Orange (18 widgets, detalhes abaixo). |
+| [`Nodes_cytoscape.csv`](Metastatic%20Melanoma/Nodes_cytoscape.csv) | Tabela final de nós: *Entrez ID · Gene Symbol · LogFC · p-value · oncogeneScore*. |
+| [`nodes_to_string.csv`](Metastatic%20Melanoma/nodes_to_string.csv) | Só a coluna *Entrez ID* — entrada para a query do STRING. |
+| [`string_interactions_short.tsv`](Metastatic%20Melanoma/string_interactions_short.tsv) | Resposta do STRING — arestas PPI com scores por canal de evidência. |
+| [`Cytoscape_edges.csv`](Metastatic%20Melanoma/Cytoscape_edges.csv) | Arestas já filtradas para interações físicas e reduzidas a `node1 · node2 · combined_score`. |
+| [`melanoma.cys`](Metastatic%20Melanoma/melanoma.cys) | Sessão Cytoscape com rede PPI construída (via LFS). |
+| [`network.png`](Metastatic%20Melanoma/network.png) | Render final da rede (via LFS). |
 
-### Tabelas de expressão diferencial (saída intermediária Orange/GEO)
+#### Pipeline dentro de `Melanoma.ows`
 
-| Arquivo | Dataset | Conteúdo |
-| --- | --- | --- |
-| [`GSE7553_GEO.csv`](GSE7553_GEO.csv) | GSE7553 | ID da sonda, `Gene.symbol`, `Gene.title`, `log2(fold change)`, `-LOG10(p-value)`. Separador `;`. |
-| [`GSE45216_geo.tsv`](GSE45216_geo.tsv) | GSE45216 | Mesmas colunas, separador `\t`. |
+```mermaid
+flowchart TD
+    A["GEO SOFT Extractor<br/>GSE7553 · sample_substring 'Normal Skin, metastatic, Group 3'"] --> B[Unique]
+    B --> C["Differential Expression<br/>|logFC| ≥ 2.3"]
+    B --> D["Differential Expression<br/>p ≤ 0.001"]
+    C --> E["Merge Data<br/>combina LogFC + p-value"]
+    D --> E
+    E --> F["Select Columns<br/>ID, Symbol, LogFC, p-value"]
+    F --> G["Edit Domain<br/>padroniza nomes"]
+    H["CSV Import<br/>Open Targets oncogenes"] --> I[Unique]
+    G --> J["Merge Data<br/>anexa oncogeneScore"]
+    I --> J
+    J --> K["Save Data<br/>Nodes_cytoscape.csv"]
+    J --> L["Select Columns<br/>só Entrez ID"]
+    L --> M["Save Data<br/>nodes_to_string.csv"]
+    N["CSV Import<br/>STRING response"] --> O["Select Rows<br/>só interações físicas"]
+    O --> P["Select Columns<br/>node1, node2, combined_score"]
+    P --> Q["Save Data<br/>Cytoscape_edges.csv"]
+    J --> R["Volcano Plot"]
+```
 
-### Redes PPI exportadas do STRING
+#### Diferenças em relação à versão anterior (`skin_cancer.ows`)
 
-| Arquivo | Dataset |
-| --- | --- |
-| [`GSE7553_string.tsv`](GSE7553_string.tsv) | GSE7553 — arestas PPI com pontuação de cada canal de evidência (neighborhood, fusion, phylogenetic, homology, coexpression, experimental, database, textmining) + `combined_score`. |
-| [`GSE45216_string.tsv`](GSE45216_string.tsv) | GSE45216 — mesmo formato. |
-
-### Listas de nós geradas pelo workflow Orange (`nodes/`)
-
-Saída do `Save Data` do `skin_cancer.ows` — tabelas prontas para importar como *node table* no Cytoscape, já com *Entrez ID*, *Gene Symbol*, *LogFC*, *p-value* e `globalScore` (pontuação Open Targets).
-
-- [`nodes/Melanoma_in-situ.csv`](nodes/Melanoma_in-situ.csv)
-- [`nodes/Metastatic_melanoma.csv`](nodes/Metastatic_melanoma.csv)
-
-(Arquivos `.csv.metadata` são sidecar do Orange.)
-
-### Anotação externa
-
-| Arquivo | Fonte |
-| --- | --- |
-| [`OT-EFO_0000756-associated-targets-4_20_2026-v26_03.tsv`](OT-EFO_0000756-associated-targets-4_20_2026-v26_03.tsv) | Open Targets — alvos associados a **melanoma** (`EFO_0000756`), export de 20/abr/2026, plataforma v26.03. Entra como `globalScore` nos *nodes*. |
-
-### Screenshots de configuração
-
-| Arquivo | Contexto |
-| --- | --- |
-| [`GSE7553.png`](GSE7553.png) | Rede PPI GSE7553 renderizada. |
-| [`GSE7553 string config.png`](GSE7553%20string%20config.png) | Configuração usada no STRING ao exportar. |
+- **Escopo reduzido**: 1 ramo (só metastático) em vez de 3 (metastático + in situ + primário).
+- **Filtro de logFC adicionado**: `|logFC| ≥ 2.3`, em paralelo ao filtro de p-valor (`p ≤ 0.001`).
+- **Ramo STRING incorporado**: o `.ows` agora também pós-processa a resposta do STRING (filtra interações físicas, reduz colunas) e salva `Cytoscape_edges.csv`.
+- **Volcano Plot** como widget de inspeção.
+- **Nomenclatura padronizada** (`oncogeneScore` em vez de `globalScore`).
 
 ---
 
 ## Próximo passo — reimplementar em Python
 
-Objetivo: reescrever o pipeline do `skin_cancer.ows` como notebook Marimo (`analise.py`) usando `geoparse` + `pandas`, de forma que a geração de `nodes/*.csv` seja reprodutível a partir de `../data/geo/*.soft.gz`.
+A `Metastatic Melanoma/` funciona como **baseline de validação**. Objetivo do notebook Marimo (`../analise.py`): reproduzir o mesmo `Nodes_cytoscape.csv` a partir do `.soft.gz` e do TSV do Open Targets, batendo valor-a-valor. Depois estender para demais subgrupos (in situ, primário, BCC, SCC).
