@@ -14,3 +14,6 @@ projeto/analise/output/
 
 # Serena MCP
 .serena/
+
+# Swap files do Orange
+*.ows.swp.p
