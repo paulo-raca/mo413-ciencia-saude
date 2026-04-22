@@ -42,22 +42,22 @@ def _(mo):
 
     - [x] **1. Download dos datasets GEO** — GEOparse, cache local em `data/geo/`
     - [ ] **2. Pré-processamento**
-        - [ ] Extrair matrizes de expressão (genes × amostras) de cada `.soft.gz`
-        - [ ] Mapear subgrupo de amostra (ex.: *in situ*, primário, metastático, BCC, SCC, normal) a partir da metadata `characteristics_ch1`
-        - [ ] Verificar normalização (log2 já aplicado pelo depositante?) e aplicar se necessário
-        - [ ] Deduplicar sondas por gene (equivalente ao widget `Unique` do Orange)
+        - [x] Extrair matrizes de expressão (genes × amostras) de cada `.soft.gz` *(feito para GSE7553)*
+        - [x] Mapear subgrupo de amostra (ex.: *in situ*, primário, metastático, BCC, SCC, normal) a partir da metadata `characteristics_ch1`
+        - [x] Verificar normalização (log2 já aplicado pelo depositante?) e aplicar se necessário *(confirmado raw; mantemos raw para replicar Orange)*
+        - [x] Deduplicar sondas por gene (equivalente ao widget `Unique` do Orange) *(feito em `metastatic_unique`)*
         - [ ] *(Depois, ao integrar múltiplos GEOs)* correção de batch effect
     - [ ] **3. Análise de Expressão Diferencial (DEA)** — granularidade fina, por estágio/tipo
         - [ ] Pele normal × Melanoma in situ *(GSE7553)*
         - [ ] Pele normal × Melanoma primário *(GSE7553, GSE4570, GSE8401)*
-        - [ ] Pele normal × Melanoma metastático *(GSE7553, GSE8401)*
+        - [x] Pele normal × Melanoma metastático *(GSE7553)* — reproduz Orange (99.7 % Jaccard)
         - [ ] Pele normal × Carcinoma basocelular (BCC) *(GSE7553, GSE53462)*
         - [ ] Pele normal × Carcinoma espinocelular (SCC) *(GSE7553, GSE2503, GSE45216, GSE53462)*
         - [ ] *(Opcional)* progressões: in situ → primário → metastático; AK → SCC *(GSE45216)*
-        - [ ] Dois passes por comparação: completo + filtrado por `p ≤ 0.001` (replica o Orange); avaliar também `|logFC| > 1`
+        - [x] Dois passes por comparação: completo + filtrado por `|logFC| ≥ 2.3` **e** `p ≤ 0.001` (replica o Orange)
     - [ ] **4. Anotação externa — Open Targets**
-        - [ ] Baixar alvos associados às doenças via API (melanoma: `EFO_0000756`; BCC/SCC: MONDO correspondentes)
-        - [ ] Anexar `globalScore` a cada gene como atributo de nó (0–1, drogabilidade/relevância clínica)
+        - [x] Baixar alvos associados ao **melanoma** (`EFO_0000756`); BCC/SCC pendente
+        - [x] Anexar `oncogeneScore` a cada gene como atributo de nó (0–1, drogabilidade/relevância clínica)
     - [ ] **5. Construção da rede PPI**
         - [ ] Query dos DEGs na API do STRING
         - [ ] Filtrar por `combined_score` (ex.: ≥ 0.4 = confiança média)
