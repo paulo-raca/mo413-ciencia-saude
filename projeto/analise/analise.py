@@ -248,14 +248,13 @@ def _(mo):
 @app.cell
 def metastatic_samples(datasets: "dict[str, Dataset]"):
     gse7553 = datasets["GSE7553"]
-    samples = gse7553.samples
-    chars = samples["Características"].fillna("").str.lower()
+    chars = gse7553.samples["Características"].fillna("").str.lower()
 
     # Escopo do Orange: sample_substring='Normal Skin, metastatic, Group 3'
     # — match OR por qualquer das 3 substrings em `characteristics_ch1`.
     scope_substrings = ["normal skin", "metastatic", "group 3"]
     in_scope = chars.apply(lambda s: any(x in s for x in scope_substrings))
-    scoped = samples[in_scope]
+    scoped = gse7553.samples[in_scope]
 
     # G1 = Metastatic Melanoma; G2 = complemento dentro do escopo.
     # NB: a DE widget do Orange define G2 = ~G1 (não "a outra classe
@@ -264,7 +263,7 @@ def metastatic_samples(datasets: "dict[str, Dataset]"):
     # não são metastatic.
     metastatic_gsms = scoped.index[scoped["Categoria"] == "Metastatic Melanoma"].tolist()
     other_gsms = [g for g in scoped.index if g not in metastatic_gsms]
-    return gse7553, metastatic_gsms, other_gsms, samples
+    return gse7553, metastatic_gsms, other_gsms
 
 
 @app.cell(hide_code=True)
@@ -414,6 +413,8 @@ def metastatic_final(metastatic_filtered, ot_scores, pd):
     )
     # Entrez ID no baseline do Orange é inteiro — coage para permitir comparação.
     metastatic_nodes["Entrez ID"] = pd.to_numeric(metastatic_nodes["Entrez ID"], errors="coerce").astype("Int64")
+
+    metastatic_nodes
     return (metastatic_nodes,)
 
 
