@@ -248,32 +248,59 @@ def _(mo):
 @app.cell
 def metastatic_samples(datasets: "dict[str, Dataset]"):
     gse7553 = datasets["GSE7553"]
-    cat = gse7553.samples["Categoria"]
+    samples = gse7553.samples
+    chars = samples["Características"].fillna("").str.lower()
 
-    # GSM agora é o index -> filtra por categoria e pega .index
-    metastatic_gsms = gse7553.samples.index[cat == "Metastatic Melanoma"].tolist()
-    normal_gsms     = gse7553.samples.index[cat == "Normal"].tolist()
-    return gse7553, metastatic_gsms, normal_gsms
+    # Escopo do Orange: sample_substring='Normal Skin, metastatic, Group 3'
+    # — match OR por qualquer das 3 substrings em `characteristics_ch1`.
+    scope_substrings = ["normal skin", "metastatic", "group 3"]
+    in_scope = chars.apply(lambda s: any(x in s for x in scope_substrings))
+    scoped = samples[in_scope]
+
+    # G1 = Metastatic Melanoma; G2 = complemento dentro do escopo.
+    # NB: a DE widget do Orange define G2 = ~G1 (não "a outra classe
+    # selecionada"), então o background inclui Normal Skin + Primary
+    # Melanoma + Melanocyte — todas que casaram o sample_substring mas
+    # não são metastatic.
+    metastatic_gsms = scoped.index[scoped["Categoria"] == "Metastatic Melanoma"].tolist()
+    other_gsms = [g for g in scoped.index if g not in metastatic_gsms]
+    return gse7553, metastatic_gsms, other_gsms, samples
 
 
 @app.cell(hide_code=True)
-def metastatic_samples_show(metastatic_gsms, mo, normal_gsms):
+def metastatic_samples_show(
+    datasets: "dict[str, Dataset]",
+    metastatic_gsms,
+    mo,
+    other_gsms,
+):
+    # Breakdown por categoria no G2 (complemento)
+    cat_breakdown = (
+        datasets["GSE7553"].samples
+        .loc[other_gsms, "Categoria"]
+        .fillna("(sem categoria)")
+        .value_counts()
+    )
+    breakdown_md = "\n".join(f"    - {c}: **{n}**" for c, n in cat_breakdown.items())
     mo.md(f"""
-    **Seleção de amostras do GSE7553** (espelha `sample_substring` do Orange):
+    **Seleção de amostras do GSE7553** (espelha `sample_substring='Normal Skin, metastatic, Group 3'` do Orange):
 
-    - Metastatic Melanoma: **{len(metastatic_gsms)}** amostras
-    - Normal Skin: **{len(normal_gsms)}** amostras
+    - **G1 — Metastatic Melanoma:** {len(metastatic_gsms)} amostras
+    - **G2 — Complemento no escopo:** {len(other_gsms)} amostras
+    {breakdown_md}
+
+    _A DE widget do Orange compara `G1 × ~G1`, não `G1 × outra_classe`, então G2 inclui todas as não-metastáticas que casaram o filtro do extractor._
     """)
     return
 
 
 @app.cell
-def metastatic_expression(gse7553, metastatic_gsms, normal_gsms, pd):
+def metastatic_expression(gse7553, metastatic_gsms, other_gsms, pd):
     # Matriz probes × amostras. Probes são globalmente únicos no GPL, e o
     # concat de Series com mesmo index não produz linhas all-NaN — por isso
     # sem dedup de probe nem dropna(how="all"). Valores são brutos: o Orange
     # calcula LogFC como log2(mean_a / mean_b) direto em raw.
-    selected = metastatic_gsms + normal_gsms
+    selected = metastatic_gsms + other_gsms
     metastatic_expr = pd.concat(
         [
             gse7553.gse.gsms[gid].table.set_index("ID_REF")["VALUE"].rename(gid)
@@ -325,12 +352,12 @@ def metastatic_unique(metastatic_expr, probe_map):
 def metastatic_dea(
     metastatic_gsms,
     metastatic_unique_expr,
-    normal_gsms,
     np,
+    other_gsms,
     stats,
 ):
     m_cols = [c for c in metastatic_unique_expr.columns if c in metastatic_gsms]
-    n_cols = [c for c in metastatic_unique_expr.columns if c in normal_gsms]
+    n_cols = [c for c in metastatic_unique_expr.columns if c in other_gsms]
 
     m = metastatic_unique_expr[m_cols].to_numpy()
     n = metastatic_unique_expr[n_cols].to_numpy()
