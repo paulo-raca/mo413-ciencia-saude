@@ -443,14 +443,14 @@ def metastatic_validate(Path, metastatic_nodes, mo, pd):
     | Só no Orange | {len(only_exp)} |
     | Similaridade de Jaccard | {jaccard:.2%} |
 
-    **Status conhecido:** pipeline tem **recall ~100 %** (quase todos os genes do
-    Orange aparecem no resultado do notebook) mas **precision ~45 %** — o notebook
-    marca mais genes como significativos. Valores absolutos de `LogFC` também
-    divergem sistematicamente (ex.: KRT14 = −4.25 aqui, −3.74 no Orange).
+    **Status:** pipeline bate **~99.7 %** com o baseline Orange. Os genes só no
+    nosso output (tipicamente 1) correspondem a um **bug conhecido do
+    `orange3-biosci.geo_soft_extractor`** — ele descarta Entrez IDs com ≤ 2
+    dígitos (filtro `len(candidate) > 2` nas linhas 637 e 655), marcando como
+    `"?"` e perdendo-os no Unique. Afeta ~139 probes de genes "antigos" (Entrez
+    baixo): A2M (2), ACACB (32), ACADL (33), ACAT1 (38), ACP1 (52), etc.
 
-    Investigação futura: identificar se o widget `Differential Expression` da
-    Orange3-Bioinformatics aplica algum filtro/normalização adicional (expressão
-    mínima, quantile norm, piso em valores baixos) não óbvio no `.ows`.
+    Não replicamos o bug — nosso output inclui esses genes legitimamente.
     """)
     return
 
