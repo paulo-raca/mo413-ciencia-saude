@@ -269,20 +269,18 @@ def metastatic_samples_show(metastatic_gsms, mo, normal_gsms):
 
 @app.cell
 def metastatic_expression(gse7553, metastatic_gsms, normal_gsms, pd):
+    # Matriz probes × amostras. Probes são globalmente únicos no GPL, e o
+    # concat de Series com mesmo index não produz linhas all-NaN — por isso
+    # sem dedup de probe nem dropna(how="all"). Valores são brutos: o Orange
+    # calcula LogFC como log2(mean_a / mean_b) direto em raw.
     selected = metastatic_gsms + normal_gsms
-    cols = [
-        gse7553.gse.gsms[gid].table.set_index("ID_REF")["VALUE"].rename(gid)
-        for gid in selected
-    ]
-    metastatic_expr = pd.concat(cols, axis=1)
-
-    # Unique do Orange: deduplica sondas (primeira ocorrência vence)
-    metastatic_expr = metastatic_expr[~metastatic_expr.index.duplicated(keep="first")]
-
-    # IMPORTANTE: mantemos valores brutos — no Melanoma.ows o GEO SOFT Extractor
-    # está com transform_log2=False, e a fórmula do Orange para LogFC é
-    # log2(mean_a / mean_b) calculada sobre valores brutos.
-    metastatic_expr = metastatic_expr.dropna(how="all")
+    metastatic_expr = pd.concat(
+        [
+            gse7553.gse.gsms[gid].table.set_index("ID_REF")["VALUE"].rename(gid)
+            for gid in selected
+        ],
+        axis=1,
+    )
     return (metastatic_expr,)
 
 
@@ -306,20 +304,36 @@ def metastatic_platform(gse7553):
 
 
 @app.cell
+def metastatic_unique(metastatic_expr, probe_map):
+    # Replica o widget "Unique" do Orange: 1 probe por Entrez ID,
+    # primeira probe alfabética vence (tiebreaker default).
+    # Entrada: ~54 675 probes. Saída: ~21 121 genes.
+    #
+    # Probes com anotação ausente ficam agrupadas sob "?" (mesma
+    # convenção que Orange usa).
+    annotated = metastatic_expr.join(probe_map, how="left")
+    annotated["Entrez ID"] = annotated["Entrez ID"].fillna("?")
+    annotated["Gene Symbol"] = annotated["Gene Symbol"].fillna("?")
+    annotated = annotated.sort_index()  # probe ID alfabético
+    metastatic_unique_expr = annotated.drop_duplicates(
+        subset="Entrez ID", keep="first"
+    )
+    return (metastatic_unique_expr,)
+
+
+@app.cell
 def metastatic_dea(
-    metastatic_expr,
     metastatic_gsms,
+    metastatic_unique_expr,
     normal_gsms,
     np,
-    pd,
-    probe_map,
     stats,
 ):
-    m_cols = [c for c in metastatic_expr.columns if c in metastatic_gsms]
-    n_cols = [c for c in metastatic_expr.columns if c in normal_gsms]
+    m_cols = [c for c in metastatic_unique_expr.columns if c in metastatic_gsms]
+    n_cols = [c for c in metastatic_unique_expr.columns if c in normal_gsms]
 
-    m = metastatic_expr[m_cols].to_numpy()
-    n = metastatic_expr[n_cols].to_numpy()
+    m = metastatic_unique_expr[m_cols].to_numpy()
+    n = metastatic_unique_expr[n_cols].to_numpy()
 
     # LogFC no estilo Orange: log2 da razão entre médias brutas.
     # NB: não equivale a mean(log2(A)) - mean(log2(B)).
@@ -329,28 +343,24 @@ def metastatic_dea(
     # 'Differential Expression' da Orange3-Bioinformatics usa por padrão.
     _t, pval = stats.ttest_ind(m, n, axis=1, equal_var=True, nan_policy="omit")
 
-    metastatic_de = pd.DataFrame(
-        {"LogFC": logfc, "p-value": pval},
-        index=metastatic_expr.index,
-    ).join(probe_map, how="left")
+    # Carrega anotação (Gene Symbol, Entrez ID) que ja veio com a matriz unica
+    metastatic_de = metastatic_unique_expr[["Gene Symbol", "Entrez ID"]].copy()
+    metastatic_de["LogFC"] = logfc
+    metastatic_de["p-value"] = pval
     return (metastatic_de,)
 
 
 @app.cell
 def metastatic_filter(metastatic_de):
-    # Replica o Merge do Orange: filtros combinados |logFC| >= 2.3 E p <= 0.001
+    # Filtros combinados |logFC| >= 2.3 E p <= 0.001 (mesmo Melanoma.ows).
+    # Dedup por gene ja aconteceu em metastatic_unique — sem precisar aqui.
     mask = (metastatic_de["LogFC"].abs() >= 2.3) & (metastatic_de["p-value"] <= 0.001)
     metastatic_filtered = metastatic_de.loc[mask].copy()
-
-    # Agrega por gene: múltiplas sondas -> mantém a de maior |LogFC|
-    metastatic_filtered["_abs_fc"] = metastatic_filtered["LogFC"].abs()
-    metastatic_filtered = (
-        metastatic_filtered
-        .sort_values("_abs_fc", ascending=False)
-        .drop_duplicates(subset="Entrez ID", keep="first")
-        .drop(columns="_abs_fc")
-        .dropna(subset=["Entrez ID", "Gene Symbol"])
-    )
+    # Remove entrada "?" (probes sem anotação) se tiver sobrevivido
+    metastatic_filtered = metastatic_filtered[
+        (metastatic_filtered["Entrez ID"] != "?")
+        & (metastatic_filtered["Gene Symbol"] != "?")
+    ]
     return (metastatic_filtered,)
 
 
