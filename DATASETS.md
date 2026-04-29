@@ -39,8 +39,19 @@ Redes PPI mapeiam quais proteínas "trabalham juntas" dentro da célula — func
 
 - **O que é:** atlas genômico de câncer do NCI/NIH — perfis moleculares (mutações, expressão, metilação, miRNA-seq) de mais de 33 tipos de tumor em ~20.000 amostras pareadas tumor/normal.
 - **URL:** https://portal.gdc.cancer.gov/ (GDC Data Portal)
-- **Aulas:** `2026-04-15`
-- **Uso:** na aula de miRNAs, fonte dos dados de 57 carcinomas papilares de tireoide (PTC) vs. tireoide normal pareada para mostrar queda dos miRNAs do locus 14q32. Também aparece no projeto semestral (TCGA-SKCM para análise de melanoma com GAT).
+- **Aulas:** `2026-04-15`, `2026-04-29`
+- **Uso:** na aula de miRNAs (15/04), fonte dos dados de 57 carcinomas papilares de tireoide (PTC) vs. tireoide normal pareada para mostrar queda dos miRNAs do locus 14q32. Na aula de miRNA-mRNA Network (29/04), download da coorte THCA completa (503 pacientes) via Firehose/FireBrowse — dados clínicos, miRSeq, mRNA-seq. Também aparece no projeto semestral (TCGA-SKCM para análise de melanoma com GAT).
+
+#### Coorte específica: **TCGA-THCA** (Thyroid Carcinoma)
+
+- **Conteúdo:** 503 pacientes com carcinoma de tireoide (majoritariamente papilífero, PTC).
+- **Versão usada na aula:** `TCGA data version 2016_01_28` (via FireBrowse).
+- **Disponibilidade por tipo de dado:** Clinical 503, methylation 503, miRSeq 502, mRNASeq 501, SNP6 CopyNum 499, MAF 402, RPPA 222.
+- **Arquivos-chave (Firehose):**
+  - `Clinical_Pick_Tier1` — clínicos curados.
+  - `illuminahiseq_mirnaseq-miR_isoform_expression` — expressão por isoforma de miRNA.
+  - `illuminahiseq_rnaseqv2-RSEM_genes_normalized` — expressão de mRNA por gene, normalizada por RSEM.
+- **Uso:** base do exercício de construção de rede miRNA-mRNA na aula de 29/04.
 
 #### Dataset específico: **GSE45827** (câncer de mama)
 
@@ -212,8 +223,8 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 - **O que é:** banco de dados central de sequências e anotações de microRNAs — nomenclatura oficial (`hsa-miR-485-5p`, `cel-let-7` etc.), sequências pre- e maduras, homologias entre espécies.
 - **URL:** https://mirbase.org/
-- **Aulas:** `2026-04-15`
-- **Uso:** referência para identificar miRNAs mencionados na literatura e recuperar suas sequências.
+- **Aulas:** `2026-04-15`, `2026-04-29`
+- **Uso:** referência para identificar miRNAs mencionados na literatura e recuperar suas sequências. Na aula de 29/04, download do arquivo `miRNA.xls` (release 22.1) usado como tabela De-Para entre **MIMAT IDs** (saída do FireBrowse/miRWalk) e nomes canônicos (`hsa-miR-...`).
 
 ### TargetScan
 
@@ -227,8 +238,29 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 - **O que é:** plataforma que agrega predições de múltiplos algoritmos (12) de alvos de miRNA.
 - **URL:** http://mirwalk.umm.uni-heidelberg.de/
-- **Aulas:** `2026-04-15`
-- **Uso:** predição de alvos complementar ao TargetScan para gerar a lista de ~1.200 mRNAs-alvo dos miRNAs do locus DLK1-DIO3.
+- **Aulas:** `2026-04-15`, `2026-04-29`
+- **Uso:** predição de alvos complementar ao TargetScan. Na aula de 15/04, geração da lista de ~1.200 mRNAs-alvo dos miRNAs do locus DLK1-DIO3. Na aula de 29/04, exercício de **Target Mining** com lista de MIMAT IDs diferencialmente expressos no THCA, com filtro por `miRTarBase` para reter só interações experimentalmente validadas e exportação como CSV.
+
+### miRTarBase
+
+- **O que é:** banco de dados de interações miRNA-alvo **validadas experimentalmente** (luciferase reporter, Western blot, microarray, qPCR, CLIP-seq etc.) — diferente de TargetScan/miRWalk, que apenas predizem.
+- **URL:** https://mirtarbase.cuhk.edu.cn/
+- **Aulas:** `2026-04-29`
+- **Uso:** filtro `miRTarBase` aplicado na tabela de saída do miRWalk para reter só pares miRNA-mRNA com evidência de bancada — antes de exportar a lista de arestas para a rede miRNA-mRNA do THCA.
+
+### Firehose / Broad GDAC
+
+- **O que é:** plataforma do Broad Institute que arquiva e versiona os dados pré-processados do TCGA. Funciona como o "atacadão congelado" do TCGA — *snapshots* completos prontos para download em massa, com checksums MD5.
+- **URL:** https://gdac.broadinstitute.org/
+- **Aulas:** `2026-04-29`
+- **Uso:** ponto de entrada para baixar uma coorte inteira do TCGA (no caso da aula, THCA). A página lista todas as coortes (BRCA, COAD, SKCM, THCA, ...) com coluna **Browse** que abre a interface FireBrowse. Acesso CLI via `firehose_get`.
+
+### FireBrowse
+
+- **O que é:** interface web do Firehose para explorar uma coorte específica do TCGA — mostra contagem de alíquotas por tipo de análise (Clinical, miRSeq, mRNASeq, methylation, copy number, mutations, RPPA) e oferece download direto dos arquivos.
+- **URL:** http://firebrowse.org/ (ex.: `?cohort=THCA`)
+- **Aulas:** `2026-04-29`
+- **Uso:** download dos arquivos `Clinical_Pick_Tier1`, `illuminahiseq_mirnaseq-miR_isoform_expression` e `illuminahiseq_rnaseqv2-RSEM_genes_normalized` para a coorte THCA. Também acessível via app `firehose_get` ou exportação para GenomeSpace.
 
 ### miTEA-HiRes
 
@@ -248,6 +280,7 @@ Não são bases em si, mas intermediam o acesso a várias bases acima:
 | **Cytoscape** ([cytoscape.org](https://cytoscape.org/)) | STRING, GEO, PrimeKG, Reactome, qualquer CSV/SIF de rede. Apps: STRING, clusterMaker2 (Leiden), CytoNCA, MCODE, NetworkAnalyzer. | `2026-03-09`, `2026-03-30`, `2026-04-01`, `2026-04-06`, `2026-04-08`, `2026-04-13` |
 | **Orange Data Mining** ([orange.biolab.si](https://orange.biolab.si/)) | Leitura de SOFT (GEO), CSV, cálculo de correlações, pipelines visuais. | `2026-03-30`, `2026-04-01`, `2026-04-13` |
 | **Dagoberto** ([datasci4health.github.io/networks/dagoberto](https://datasci4health.github.io/networks/dagoberto/)) | Visualiza redes a partir de CSVs de nós e arestas direto no navegador. | `2026-02-25`, `2026-03-09` |
+| **Firehose / FireBrowse** ([gdac.broadinstitute.org](https://gdac.broadinstitute.org/) · [firebrowse.org](http://firebrowse.org/)) | Snapshots versionados do TCGA — clínicos, miRSeq, mRNAseq, methylation, CNV, mutações, RPPA. CLI: `firehose_get`. | `2026-04-29` |
 
 ---
 
@@ -287,8 +320,8 @@ Não são bases em si, mas intermediam o acesso a várias bases acima:
 
 - **Interação proteína-proteína:** STRING (principal), BioGRID, IntAct, MINT, BIND, HPRD, DIP
 - **Vias / Função:** KEGG, Reactome, WikiPathways, Gene Ontology (+ DAVID como integrador)
-- **Expressão gênica e câncer:** GEO (dataset-chave das aulas: **GSE45827**), TCGA
-- **microRNAs:** miRBase, TargetScan, miRWalk, miTEA-HiRes
+- **Expressão gênica e câncer:** GEO (dataset-chave das aulas: **GSE45827**), TCGA (coorte-chave: **TCGA-THCA**, via Firehose/FireBrowse)
+- **microRNAs:** miRBase, TargetScan, miRWalk, miRTarBase, miTEA-HiRes
 - **Grafos de conhecimento:** Rede Zhou 2014 (sintoma-doença), Diseasome, PrimeKG
 - **Ontologias:** GO, MeSH, MONDO, WordNet, DBpedia
 - **Referência genômica/proteica:** NCBI (Entrez/RefSeq), UniProt, UCSC, Pfam

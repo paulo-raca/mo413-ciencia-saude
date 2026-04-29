@@ -86,6 +86,12 @@ Aula dupla sobre como transformar dados do mundo real em redes: seis métodos de
 
 Aula-convidada de Murilo Geraldo (RNA Biology Lab, IB-UNICAMP) sobre **microRNAs** — RNAs pequenos (19-25 nt) que silenciam mRNAs pós-transcricionalmente. Cobre história (lin-4 em 1993, let-7 em 2000, Nobel 2024), biogênese (DROSHA → DICER → Argonauta/RISC), miRNAs como oncogenes e supressores tumorais, biomarcadores circulantes, análise em larga escala com TargetScan e miRWalk, e estudo de caso completo no câncer de tireoide: locus imprinted DLK1-DIO3 (14q32), pipeline bioinformático sobre TCGA/GEO e validação experimental do eixo **miR-485-5p ⊣ ICAM1 → migração celular** em linhagens TPC-1 e BCPAP. Sem gravação.
 
+### 2026-04-29 — miRNA-mRNA Network: Carcinoma de Tireoide (THCA)
+
+[resumo](aulas/2026-04-29%20-%20miRNA-mRNA%20Network/README.md) | [slides](aulas/2026-04-29%20-%20miRNA-mRNA%20Network/slides.pdf)
+
+Aula prática de André Santanchè (LIS/IC-UNICAMP) sobre como construir uma **rede miRNA-mRNA** a partir de dados reais do TCGA-THCA (carcinoma de tireoide, 503 pacientes). Cobre o pipeline completo de obtenção de dados no **Firehose/FireBrowse** do Broad Institute (clínicos, miRSeq isoformas, mRNA-seq normalizado por RSEM), predição de alvos no **miRWalk** filtrando por **miRTarBase** (validação experimental), e mapeamento MIMAT↔nome via **miRBase**. A segunda metade revisita teoria de **network motifs** (Alon 2007, Stone 2019) — galeria de 9 motivos canônicos, explosão combinatória (199 padrões para 4 nós, milhões para 7), exemplos ecológicos (Venzon 2001, Kovach-Orr 2012), mineração de regras de evolução em grafos com **GERM** (Bringmann 2010), e os motivos co-regulatórios **TF-miRNA-gene** (Zhang 2015): FFLs coerentes/incoerentes e FBLs *signal-negative*/*double-negative*. Sem gravação.
+
 ---
 
 ## Projeto Semestral
