@@ -92,6 +92,18 @@ Aula-convidada de Murilo Geraldo (RNA Biology Lab, IB-UNICAMP) sobre **microRNAs
 
 Aula prática de André Santanchè (LIS/IC-UNICAMP) sobre como construir uma **rede miRNA-mRNA** a partir de dados reais do TCGA-THCA (carcinoma de tireoide, 503 pacientes). Cobre o pipeline completo de obtenção de dados no **Firehose/FireBrowse** do Broad Institute (clínicos, miRSeq isoformas, mRNA-seq normalizado por RSEM), predição de alvos no **miRWalk** filtrando por **miRTarBase** (validação experimental), e mapeamento MIMAT↔nome via **miRBase**. A segunda metade revisita teoria de **network motifs** (Alon 2007, Stone 2019) — galeria de 9 motivos canônicos, explosão combinatória (199 padrões para 4 nós, milhões para 7), exemplos ecológicos (Venzon 2001, Kovach-Orr 2012), mineração de regras de evolução em grafos com **GERM** (Bringmann 2010), e os motivos co-regulatórios **TF-miRNA-gene** (Zhang 2015): FFLs coerentes/incoerentes e FBLs *signal-negative*/*double-negative*. Sem gravação.
 
+### 2026-05-04 — Análise Prática (continuação de 29/04)
+
+[resumo](aulas/2026-05-04%20-%20Análise%20Prática/README.md)
+
+Sessão de continuação direta da aula de 29/04 (miRNA-mRNA Network sobre TCGA-THCA), de André Santanchè (LIS/IC-UNICAMP). Sem slides próprios e sem gravação. A pasta de exercícios é um symlink para [`2026-05-06 - Análise Prática/exercicios/`](aulas/2026-05-06%20-%20Análise%20Prática/exercicios/microRNA/), já que 29/04, 04/05 e 06/05 iteram sobre o mesmo conjunto de dados.
+
+### 2026-05-06 — Análise Prática (continuação de 29/04 e 04/05)
+
+[resumo](aulas/2026-05-06%20-%20Análise%20Prática/README.md) | [slides: PPI](aulas/2026-05-06%20-%20Análise%20Prática/slides-ppi.pdf) | [slides: miRNA-mRNA](aulas/2026-05-06%20-%20Análise%20Prática/slides-mirna-mrna.pdf)
+
+Aula prática de análise de André Santanchè (LIS/IC-UNICAMP), continuação das aulas de **29/04 (miRNA-mRNA Network)** e **04/05** — mãos no Cytoscape e no workflow Orange para fechar o pipeline que constrói a rede miRNA-mRNA sobre TCGA-THCA e analisa sua topologia. Os PDFs servem de referência (slides reapresentados das aulas anteriores). A [pasta de exercícios](aulas/2026-05-06%20-%20Análise%20Prática/exercicios/microRNA/) traz uma versão atualizada e curada do conjunto de dados, com novos artefatos do Cytoscape (incluindo `projection-mRNA-mRNA_limma-backbone.csv`) e os workflows Orange. Sem gravação.
+
 ---
 
 ## Projeto Semestral
