@@ -4,6 +4,8 @@
 
 Entrega: uma submissão por subgrupo, contendo o documento de análise (a partir do [template](#template-de-submissão)) e o projeto do Cytoscape.
 
+> **Submissão do subgrupo B (Alan, Naruan, Paulo) — em construção:** [`submissao/`](submissao/README.md).
+
 ---
 
 ## Enunciado
