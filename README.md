@@ -130,3 +130,9 @@ Modelagem de um ecossistema como grafo no Cytoscape, inspirado no fenômeno de t
 [README](projeto/laboratorios/L2%20-%20artigos/README.md)
 
 Revisão de artigos científicos que aplicam estratégias de redes complexas (hubs, comunidades, rewiring, GNNs) à análise de expressão gênica em câncer de pele. O subgrupo (Paulo, Naruan, Alan) revisou 5 artigos cobrindo WGCNA, CytoHubba, GraphSAGE, GCN e K-Means em melanoma e carcinoma espinocelular cutâneo, com resumos detalhados explicando metodologia e relevância para o projeto.
+
+#### L3 — Análise de Luminal A vs Normal
+
+[README](projeto/laboratorios/L3%20-%20Luminal%20A%20vs%20Normal/README.md)
+
+Tarefa por subgrupo (27/04) — análise visual e criativa, no Cytoscape, da rede de expressão gênica diferencial **Luminal A vs Normal** em câncer de mama, confrontando comunidades (Leiden), pathways do Reactome (matriz extracelular, degradação da ECM, formação de colágeno), logFC e medidas de centralidade. Usa como base os arquivos `.cys` e `.ows` do projeto oficial da disciplina.

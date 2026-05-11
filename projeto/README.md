@@ -143,3 +143,4 @@ Exercícios de laboratório relacionados ao projeto — na pasta [`laboratorios/
 | --- | --- | --- |
 | **L1** | How Wolves Change Rivers — modelagem de ecossistema como grafo (trophic cascade de Yellowstone) | [resumo](laboratorios/L1%20-%20How%20Wolves%20Chang%20Rivers/README.md) |
 | **L2** | Revisão de artigos científicos sobre redes complexas em expressão gênica | [resumo](laboratorios/L2%20-%20artigos/README.md) |
+| **L3** | Análise de Luminal A vs Normal — exploração visual da rede de expressão diferencial em câncer de mama (Cytoscape) | [resumo](laboratorios/L3%20-%20Luminal%20A%20vs%20Normal/README.md) |
