@@ -8,19 +8,17 @@ Entrega: uma submissão por subgrupo, contendo o documento de análise (a partir
 
 ## Enunciado
 
-Dado o projeto no GitHub que contém um pipeline para análise enriquecida de expressão gênica diferencial **Luminal A vs Normal**[^LUMA] em câncer de mama:
-
-<https://github.com/datasci4health/datasci4health.github.io/tree/master/networks/breast-cancer/geo-subtypes/04-enrichment/matrix>
+Dado o projeto no submodule [`datasci4health.github.io/`](../../../datasci4health.github.io/networks/breast-cancer/geo-subtypes/04-enrichment/matrix/) que contém um pipeline para análise enriquecida de expressão gênica diferencial **Luminal A vs Normal**[^LUMA] em câncer de mama.
 
 O projeto traz os seguintes arquivos de interesse:
 
-- **`breast-cancer-luminal-a-matrix-all-nodes.ows`** — workflow Orange[^OWS] que produz a rede com todos os nós.
+- [**`breast-cancer-luminal-a-matrix-all-nodes.ows`**](../../../datasci4health.github.io/networks/breast-cancer/geo-subtypes/04-enrichment/matrix/breast-cancer-luminal-a-matrix-all-nodes.ows) — workflow Orange[^OWS] que produz a rede com todos os nós.
   - Exige instalar `orange-biosci` (última versão) e `orange-biosci-r` (mas não é preciso executá-lo).
 
 ![Workflow Orange — Luminal A vs Normal](workflow.png)
 
-- **`breast-cancer-luminal-a-matrix-all-genes.cys`** — arquivo Cytoscape contendo a rede Luminal A vs Normal — **base para o trabalho**.
-- **`breast-cancer-luminal-a-matrix-all-genes(leiden-8-9).cys`** — arquivo com **exemplo de análise** Luminal A vs Normal já realizada.
+- [**`breast-cancer-luminal-a-matrix-all-genes.cys`**](../../../datasci4health.github.io/networks/breast-cancer/geo-subtypes/04-enrichment/matrix/breast-cancer-luminal-a-matrix-all-genes.cys) — arquivo Cytoscape contendo a rede Luminal A vs Normal — **base para o trabalho**.
+- [**`breast-cancer-luminal-a-matrix-all-genes(leiden-8-9).cys`**](../../../datasci4health.github.io/networks/breast-cancer/geo-subtypes/04-enrichment/matrix/breast-cancer-luminal-a-matrix-all-genes%28leiden-8-9%29.cys) — arquivo com **exemplo de análise** Luminal A vs Normal já realizada.
 
 ### O que entregar
 
