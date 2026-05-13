@@ -70,15 +70,15 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 - **O que é:** enciclopédia de vias metabólicas, de sinalização e regulatórias. Cada via tem um diagrama interativo.
 - **URL:** https://www.kegg.jp/
-- **Aulas:** `2026-03-02`, `2026-03-04`, `2026-03-09`, `2026-04-06`, `2026-04-08`, `2026-04-15`
-- **Uso:** fonte de conjuntos de genes por via (ex.: hsa05218 — Melanoma; NF-κB; MAPK) e alvo de análise de enriquecimento no DAVID. Na aula de miRNAs, enriquecimento em Hippo, PI3K-Akt, Focal adhesion, VEGF signaling em câncer de tireoide.
+- **Aulas:** `2026-03-02`, `2026-03-04`, `2026-03-09`, `2026-04-06`, `2026-04-08`, `2026-04-15`, `2026-05-11`
+- **Uso:** fonte de conjuntos de genes por via (ex.: hsa05218 — Melanoma; NF-κB; MAPK) e alvo de análise de enriquecimento no DAVID. Na aula de miRNAs, enriquecimento em Hippo, PI3K-Akt, Focal adhesion, VEGF signaling em câncer de tireoide. Na aula de 11/05, exemplo da via hsa05220 (Chronic Myeloid Leukemia) mostrando o gene de fusão BCR-ABL ativando PI3K e MAPK signaling, e entrada combinada `hsa:25+hsa:613` (ABL1 + BCR) com referências cruzadas para UniProt, OMIM, HGNC.
 
 ### Reactome
 
 - **O que é:** base de vias biológicas humanas com diagramas detalhados ("mapas de metrô" da célula).
 - **URL:** https://reactome.org/
-- **Aulas:** `2026-04-08`
-- **Uso:** análise de enriquecimento via DAVID e extração de conjuntos de proteínas participantes (ex.: pathway **R-HSA-1474228** — organização da matriz extracelular).
+- **Aulas:** `2026-04-08`, `2026-05-11`
+- **Uso:** análise de enriquecimento via DAVID e extração de conjuntos de proteínas participantes (ex.: pathway **R-HSA-1474228** — organização da matriz extracelular). Na aula de 11/05, navegação da via R-HSA-5684996 (MAPK1/MAPK3 signaling) como exemplo de pathway detalhado para B-RAF/melanoma.
 
 ### WikiPathways
 
@@ -90,9 +90,9 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 ### Gene Ontology (GO)
 
 - **O que é:** vocabulário controlado que classifica genes em três eixos — processo biológico, função molecular, componente celular.
-- **URLs:** https://geneontology.org/ · Navegador: https://www.ebi.ac.uk/QuickGO/
-- **Aulas:** `2026-02-23`, `2026-02-25`, `2026-03-04`, `2026-03-09`, `2026-04-08`, `2026-04-15`
-- **Uso:** anotação funcional de genes e análise de enriquecimento (termos GO sobre-representados em listas de genes).
+- **URLs:** https://geneontology.org/ · Navegador: https://www.ebi.ac.uk/QuickGO/ · Navegador AmiGO: https://amigo.geneontology.org/ · Endpoint SPARQL: https://geneontology.org/sparql
+- **Aulas:** `2026-02-23`, `2026-02-25`, `2026-03-04`, `2026-03-09`, `2026-04-08`, `2026-04-15`, `2026-05-11`
+- **Uso:** anotação funcional de genes e análise de enriquecimento (termos GO sobre-representados em listas de genes). Na aula de 11/05, exemplo detalhado de hierarquia GO para `cell adhesion` (GO:0007155) → `cell-cell adhesion` (GO:0098609) → `cell-cell adhesion mediated by cadherin` (GO:0044331), com IDs estáveis e arestas tipadas (`is a`, `part of`, `regulates`).
 
 ### DAVID (Database for Annotation, Visualization and Integrated Discovery)
 
@@ -132,8 +132,36 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 - **O que é:** catálogo de genes humanos e fenótipos genéticos.
 - **URL:** https://www.omim.org/
-- **Aulas:** `2026-04-13`
-- **Uso:** citado como fonte de associações doença-gene (IDs OMIM referenciados nas redes de Zhou/Goh).
+- **Aulas:** `2026-04-13`, `2026-05-11`
+- **Uso:** citado como fonte de associações doença-gene (IDs OMIM referenciados nas redes de Zhou/Goh). Na aula de 11/05, exemplos `OMIM:608232` (LEUKEMIA, CHRONIC MYELOID) e `OMIM:189980` (ABL1 PROTOONCOGENE) — mostra como OMIM ancora genes (via HGNC) a fenótipos.
+
+### Disease Ontology (DOID)
+
+- **O que é:** ontologia que organiza doenças humanas em hierarquia de subclasses (`is a`), com IDs estáveis no formato `DOID:N`. Integra códigos ICD, OMIM, MeSH, EFO, KEGG.
+- **URL:** https://disease-ontology.org/
+- **Aulas:** `2026-05-11`
+- **Uso:** exemplo central da aula sobre **surrogates** — `DOID:8552` (Chronic Myeloid Leukemia) → `DOID:8692` (Myeloid Leukemia) → leukemia → hematologic cancer → cancer → disease. Cada nó tem URI estável (`https://disease-ontology.org/?id=DOID:8552`) com referências cruzadas para EFO, GARD, ICD9CM, ICDO, KEGG, OMIM, ORDO, SNOMED, UMLS.
+
+### HGNC (HUGO Gene Nomenclature Committee)
+
+- **O que é:** comitê que padroniza **símbolos oficiais de genes humanos** (ex.: ABL1, BRAF). Cada gene recebe um HGNC ID estável (`HGNC:76` = ABL1).
+- **URL:** https://www.genenames.org/
+- **Aulas:** `2026-05-11`
+- **Uso:** ponte entre OMIM, KEGG e UniProt — todos referenciam o **símbolo HGNC aprovado** para garantir que estão falando do mesmo gene.
+
+### BacDive (Bacterial Diversity Metadatabase)
+
+- **O que é:** maior base de dados de cepas bacterianas padronizada — 99.392 cepas com taxonomia, morfologia, fisiologia, isolamento ambiental, segurança e sequência 16S. Mantida pelo DSMZ (Coleção alemã de microrganismos).
+- **URL:** https://beta.bacdive.dsmz.de/
+- **Aulas:** `2026-05-11`
+- **Uso:** fonte de dados para o exercício de construção de Knowledge Graph de bactérias (Gram, morfologia, taxonomia até Família/Filo). Exemplo navegado em aula: *Escherichia coli* (BacDive ID 4907) com classificação Pseudomonadota → Gammaproteobacteria → Enterobacterales → Enterobacteriaceae → *E. coli*.
+
+### EOL (Encyclopedia of Life)
+
+- **O que é:** enciclopédia colaborativa de biodiversidade — agrega taxonomia, descrição, mídia, traits quantitativos e relações tróficas para ~2 milhões de espécies.
+- **URL:** https://eol.org/
+- **Aulas:** `2026-05-11`
+- **Uso:** fonte de dados para predição em redes tróficas (revisita L1 — How Wolves Change Rivers). Exemplo navegado em aula: *Canis lupus* (Gray Wolf, EOL page 328607) com **Trophic Web** mostrando predadores, presas e competidores; **Data Search** estruturada permitindo consultas tipo "*Canis* que predam roedores com massa entre 100–1000 g".
 
 ---
 
@@ -162,8 +190,15 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 - **O que é:** grafo de conhecimento estruturado extraído da Wikipedia.
 - **URL:** https://www.dbpedia.org/
-- **Aulas:** `2026-03-09`, `2026-04-06`
-- **Uso:** exemplo geral de grafo de conhecimento (não específico de saúde).
+- **Aulas:** `2026-03-09`, `2026-04-06`, `2026-05-11`
+- **Uso:** exemplo geral de grafo de conhecimento (não específico de saúde). Na aula de 11/05, contrasta a página Wikipedia `BRAF_(gene)` com a página DBpedia `dbpedia.org/page/BRAF_(gene)` que expõe as propriedades de forma estruturada (`dbo:description`, `dbo:wikiPageExternalLink`).
+
+### BioPortal
+
+- **O que é:** portal da NCBO (National Center for Biomedical Ontology) que agrega centenas de ontologias biomédicas com navegação e endpoints REST/SPARQL.
+- **URL:** https://bioportal.bioontology.org/
+- **Aulas:** `2026-05-11`
+- **Uso:** consulta das propriedades de relacionamento usadas em DOID (`https://bioportal.bioontology.org/ontologies/DOID?p=properties`), incluindo a relação `is_a` do **Relations Ontology (RO)** com URI `http://purl.obolibrary.org/obo/RO#_is_a`.
 
 ---
 
@@ -173,15 +208,15 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 - **O que é:** conjunto de bases do NCBI com sequências de referência (RefSeq), identificadores únicos de genes (Entrez ID) e anotações.
 - **URL:** https://www.ncbi.nlm.nih.gov/
-- **Aulas:** `2026-03-02`, `2026-03-04`, `2026-04-08`
-- **Uso:** mapeamento de símbolos de gene para identificadores estáveis usados no DAVID e outros.
+- **Aulas:** `2026-03-02`, `2026-03-04`, `2026-04-08`, `2026-05-11`
+- **Uso:** mapeamento de símbolos de gene para identificadores estáveis usados no DAVID e outros. Na aula de 11/05, exemplo `gene/999` (CDH1, cadherin 1) como gene anotado em GO:0044331 (cell-cell adhesion mediated by cadherin).
 
 ### UniProt
 
-- **O que é:** base de referência para proteínas (sequência, função, domínios, modificações).
+- **O que é:** base de referência para proteínas (sequência, função, domínios, modificações). Expõe **endpoint SPARQL** em `https://sparql.uniprot.org/`.
 - **URL:** https://www.uniprot.org/
-- **Aulas:** `2026-04-08`, `2026-04-01`
-- **Uso:** IDs UniProt aparecem nos mapeamentos STRING e em listas de proteínas de vias Reactome.
+- **Aulas:** `2026-04-08`, `2026-04-01`, `2026-05-11`
+- **Uso:** IDs UniProt aparecem nos mapeamentos STRING e em listas de proteínas de vias Reactome. Na aula de 11/05, central ao caso B-RAF (`uniprot:P15056`) e ABL1 (`uniprot:P00519`); aula traz consulta SPARQL completa para encontrar **paralogs de B-RAF via OrthoDB** (KSR1, KSR2, A-RAF, C-RAF).
 
 ### UCSC Genome Browser
 
@@ -323,10 +358,11 @@ Não são bases em si, mas intermediam o acesso a várias bases acima:
 - **Expressão gênica e câncer:** GEO (dataset-chave das aulas: **GSE45827**), TCGA (coorte-chave: **TCGA-THCA**, via Firehose/FireBrowse)
 - **microRNAs:** miRBase, TargetScan, miRWalk, miRTarBase, miTEA-HiRes
 - **Grafos de conhecimento:** Rede Zhou 2014 (sintoma-doença), Diseasome, PrimeKG
-- **Ontologias:** GO, MeSH, MONDO, WordNet, DBpedia
-- **Referência genômica/proteica:** NCBI (Entrez/RefSeq), UniProt, UCSC, Pfam
+- **Ontologias:** GO, **DOID**, MeSH, MONDO, WordNet, DBpedia, BioPortal (agregador)
+- **Referência genômica/proteica:** NCBI (Entrez/RefSeq), UniProt, UCSC, Pfam, **HGNC**
 - **Fármaco-alvo:** Open Targets
 - **Literatura:** PubMed
+- **Microbiologia / Biodiversidade:** BacDive (cepas bacterianas), EOL (Encyclopedia of Life)
 
 **Datasets do projeto semestral (referidos no [README do projeto](projeto/README.md)):** GSE4570, GSE2503, GSE53462, GSE8401, GSE7553, GSE45216 (melanoma/não-melanoma/pele saudável) e TCGA-SKCM (projeto GAT — TCGA também aparece em aula; ver seção 2).
 

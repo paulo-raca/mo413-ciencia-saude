@@ -104,6 +104,18 @@ Sessão de continuação direta da aula de 29/04 (miRNA-mRNA Network sobre TCGA-
 
 Aula prática de análise de André Santanchè (LIS/IC-UNICAMP), continuação das aulas de **29/04 (miRNA-mRNA Network)** e **04/05** — mãos no Cytoscape e no workflow Orange para fechar o pipeline que constrói a rede miRNA-mRNA sobre TCGA-THCA e analisa sua topologia. Os PDFs servem de referência (slides reapresentados das aulas anteriores). A [pasta de exercícios](aulas/2026-05-06%20-%20Análise%20Prática/exercicios/microRNA/) traz uma versão atualizada e curada do conjunto de dados, com novos artefatos do Cytoscape (incluindo `projection-mRNA-mRNA_limma-backbone.csv`) e os workflows Orange. Sem gravação.
 
+### 2026-05-11 — Representação de Conhecimento, Ontologia e Grafos de Conhecimento
+
+[resumo](aulas/2026-05-11%20-%20Representação%20de%20Conhecimento%20e%20Grafos/README.md) | [slides](aulas/2026-05-11%20-%20Representação%20de%20Conhecimento%20e%20Grafos/slides.pdf)
+
+Aula de André Santanchè (LIS/IC-UNICAMP) cobrindo o ecossistema de **bases biomédicas** (GO, UniProt, KEGG, Reactome, DBpedia, OMIM, DOID) e como elas se interconectam para descrever um único gene. Apresenta o conceito de **ontologia** (Studer 1998 — *"formal, explicit specification of a shared conceptualisation"*), **surrogates** (Khoshafian 1986) e **URIs** como mecanismos de identidade universal de conceitos, e **grafos de conhecimento** (Cypher/Neo4j, SPARQL com endpoint UniProt para encontrar paralogs de B-RAF). Estudos de caso: MYCIN (1970s, sistema especialista para infecções bacterianas), CML com BCR-ABL via KEGG hsa05220, **bacteria knowledge graph** (BacDive + LLMs), volta ao L1 (How Wolves Change Rivers + EOL para predição via taxonomia) e enriquecimento em CML (Telliam 2023, iPSCs). Sem gravação.
+
+### 2026-05-13 — Motifs e Link Prediction
+
+[resumo](aulas/2026-05-13%20-%20Motifs%20e%20Link%20Prediction/README.md) | [slides](aulas/2026-05-13%20-%20Motifs%20e%20Link%20Prediction/slides.pdf)
+
+Aula de André Santanchè (LIS/IC-UNICAMP) com duas partes. **Parte I — Motifs**: definição estatística, galeria dos 9 motivos canônicos (FFL, feedback loop, bi-fan, bi-parallel, etc.), e a virada de Cloutier & Wang 2011 mostrando como o **mesmo motif sob dinâmicas diferentes** produz feedback negativo (resposta adaptada), feedback positivo (biestabilidade), cascatas com atraso e oscilações. Aplicações em cadeias tróficas (Venzon 2001, Kovach-Orr 2012). Métricas adicionais: distância média geodésica, eficiência global e **vulnerabilidade**. **Parte II — Link Prediction**: taxonomia (Martinez 2016) — similaridade (local/global/quasi-local), probabilístico, algorítmico, preprocessing. Métodos: Common Neighbors, Jaccard, Preferential Attachment (baseado na propriedade scale-free), Índice de Katz (caminhos globais). Mineração de regras com **GERM** (Bringmann 2010), aplicações em drug-target (Cheng 2012), química orgânica (Grzybowski 2009) e predição epidemiológica de COVID em Salvador (Rios 2020). Sem gravação.
+
 ---
 
 ## Projeto Semestral
