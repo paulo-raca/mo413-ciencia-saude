@@ -334,6 +334,9 @@ Não são bases em si, mas intermediam o acesso a várias bases acima:
 | `2026-04-08` | `Participating Molecules [R-HSA-1474228].tsv` | Proteínas da via Reactome R-HSA-1474228 (MMPs, fibrilinas, ADAMTS). |
 | `2026-04-08` / `2026-04-13` | `cytoscape.cys` | Rede Zhou (sintoma-doença) com comunidades detectadas. |
 | `2026-04-13` | `breast-cancer-workflow-luminal-a-coexpression-chart.ows` | Workflow Orange para rede de coexpressão em Luminal-A. |
+| `2026-05-13` | `microRNA/cytoscape/limma_pathway*/...` | Snapshots Cytoscape filtrando a rede miRNA-mRNA do THCA pela via **MAPK signaling (KEGG hsa04010)**. |
+| `2026-05-13` | `microRNA/kegg/hsa04010.xml`, `hsa_genes.tsv` | KGML da via MAPK signaling do KEGG e mapeamento de genes humanos por via — usados como filtro de pathway. |
+| `2026-05-13` | `microRNA/thca-mirna-mrna_limma_pathway*.ows` | Workflows Orange que adicionam ao pipeline o filtro por pertença ao pathway MAPK. |
 
 ---
 

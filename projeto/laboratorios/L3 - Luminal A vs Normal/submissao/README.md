@@ -9,8 +9,8 @@ Sessão Cytoscape com todas as subredes deste documento: [`breast-cancer-luminal
 ## Subgrupo
 
 - Alan Freitas Ribeiro — 193400
-- *nome* — *RA*
-- *nome* — *RA*
+- Paulo Costa - 063607
+- Naruan Ferraz - 323009
 
 ---
 
@@ -85,9 +85,3 @@ Sobre o resultado aplicamos novamente o filtro de **maior componente conexa** e 
 ### Observações
 
 Esta rede permite a fácil visualização de genes com **alta influência (eigenvector)** na sub-rede dos genes mais super e subexpressos. No grafo, identificamos **pontos de atenção**: um **trio de hubs** na segunda imagem e o gene **C074** na primeira imagem.
-
----
-
-## Notas
-
-[^EIGEN]: **Centralidade de autovetor (*eigenvector centrality*)** — mede o quão influente um nó é levando em conta não só **quantas** conexões ele tem, mas também o **quão influentes** são os nós aos quais ele se conecta. Um nó com poucos vizinhos mas todos eles muito importantes pode ter eigenvector maior do que um nó com muitos vizinhos pouco relevantes. Análogo: ter poucos amigos influentes pode pesar mais socialmente do que ter muitos contatos casuais.

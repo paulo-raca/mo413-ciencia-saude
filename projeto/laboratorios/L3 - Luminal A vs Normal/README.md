@@ -66,7 +66,7 @@ Escrever um texto comentando o que pode ser observado no grafo escolhido para a 
 
 - Documento seguindo o template (PDF ou Markdown no GitHub).
 - Projeto Cytoscape (`.cys`).
-- Apenas **um membro** de cada subgrupo submete.
+- Apenas **um membro** de cada subgrupo submete.                          
 
 ---
 

@@ -12,6 +12,8 @@ Aula de André Santanchè (Laboratory of Information Systems — LIS, IC/UNICAMP
 
 Duas grandes idéias para analisar redes complexas: **motifs**[^MOTIF] — subgrafos pequenos que aparecem **mais frequentemente do que o esperado** e codificam funções biológicas (feedback negativo, FFL, oscilação); e **link prediction** — métodos para inferir **arestas faltantes ou futuras** no grafo (drogas-alvos, interações proteína-proteína, contaminação por COVID) usando similaridade, propriedades estruturais ou aprendizado.
 
+> **Exercícios:** a pasta [`exercicios/microRNA/`](exercicios/microRNA/) traz a próxima iteração do dataset miRNA-mRNA sobre **TCGA-THCA** (continuação direta de [29/04](../2026-04-29%20-%20miRNA-mRNA%20Network/README.md), 04/05 e [06/05](../2026-05-06%20-%20Análise%20Prática/README.md)). Novidades em relação ao 06/05: subpastas `cytoscape/limma_pathway/` e `cytoscape/limma_pathway_only/` que filtram a rede pela via **MAPK signaling do KEGG** (`hsa04010.xml` + `hsa_genes.tsv` em `kegg/`), e os workflows Orange `thca-mirna-mrna_limma_pathway*.ows`. Os arquivos de RNA-Seq do Firehose (95 MB de mRNA e 287 MB de miRNA) ficam ignorados pelo `.gitignore` dentro de `firehose-*/`.
+
 ---
 
 ## Parte I — Network Motifs
