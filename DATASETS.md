@@ -77,15 +77,15 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 - **O que é:** base de vias biológicas humanas com diagramas detalhados ("mapas de metrô" da célula).
 - **URL:** https://reactome.org/
-- **Aulas:** `2026-04-08`, `2026-05-11`, `2026-05-20`
-- **Uso:** análise de enriquecimento via DAVID e extração de conjuntos de proteínas participantes (ex.: pathway **R-HSA-1474228** — organização da matriz extracelular). Na aula de 11/05, navegação da via R-HSA-5684996 (MAPK1/MAPK3 signaling) como exemplo de pathway detalhado para B-RAF/melanoma. Na aula de 20/05, navegação da via R-HSA-70326 (*glucose metabolism* — glicólise e gliconeogênese) como exemplo de **encadeamento de reações catalisadas por enzimas** dentro da metabolômica.
+- **Aulas:** `2026-04-08`, `2026-05-11`, `2026-05-20`, `2026-05-25`
+- **Uso:** análise de enriquecimento via DAVID e extração de conjuntos de proteínas participantes (ex.: pathway **R-HSA-1474228** — organização da matriz extracelular). Na aula de 11/05, navegação da via R-HSA-5684996 (MAPK1/MAPK3 signaling) como exemplo de pathway detalhado para B-RAF/melanoma. Na aula de 20/05, navegação da via R-HSA-70326 (*glucose metabolism* — glicólise e gliconeogênese) como exemplo de **encadeamento de reações catalisadas por enzimas** dentro da metabolômica. Reapresentado em 25/05 no deck *Omics and Language Models*.
 
 ### WikiPathways
 
 - **O que é:** plataforma colaborativa de curadoria de vias biológicas (estilo Wikipedia).
 - **URL:** https://www.wikipathways.org/
-- **Aulas:** `2026-04-08`, `2026-05-20`
-- **Uso:** terceira fonte de vias no enriquecimento via DAVID. Na aula de 20/05, download do arquivo **GMT** (`wikipathways-20251010-gmt-Homo_sapiens.gmt`) com **332 KB** de vias humanas — cada linha lista os genes de uma via — usado como entrada para gerar embeddings de vias (Document Embedding no Orange) e construir grafos bipartidos pathway↔gene no Cytoscape. Outros formatos disponíveis: GPML (XML), SVG, SPARQL, R, Python.
+- **Aulas:** `2026-04-08`, `2026-05-20`, `2026-05-25`
+- **Uso:** terceira fonte de vias no enriquecimento via DAVID. Na aula de 20/05, download do arquivo **GMT** (`wikipathways-20251010-gmt-Homo_sapiens.gmt`) com **332 KB** de vias humanas — cada linha lista os genes de uma via — usado como entrada para gerar embeddings de vias (Document Embedding no Orange) e construir grafos bipartidos pathway↔gene no Cytoscape. Reapresentado em 25/05 como tarefa "Pathways in Space" — construir grafo bipartido `pathway↔gene` e plotar scatter colorido por cluster. Outros formatos disponíveis: GPML (XML), SVG, SPARQL, R, Python.
 
 ### Gene Ontology (GO)
 
@@ -236,22 +236,29 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 - **O que é:** base de famílias de domínios proteicos.
 - **URL:** https://www.ebi.ac.uk/interpro/ (Pfam agora integrado ao InterPro).
-- **Aulas:** `2026-02-23`, `2026-05-20`
-- **Uso:** citada no contexto de modelos de linguagem para proteínas (ESM treinado em ~19 mil famílias Pfam). Na aula de 20/05, **ProGen** (Madani et al. 2023) é apresentado como protein language model treinado em **280 milhões de sequências e 19 mil famílias Pfam** — gera proteínas artificiais funcionais quando *condicionado* por uma tag de família (Immunoglobulin, Chorismate mutase, Glucosaminidase, Phage lysozyme).
+- **Aulas:** `2026-02-23`, `2026-05-20`, `2026-05-25`
+- **Uso:** citada no contexto de modelos de linguagem para proteínas (ESM treinado em ~19 mil famílias Pfam). Na aula de 20/05 e reapresentada em 25/05, **ProGen** (Madani et al. 2023) é apresentado como protein language model treinado em **280 milhões de sequências e 19 mil famílias Pfam** — gera proteínas artificiais funcionais quando *condicionado* por uma tag de família (Immunoglobulin, Chorismate mutase, Glucosaminidase, Phage lysozyme).
 
 ### Ensembl BioMart
 
 - **O que é:** ferramenta de *data-mining* do **Ensembl** que permite **exportar datasets customizados** sobre genomas vertebrados — dado um conjunto de filtros (lista de genes, região, fenótipo, GO term) e atributos (sequência, posição, ID em outras bases), gera uma tabela ou FASTA.
 - **URL:** https://www.ensembl.org/biomart/ (também acessível em https://www.ensembl.org/ → menu *BioMart*)
-- **Aulas:** `2026-05-20`
-- **Uso:** pipeline central da aula de modelos de linguagem para biologia — partindo de uma lista de genes (ex.: PLA2G4C, JMJD7, STMN1, NFKB1, RELA, MAPK1, MAPK3, BRAF...), seleciona-se o dataset **Human genes (GRCh38.p14)**, marca-se *Ensembl Canonical: Only* e exporta-se a **sequência peptídica** + nome do gene como **FASTA**. O FASTA serve de entrada para o Clinical BERT Embeddings (gerar embeddings de proteínas). Variante: filtrar por **miRBase transcript name** (`hsa-miR-6766-3p` etc.) ou **miRBase accession** (`MI0000060`) para baixar sequências de miRNAs.
+- **Aulas:** `2026-05-20`, `2026-05-25`
+- **Uso:** pipeline central da aula de modelos de linguagem para biologia — partindo de uma lista de genes (ex.: PLA2G4C, JMJD7, STMN1, NFKB1, RELA, MAPK1, MAPK3, BRAF...), seleciona-se o dataset **Human genes (GRCh38.p14)**, marca-se *Ensembl Canonical: Only* e exporta-se a **sequência peptídica** + nome do gene como **FASTA**. O FASTA serve de entrada para o Clinical BERT Embeddings (gerar embeddings de proteínas). Variante: filtrar por **miRBase transcript name** (`hsa-miR-6766-3p` etc.) ou **miRBase accession** (`MI0000060`) para baixar sequências de miRNAs. Reapresentado em 25/05 no deck *Omics and Language Models*.
 
 ### Clinical BERT Embeddings (Hugging Face Space)
 
 - **O que é:** Space público no Hugging Face do prof. André Santanchè que **gera embeddings** de texto clínico ou sequências biológicas (CSV ou FASTA) usando modelos pré-treinados (**ProteinBERT**, **Clinical BERT** etc.) com diferentes estratégias de pooling (Mean, CLS, Max).
-- **URL:** https://huggingface.co/santanche (Spaces *Clinical Embedding* e *Clinical Ner*)
-- **Aulas:** `2026-05-20`
-- **Uso:** segunda etapa do pipeline iniciado em BioMart — recebe um arquivo FASTA com sequências peptídicas (ou CSV de texto), aplica ProteinBERT com pooling Mean e devolve um **CSV com um vetor de embedding por sequência**. O CSV é importado no Orange para visualização (scatter colorido por cluster) ou no Cytoscape (atributos de nó).
+- **URL:** https://huggingface.co/santanche — seis spaces ativos: **Clinical NER Pipeline Comparison**, **Clinical Ner**, **Clinical Embedding**, **Sentiment Analysis Oid**, **Factory ML**, **Cancer Predictor**.
+- **Aulas:** `2026-05-20`, `2026-05-25`
+- **Uso:** segunda etapa do pipeline iniciado em BioMart — recebe um arquivo FASTA com sequências peptídicas (ou CSV de texto), aplica ProteinBERT com pooling Mean e devolve um **CSV com um vetor de embedding por sequência**. O CSV é importado no Orange para visualização (scatter colorido por cluster) ou no Cytoscape (atributos de nó). Na aula de 25/05, demonstração ao vivo do *Clinical Embedding* com frases polissêmicas (`cold` médico vs. ambiente, `depression` clínica vs. geográfica) mostra que **Clinical BERT** distingue os contextos enquanto **Word2Vec** colapsa-os no mesmo vetor.
+
+### CARBON (HuggingFaceBio / CARE)
+
+- **O que é:** **foundation model genômico autorregressivo** treinado diretamente sobre sequências de DNA. Arquitetura decoder-only (estilo GPT), tokenização por **6-mers** (cada token = 6 bases), **janela de contexto de 393.216 BP** (~393 kb) e **1 trilhão de tokens** de treino. Permite gerar sequências artificiais de DNA, prever variantes e completar regiões — analogamente a como Llama completa texto, mas no espaço do genoma.
+- **URL:** https://huggingface.co/spaces/HuggingFaceBio/carbon-demo (Space interativo com abas DNA Lab, Carbon Recipe e Sandbox)
+- **Aulas:** `2026-05-25`
+- **Uso:** apresentado como exemplo de **language model aplicado a DNA** — fechamento do paralelo "Language Model → Protein Sequences (ProGen) → DNA Sequences (CARBON)". Demonstra que a mesma arquitetura decoder-only que gera texto pode aprender a gramática do genoma.
 
 ---
 
@@ -326,16 +333,16 @@ Vias ("pathways") são **receitas passo-a-passo** de processos celulares — com
 
 - **O que é:** curso online gratuito do **EMBL-EBI** introduzindo metabolômica — definição, tecnologias (MS, NMR), análise de dados, integração com outras ômicas.
 - **URL:** https://www.ebi.ac.uk/training/online/courses/metabolomics-introduction/
-- **Aulas:** `2026-05-20`
-- **Uso:** material de referência usado para apresentar metabolômica na aula — figuras de **omics e metabolômica** (gene → mRNA → proteína → metabólito), exemplos de **moléculas pequenas** (glicose, ácido esteárico, colesterol, lisina) e **reações metabólicas** (binding, dissociation, degradation, modification, transport).
+- **Aulas:** `2026-05-20`, `2026-05-25`
+- **Uso:** material de referência usado para apresentar metabolômica na aula — figuras de **omics e metabolômica** (gene → mRNA → proteína → metabólito), exemplos de **moléculas pequenas** (glicose, ácido esteárico, colesterol, lisina) e **reações metabólicas** (binding, dissociation, degradation, modification, transport). Reapresentado em 25/05.
 
 ### BioTransformer
 
 - **O que é:** ferramenta computacional para **predição de metabolismo de pequenas moléculas** e identificação de metabólitos — dado um composto, prevê quais metabólitos podem se formar via reações enzimáticas humanas e do microbioma.
 - **URL:** https://biotransformer.ca/
 - **Referência:** Djoumbou-Feunang, Y., Fiamoncini, J., Gil-de-la-Fuente, A., Greiner, R., Manach, C., & Wishart, D. S. (2019). BioTransformer: A comprehensive computational tool for small molecule metabolism prediction and metabolite identification. *Journal of Cheminformatics*, 11(1), 1–25. https://doi.org/10.1186/s13321-018-0324-5
-- **Aulas:** `2026-05-20`
-- **Uso:** apresentada como ferramenta para prever metabolitos a partir de moléculas-substrato — ponte entre uma reação química descrita em SMILES e seu produto biológico.
+- **Aulas:** `2026-05-20`, `2026-05-25`
+- **Uso:** apresentada como ferramenta para prever metabolitos a partir de moléculas-substrato — ponte entre uma reação química descrita em SMILES e seu produto biológico. Reapresentado em 25/05.
 
 #### Dataset associado: **MetXBioDB Metabolite Biotransformations** (Kaggle)
 
@@ -359,7 +366,9 @@ Não são bases em si, mas intermediam o acesso a várias bases acima:
 | **Firehose / FireBrowse** ([gdac.broadinstitute.org](https://gdac.broadinstitute.org/) · [firebrowse.org](http://firebrowse.org/)) | Snapshots versionados do TCGA — clínicos, miRSeq, mRNAseq, methylation, CNV, mutações, RPPA. CLI: `firehose_get`. | `2026-04-29` |
 | **Ensembl BioMart** ([ensembl.org/biomart](https://www.ensembl.org/biomart/)) | Exportação customizada de sequências, IDs e anotações do Ensembl (filtros por gene, miRBase ID, GO term; atributos: Peptide, Gene name, Sequence, Variants). Formatos: TSV, FASTA, XML. | `2026-05-20` |
 | **Clinical BERT Embeddings** ([huggingface.co/santanche](https://huggingface.co/santanche)) | Geração de embeddings a partir de FASTA ou CSV usando ProteinBERT / Clinical BERT. Pooling: Mean, CLS, Max. Saída: CSV de vetores. | `2026-05-20` |
-| **BertViz** ([github.com/jessevig/bertviz](https://github.com/jessevig/bertviz)) | Visualização interativa do **mecanismo de atenção** em modelos Transformer (cabeças, camadas, mapas de atenção entre tokens). | `2026-05-20` |
+| **BertViz** ([github.com/jessevig/bertviz](https://github.com/jessevig/bertviz)) | Visualização interativa do **mecanismo de atenção** em modelos Transformer (cabeças, camadas, mapas de atenção entre tokens). | `2026-05-20`, `2026-05-25` |
+| **GAT Attention Explorer** ([datasci4health.github.io/language-model/gat/visualizer](https://datasci4health.github.io/language-model/gat/visualizer/)) | Visualizador web dos CSVs do exercício de GAT (THCA + MAPK). Filtra por camada, hops, edge type e attention head; mostra outgoing/incoming attention por nó. Código em [github.com/datasci4health/datasci4health.github.io/.../gat](https://github.com/datasci4health/datasci4health.github.io/tree/master/language-model/gat). | `2026-05-25` |
+| **CARBON** ([huggingface.co/spaces/HuggingFaceBio/carbon-demo](https://huggingface.co/spaces/HuggingFaceBio/carbon-demo)) | Foundation model genômico autorregressivo (decoder-only, 6-mer tokenizer, 393.216 BP context, 1T tokens). Permite completar/gerar sequências de DNA. | `2026-05-25` |
 
 ---
 
@@ -393,6 +402,10 @@ Não são bases em si, mas intermediam o acesso a várias bases acima:
 | `2026-05-20` | `mapk/clusters/mapk-gene-embeddings.csv` | 338 genes → cluster (C1..C9) — resultado da clusterização sobre os embeddings ProteinBERT. |
 | `2026-05-20` | `mapk/mapk-to-kg{,-mir,-mir-lm}.ows` | Três workflows Orange encadeados: KGML → KG, KG → KG+miRNA, KG+miRNA → KG+miRNA+LM. |
 | `2026-05-20` | `mapk/mapk-kg-aggregated.cys` | Sessão Cytoscape final com o grafo agregado. |
+| `2026-05-25` | `gat/node_metadata.csv` | 562 nós do GAT — 300 genes (com `logFC` TCGA-THCA), 244 unidades funcionais lógicas KEGG (AND/OR), 18 miRNAs (MIMAT IDs), todos com `embedding_l2_norm` inicial via ProteinBERT. |
+| `2026-05-25` | `gat/node_embeddings.csv` | **2,2 MB** — embeddings de cada nó nas **3 camadas** do GAT, cada uma com **64 dimensões** (formato long: `node_id, layer, dim_0..dim_63`). |
+| `2026-05-25` | `gat/edge_metadata.csv` | 1.101 arestas: `self_loop` (562), `gene_to_fu` (322), `protein_protein_interaction` (163), `mir_to_gene` (53), com `final_layer_mean_attn` e `final_layer_max_attn`. |
+| `2026-05-25` | `gat/attention_weights.csv` | Pesos de atenção das **4 cabeças** (`head_1`..`head_4` + `mean_attention`) em cada uma das 3 camadas — 3.303 linhas. |
 
 ---
 
@@ -410,6 +423,7 @@ Não são bases em si, mas intermediam o acesso a várias bases acima:
 | **FASTA** | `2026-05-20` | Sequências biológicas em texto plano (`>nome` + linhas com a sequência). Saída de Ensembl BioMart para peptídeos, entrada do Clinical BERT Embeddings. |
 | **OWL / BioPAX Level 3** | `2026-05-20` | Ontologia RDF/XML — formato com que Reactome distribui vias como instâncias `bp:Pathway`, `bp:BiochemicalReaction`, `bp:Protein` etc. Usado para `5684996.owl` (MAPK1/MAPK3 signaling). |
 | **KGML** | `2026-05-13`, `2026-05-20` | XML do KEGG para uma via — descreve entries (genes, compostos), relations e reactions. Arquivo `hsa04010.xml`. |
+| **GAT outputs (CSV plano)** | `2026-05-25` | Saída de Graph Attention Network: `node_metadata.csv` (metadados), `node_embeddings.csv` (vetores 64-dim por camada), `edge_metadata.csv` (arestas + atenção final), `attention_weights.csv` (atenção por cabeça × camada). |
 
 ---
 
@@ -423,7 +437,7 @@ Não são bases em si, mas intermediam o acesso a várias bases acima:
 - **Grafos de conhecimento:** Rede Zhou 2014 (sintoma-doença), Diseasome, PrimeKG
 - **Ontologias:** GO, **DOID**, MeSH, MONDO, WordNet, DBpedia, BioPortal (agregador)
 - **Referência genômica/proteica:** NCBI (Entrez/RefSeq), UniProt, UCSC, Pfam, **Ensembl BioMart**, **HGNC**
-- **Modelos de linguagem para biologia:** **Clinical BERT Embeddings** (Hugging Face), **BertViz**, ProGen (referenciado), ProteinBERT (referenciado)
+- **Modelos de linguagem para biologia:** **Clinical BERT Embeddings** (Hugging Face), **BertViz**, **CARBON** (genomic foundation model), **GAT Attention Explorer** (visualizador), ProGen (referenciado), ProteinBERT (referenciado)
 - **Fármaco-alvo:** Open Targets
 - **Literatura:** PubMed
 - **Microbiologia / Biodiversidade:** BacDive (cepas bacterianas), EOL (Encyclopedia of Life)
