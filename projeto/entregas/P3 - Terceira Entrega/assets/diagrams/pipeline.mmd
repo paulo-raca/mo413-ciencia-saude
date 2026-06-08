@@ -1,0 +1,40 @@
+flowchart LR
+    %% ========== Sources ==========
+    A1["<b>1.</b> UCSC Xena TOIL<br/>TcgaTargetGtex_rsem_gene_tpm.gz<br/>log2(TPM+0.001)"]:::raw
+    A2["<b>2.</b> TcgaTargetGTEX_phenotype.txt.gz<br/>(rótulos de amostra)"]:::raw
+    A3["<b>3.</b> GEO GSE112509<br/>DESeq2 normalized counts<br/>(nevos benignos)"]:::raw
+    A4["<b>4.</b> gencode.v23.annotation.gene.probemap<br/>(Ensembl ↔ HGNC)"]:::raw
+    A5["<b>5.</b> STRING v12 API<br/>(physical PPI)"]:::raw
+
+    %% ========== TCGA branch ==========
+    A1 --> B1["<b>6.</b> Filtra TCGA-SKCM<br/>Primary Tumor + Metastatic<br/>(Class 0 / Class 1)"]
+    A2 --> B1
+    A4 --> B1
+    B1 --> B2["<b>7.</b> Mapeia Ensembl → HGNC<br/>via probemap"]
+
+    %% ========== GSE112509 branch ==========
+    A3 --> C1["<b>8.</b> Seleciona apenas amostras<br/>de NEVO (Class 2)"]
+    C1 --> C2["<b>9.</b> log2(counts + 1)<br/>harmoniza escala com TOIL"]
+
+    %% ========== Merge ==========
+    B2 --> D1["<b>10.</b> Concat amostras<br/>TCGA ∪ GSE112509<br/>~492 amostras"]
+    C2 --> D1
+
+    D1 --> D2["<b>11.</b> Mantém genes<br/>protein-coding (HGNC)"]
+    D2 --> D3["<b>12.</b> split estratificado 70/15/15<br/>(SEED=42)"]
+    D3 --> D4["<b>13.</b> Top-variable genes<br/>variância calculada<br/>SOMENTE no train TCGA<br/>NUM_NODES = 1000"]
+
+    %% ========== STRING graph ==========
+    A5 --> E1["<b>14.</b> STRING REST<br/>required_score ≥ 200<br/>identifiers = top-1000 genes"]
+    D4 --> E1
+    E1 --> E2["<b>15.</b> edge_index único<br/>compartilhado por todas<br/>as amostras"]
+
+    %% ========== Per-sample graphs ==========
+    D4 --> F1["<b>16.</b> Para cada amostra:<br/>x = vetor de expressão (1000×1)<br/>y = classe ∈ {0,1,2}"]
+    E1 --> F1
+    F1 --> F2["<b>17.</b> torch_geometric.data.Data<br/>(x, edge_index, y)"]
+    F2 --> G["<b>18.</b> skcm_nevi_1000_200.pt<br/>(492 grafos)<br/>+ splits.npz"]:::out
+
+    %% ========== Styles ==========
+    classDef raw fill:#e8f0fe,stroke:#3367d6,color:#1a3a7a;
+    classDef out fill:#e6f4ea,stroke:#137333,color:#0d4d22;

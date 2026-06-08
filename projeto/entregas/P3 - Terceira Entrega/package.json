@@ -1,0 +1,21 @@
+{
+  "name": "p3-terceira-entrega-slides",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build",
+    "export:pdf": "slidev export --format pdf --output slides-generated.pdf",
+    "export:pptx": "slidev export --format pptx --output slides-generated.pptx"
+  },
+  "devDependencies": {
+    "@iconify-json/logos": "^1.2.11",
+    "@slidev/cli": "^0.50.0",
+    "highcharts": "^12.6.0",
+    "highcharts-vue": "^2.0.1",
+    "playwright-chromium": "^1.40.0",
+    "prettier": "^3.8.3",
+    "prettier-plugin-slidev": "^1.0.5",
+    "slidev-theme-penguin": "^2.3.1"
+  }
+}
