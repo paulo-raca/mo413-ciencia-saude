@@ -9,7 +9,7 @@ Luis Henrique Angélico (248891)
 Naruan Francisco Ferraz e Ferraz (323009)
 Paulo Costa (063607)
 
-*(Instituto de Computação | Instituto de Biologia | UNICAMP)*
+_(Instituto de Computação | Instituto de Biologia | UNICAMP)_
 
 ---
 
@@ -21,7 +21,7 @@ Este projeto visa comparar redes de interação gênica derivadas de amostras de
 
 # Fundamentação Teórica
 
-*Felipe* — slide em branco.
+_Felipe_ — slide em branco.
 
 ---
 
@@ -30,10 +30,12 @@ Este projeto visa comparar redes de interação gênica derivadas de amostras de
 Imagem comparando epiderme normal (squamous cells, basal cells, melanocytes) com Basal cell carcinoma, Squamous cell carcinoma e Melanoma.
 
 **Classificação**
+
 - Local
 - Tipo celular de origem
 
 **Tipos**
+
 - Carcinoma Basocelular
 - Carcinoma Espinocelular
 - Melanoma
@@ -95,13 +97,13 @@ Fonte: gco.iarc.who.int (Globocan 2022, versão 1.1 — 08.02.2024).
 
 # Base de dados: Gene Expression Omnibus (GEO)
 
-| Base de dados | Dataset | Grupos |
-| --- | --- | --- |
-| Gene Expression Omnibus (GEO) | GSE7553 | Carcinoma baso celular, Melanoma in situ (estágio 0), Melanoma primário, Melanoma metastático, Carcinoma espinocelular, **Pele Normal (controle)** |
-| Gene Expression Omnibus (GEO) | GSE45216 | Carcinoma espinocelular, Queratose actínica |
-| Open Targets Platform | Melanoma | — |
-| Open Targets Platform | Carcinoma | — |
-| The Cancer Genome Atlas Program (TCGA) | TCGA-SKCM | |
+| Base de dados                          | Dataset   | Grupos                                                                                                                                             |
+| -------------------------------------- | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Gene Expression Omnibus (GEO)          | GSE7553   | Carcinoma baso celular, Melanoma in situ (estágio 0), Melanoma primário, Melanoma metastático, Carcinoma espinocelular, **Pele Normal (controle)** |
+| Gene Expression Omnibus (GEO)          | GSE45216  | Carcinoma espinocelular, Queratose actínica                                                                                                        |
+| Open Targets Platform                  | Melanoma  | —                                                                                                                                                  |
+| Open Targets Platform                  | Carcinoma | —                                                                                                                                                  |
+| The Cancer Genome Atlas Program (TCGA) | TCGA-SKCM |                                                                                                                                                    |
 
 ---
 
@@ -121,7 +123,7 @@ Fonte: gco.iarc.who.int (Globocan 2022, versão 1.1 — 08.02.2024).
 
 # Fundamentação Teórica: Graph Neural Network
 
-*Augusto*
+_Augusto_
 
 **Neural Network**
 
@@ -141,7 +143,7 @@ $$H^{(l+1)} = \sigma\!\left(\tilde{D}^{-\tfrac{1}{2}} \tilde{A} \tilde{D}^{-\tfr
 
 # Fundamentação Teórica: GAT
 
-*Augusto*
+_Augusto_
 
 **1. Score de importância por meio de mecanismo de atenção $a$**
 
@@ -155,27 +157,27 @@ $$\alpha_{ij} = \text{Softmax}_j(e_{ij}) = \frac{\exp(\text{LeakyReLU}(e_{ij}))}
 
 $$h_i^{(l+1)} = \sigma\!\left(\sum_{j \in \mathcal{N}_i} \alpha_{ij} W h_j^{(l)}\right)$$
 
-Diagrama: Velickovi, P. *et al* (2018).
+Diagrama: Velickovi, P. _et al_ (2018).
 
 ---
 
 # Base de dados: Transformações e tratamentos
 
-*Luis*
+_Luis_
 
 Diagrama de pipeline com 18 etapas, do download bruto até o `.pt` consumido pelo GAT:
 
 1. **TOIL TPM** — baixa a matriz `log2(TPM+0.001)` recomputada da UCSC Xena para todas as amostras TCGA + GTEx + TARGET.
-2. **Phenotype** — baixa o arquivo de rótulos da Xena com tipo de tecido, *sample type* e coorte de cada amostra.
+2. **Phenotype** — baixa o arquivo de rótulos da Xena com tipo de tecido, _sample type_ e coorte de cada amostra.
 3. **GSE112509** — baixa as contagens DESeq2 normalizadas do GEO para o estudo de nevos benignos vs melanomas.
 4. **GENCODE probemap** — baixa a tabela de equivalência Ensembl ID ↔ símbolo HGNC ↔ tipo de gene (versão v23).
-5. **STRING API** — endpoint REST do STRING v12 que devolve interações físicas com *combined score*.
-6. **Filtra TCGA-SKCM** — seleciona apenas amostras do coorte SKCM com *sample type* "Primary Tumor" (Class 0) ou "Metastatic" (Class 1).
+5. **STRING API** — endpoint REST do STRING v12 que devolve interações físicas com _combined score_.
+6. **Filtra TCGA-SKCM** — seleciona apenas amostras do coorte SKCM com _sample type_ "Primary Tumor" (Class 0) ou "Metastatic" (Class 1).
 7. **Ensembl → HGNC** — substitui IDs Ensembl pelos símbolos HGNC do probemap, descartando linhas sem mapeamento.
 8. **Seleciona nevos** — filtra o GSE112509 para reter apenas as 23 amostras de nevo (Class 2), descartando os melanomas do GEO.
-9. **log2(counts+1)** — aplica `log2(x+1)` às contagens DESeq2 do GSE para casar a *escala* do TOIL.
+9. **log2(counts+1)** — aplica `log2(x+1)` às contagens DESeq2 do GSE para casar a _escala_ do TOIL.
 10. **Concatena coortes** — junta as matrizes TCGA-SKCM e GSE112509 por gene em comum, formando a matriz combinada (~492 amostras).
-11. **Protein-coding** — mantém apenas genes anotados como *protein-coding* no GENCODE, descartando pseudogenes/lncRNAs.
+11. **Protein-coding** — mantém apenas genes anotados como _protein-coding_ no GENCODE, descartando pseudogenes/lncRNAs.
 12. **Split 70/15/15** — divisão estratificada por classe com `SEED=42`, persistida em `splits.npz`.
 13. **Top-variable genes** — calcula a variância **somente nas amostras de treino do TCGA** e seleciona `NUM_NODES = 1000` mais variáveis.
 14. **STRING REST** — consulta o STRING para os 1000 símbolos com `required_score ≥ 200`, recuperando todas as arestas físicas entre eles.
@@ -188,44 +190,44 @@ Diagrama de pipeline com 18 etapas, do download bruto até o `.pt` consumido pel
 
 # Treino GAT
 
-*Luis*
+_Luis_
 
 **Arquitetura (`GATv2Classifier`)**
 
-| Parâmetro | Valor |
-| --- | --- |
-| Camadas GATv2 | 3 |
-| `hidden_channels` | 128 |
-| Cabeças por camada | 4, 4, 1 |
-| `dropout` | 0.4 |
-| Normalização | `LayerNorm` após cada camada |
-| Pooling | `global_mean_pool` |
-| Cabeça de classificação | `Linear(128 → 3)` |
-| Atributo de nó (`in_channels`) | 1 (expressão log) |
+| Parâmetro                      | Valor                        |
+| ------------------------------ | ---------------------------- |
+| Camadas GATv2                  | 3                            |
+| `hidden_channels`              | 128                          |
+| Cabeças por camada             | 4, 4, 1                      |
+| `dropout`                      | 0.4                          |
+| Normalização                   | `LayerNorm` após cada camada |
+| Pooling                        | `global_mean_pool`           |
+| Cabeça de classificação        | `Linear(128 → 3)`            |
+| Atributo de nó (`in_channels`) | 1 (expressão log)            |
 
 **Hiperparâmetros de treino (`src/train.py`)**
 
-| Parâmetro | Valor |
-| --- | --- |
-| Otimizador | `Adam` |
-| `learning_rate` | 1e-3 |
-| `weight_decay` | 5e-4 |
-| Scheduler | `ReduceLROnPlateau` (factor 0.5, patience 10, min_lr 1e-6) |
-| Loss | `CrossEntropyLoss` |
-| Balanceamento | `WeightedRandomSampler` por *batch* (train only) |
-| `batch_size` | 32 |
-| `num_epochs` (máx) | 500 |
-| `EARLY_STOP_PATIENCE` | 50 (sobre val loss) |
-| `SEED` (single-run) | 42 |
-| Split | 70/15/15 estratificado, salvo em `splits.npz` |
-| Seleção de modelo | menor val loss observada |
-| Device | auto: CUDA → MPS → CPU (env `GAT_DEVICE`) |
+| Parâmetro             | Valor                                                      |
+| --------------------- | ---------------------------------------------------------- |
+| Otimizador            | `Adam`                                                     |
+| `learning_rate`       | 1e-3                                                       |
+| `weight_decay`        | 5e-4                                                       |
+| Scheduler             | `ReduceLROnPlateau` (factor 0.5, patience 10, min_lr 1e-6) |
+| Loss                  | `CrossEntropyLoss`                                         |
+| Balanceamento         | `WeightedRandomSampler` por _batch_ (train only)           |
+| `batch_size`          | 32                                                         |
+| `num_epochs` (máx)    | 500                                                        |
+| `EARLY_STOP_PATIENCE` | 50 (sobre val loss)                                        |
+| `SEED` (single-run)   | 42                                                         |
+| Split                 | 70/15/15 estratificado, salvo em `splits.npz`              |
+| Seleção de modelo     | menor val loss observada                                   |
+| Device                | auto: CUDA → MPS → CPU (env `GAT_DEVICE`)                  |
 
 ---
 
 # Análises adicionais GAT
 
-*Luis*
+_Luis_
 
 - Embeddings
 - Pseudotempo
@@ -235,13 +237,14 @@ Diagrama de pipeline com 18 etapas, do download bruto até o `.pt` consumido pel
 
 # Embeddings — t-SNE e vizinhos próximos
 
-*Luis*
+_Luis_
 
 O modelo processa o grafo PPI de cada amostra com um vetor de 64 números que mistura [a expressão] de seus vizinhos PPI (e dos vizinhos deles); [aplica] média desses 1000 vetores em um único [vetor de] embedding.
 
 Projeção t-SNE colorida por classe verdadeira (Tumor Primário, Metástase, Nevo Benigno).
 
 Painel lateral — exemplo de amostra **TCGA-EB-A5VU-01**:
+
 - Classe verdadeira: Tumor Primário
 - Predita: Tumor Primário
 - Confiança: 54,8% — correta
@@ -251,11 +254,12 @@ Painel lateral — exemplo de amostra **TCGA-EB-A5VU-01**:
 
 # Embeddings — heatmap de atenção entre classes
 
-*Luis*
+_Luis_
 
 Cada coluna é uma aresta PPI que o modelo trata com atenção diferente entre as três classes. Cor = atenção média sobre 5 seeds. As arestas são ordenadas por **amplitude entre classes / variabilidade entre seeds** — valores altos indicam que o modelo trata a aresta como informativa de forma consistente e diferencia entre tipos de amostra.
 
 Heatmap:
+
 - Linhas: Primary Tumor, Metastasis, Benign Nevus
 - Colunas: pares de gene (PI3 — KRT1, NDUROG2 — POU5F3, KRT3 — KRT27, KRT14 — KRT12, CTSC — SLPI, PIP — ARG5, DSG1 — TGM3, SCGB1D2 — SCGB1D2, CARD17 — CARD18, DEFB1 — DEFR4A, DEFB1 — DEFB108A, LOR — LCE3A, ICE1L, CARD12B — C1orf38, MAGEA9 — MAGEC1, PI3 — LCE3A, KRT11 — KRT8R, KRT11 — KRT8R, LOR — SPRR2G, LOR — SPRR8D, LOR — SPRR8D, FGF22 — PI4, PIP — JOSTNC1, LCEC — CRCT1, LOR — LCE6A, BPXI — DMP, KRT12 — KRT27, KRT11 — KRT75, KRTFN — LCE6A, KRT16 — KRT6B, LOR — LCE6A, RPA — CCL11, LGR — LCEJC, IRK22-5 — TBP2G, FGF10 — PLAT3, PI3 — LOR, OAT — NPFX2)
 
@@ -271,7 +275,7 @@ Calculamos duas âncoras no espaço de embeddings: o embedding médio das amostr
 - **1** = embedding na âncora de metástase
 - valores intermediários = "em algum ponto do caminho"
 
-Dividimos esse eixo 0→1 em **10 bins de largura igual** (decis) e, para cada bin, [agregamos as] amostras que caíram nele. O resultado é um retrato de *quais genes o modelo foca* ao longo da trajetória.
+Dividimos esse eixo 0→1 em **10 bins de largura igual** (decis) e, para cada bin, [agregamos as] amostras que caíram nele. O resultado é um retrato de _quais genes o modelo foca_ ao longo da trajetória.
 
 Como ler a figura: uma linha clara à esquerda e escura à direita significa "o modelo prestava atenção [quando a amostra era normal] e deixou de se importar quando elas ficaram mais parecidas com tumor". O padrão inverso significa o oposto.
 
@@ -333,14 +337,14 @@ Gene  ──[Expressão diferencial]──►  Comparação  ──[Resulta em]�
 Diagrama do workflow Orange:
 
 - **Metastatic Melanoma from GEO Soft Extractor** → Unique → ramos paralelos:
-  - *Differential Expression* com `logFC ≤ −2,3 ou logFC ≥ 2,3`
-  - *Differential Expression* com `p-value ≤ 0,001`
+  - _Differential Expression_ com `logFC ≤ −2,3 ou logFC ≥ 2,3`
+  - _Differential Expression_ com `p-value ≤ 0,001`
   - Volcano Plot (inspeção)
 - Os dois ramos vão para **Combine LogFC with p-value**.
 - Em paralelo: **Melanoma Oncogenes from Open Gene Targets** → Unique (2).
-- Os dois fluxos se juntam em **Append Oncogene Score** → *Only ID, Symbol, LogFC, p-value, and Oncogenes* → *Padronize Names* → **Save Nodes to Cytoscape** (saída: `Nodes`).
+- Os dois fluxos se juntam em **Append Oncogene Score** → _Only ID, Symbol, LogFC, p-value, and Oncogenes_ → _Padronize Names_ → **Save Nodes to Cytoscape** (saída: `Nodes`).
 - Em paralelo: **Select only Entrez ID** → `Nodes String` (entrada do STRING).
-- **STRING processed** → *String network* → *Select Physical* → *Select Only origin, destination and combined score* → **Cytoscape Edges** (saída: `Edges`).
+- **STRING processed** → _String network_ → _Select Physical_ → _Select Only origin, destination and combined score_ → **Cytoscape Edges** (saída: `Edges`).
 
 ---
 
@@ -351,20 +355,20 @@ Decidimos replicar a análise feita em Orange em um notebook Python. Acreditamos
 Screenshots do notebook:
 
 - Aba "datasets_summary" com GSE4570, GSE2503, GSE53462, GSE8401, **GSE7553**, GSE45216.
-- GSE7553 — *Gene Expression Patterns Involved in the Malignant Transformation and Progression of Metastatic Melanoma*. Plataforma GPL570, 87 amostras, submetido em 19/abr/2007.
+- GSE7553 — _Gene Expression Patterns Involved in the Malignant Transformation and Progression of Metastatic Melanoma_. Plataforma GPL570, 87 amostras, submetido em 19/abr/2007.
 - Amostras por categoria: Metastatic Melanoma 40, Basal Cell Carcinoma 15, Primary Melanoma 14, Squamous Cell Carcinoma 11.
 - Tabela final `Nodes_cytoscape.csv` (360 linhas × 5 colunas): Entrez ID, Gene Symbol, LogFC, p-value, oncogeneScore — ex.: IRF6 −3,957…, BNC1 −3,990…, ATP6V1C2 −2,760…, SERPINA2 −4,506…, BTBD16 −2,606…, GRHL1 −1,544…, RAET1E −1,579…, PROM2 −4,405…, SERPINB12 −2,533…
 
 **Comparação com baseline do Orange**
 
-| Métrica | Valor |
-| --- | --- |
-| Genes no notebook | 360 |
-| Genes esperados (Orange) | 359 |
-| Em comum | 358 |
-| Só no notebook | 1 |
-| Só no Orange | 0 |
-| Similaridade de Jaccard | **99,72%** |
+| Métrica                  | Valor      |
+| ------------------------ | ---------- |
+| Genes no notebook        | 360        |
+| Genes esperados (Orange) | 359        |
+| Em comum                 | 358        |
+| Só no notebook           | 1          |
+| Só no Orange             | 0          |
+| Similaridade de Jaccard  | **99,72%** |
 
 **Status:** pipeline bate ≈99,7% com o baseline Orange. Os genes só no nosso output (tipicamente 1) correspondem a um **bug conhecido do `orange3-biosci.geo_soft_extractor`** — descarta Entrez IDs com 4 ou 5 dígitos (filtro `len(candidate) > 2` nas linhas 637 e 655), marcando como "?" e perdendo-os no Unique. Afeta ~139 probes de genes "antigos" (Entrez baixo): A2M (2), ACACB (32), ACADL (35), ACAT1 (38), ACP1 (52), etc.
 
@@ -393,12 +397,12 @@ Recorte do cluster KRT — nós principais: DSP (centro), KRT19, KRT15, KRT34/KR
 Diagrama do workflow Orange:
 
 - **GSE45216 — AK vs SCC** → Unique (2) → ramos:
-  - *Differential Expression* com `logFC ≤ −0,15 ou logFC ≥ 0,15`
-  - *Differential Expression* com `p-value ≤ 0,001`
+  - _Differential Expression_ com `logFC ≤ −0,15 ou logFC ≥ 0,15`
+  - _Differential Expression_ com `p-value ≤ 0,001`
 - **Merge Data** combina os dois ramos.
 - Em paralelo: **Melanome — Oncogenes** → Unique (3) → Merge Data (1) → Select Columns (1) → Edit Domain → `Nodes Cytoscape`.
 - Outro ramo: Select Columns → `Nodes String`.
-- **STRING Network** → *Select Physical (Experimental and Databases)* → *Extract only origin, destination and combined score* → Save Data.
+- **STRING Network** → _Select Physical (Experimental and Databases)_ → _Extract only origin, destination and combined score_ → Save Data.
 
 ---
 
@@ -412,23 +416,13 @@ Demais clusters menores, alguns com 2–3 nós: vários pares isolados (sem rotu
 
 ---
 
-# Perspectivas Futuras
-
-- A
-- B
-- C
-
-*(placeholders — a preencher)*
-
----
-
 # Discussão
 
 - A
 - B
 - C
 
-*(placeholders — a preencher)*
+_(placeholders — a preencher)_
 
 ---
 
@@ -438,17 +432,50 @@ Demais clusters menores, alguns com 2–3 nós: vários pares isolados (sem rotu
 - B
 - C
 
-*(placeholders — a preencher)*
+_(placeholders — a preencher)_
 
 ---
 
-# Trabalhos Futuros
+# Trabalhos Futuros (1/3) — Enriquecimento do Grafo
 
-- A
-- B
-- C
+| Atributos de Nó                                                                                                                                                                                                                                                                                | Atributos de Aresta                                                                                                                                                        | Nós Heterogêneos                                                                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Embeddings de proteína ([ESM-2](https://github.com/facebookresearch/esm))                                                                                                                                                                                                                      | [STRING](https://string-db.org/) completo (7 features por aresta, ao invés de apenas topologia)                                                                            | **miRNAs** — TCGA-SKCM miRSeq ([Firehose](https://gdac.broadinstitute.org/)) + [miRTarBase](https://mirtarbase.cuhk.edu.cn/)                                              |
+| **Embeddings estruturais** — [ESM-IF](https://github.com/facebookresearch/esm/tree/main/examples/inverse_folding) / [Foldseek](https://github.com/steineggerlab/foldseek) / [SaProt](https://github.com/westlake-repl/SaProt) sobre estruturas do [AlphaFold DB](https://alphafold.ebi.ac.uk/) | Outras redes mais detalhadas — [KEGG](https://www.kegg.jp/), [Reactome](https://reactome.org/), [SIGNOR](https://signor.uniroma2.it/), [OmniPath](https://omnipathdb.org/) | **Functional units** — KEGG KGML ([hsa04010](https://www.kegg.jp/pathway/hsa04010), [hsa05218](https://www.kegg.jp/pathway/hsa05218)) + [Reactome](https://reactome.org/) |
+| **Mutações somáticas** (BRAF, NRAS, TP53; [TCGA MC3 MAF](https://gdc.cancer.gov/about-data/publications/mc3-2017)) — flag categórica `[is_mutated, severity]` **ou** embedding sobre sequência mutada                                                                                          |                                                                                                                                                                            | **Drogas** — [DGIdb](https://www.dgidb.org/) + [Open Targets](https://platform.opentargets.org/) + [DrugBank](https://go.drugbank.com/)                                   |
+| Metilação ([TCGA 450K array](https://portal.gdc.cancer.gov/))                                                                                                                                                                                                                                  |                                                                                                                                                                            | ⚠ Consideravelmente mais complexo, pode não funcionar                                                                                                                    |
 
-*(placeholders — a preencher)*
+---
+
+# Trabalhos Futuros (2/3) — Escala e Pré-treinamento
+
+**Pré-treino auto-supervisionado** sobre [Recount3](https://rna.recount.bio/) (~750k) + [ARCHS4](https://maayanlab.cloud/archs4/) (~1.5M) — amostras de RNA-seq harmonizadas:
+
+- Masked-gene prediction, contrastive learning, edge prediction
+
+**Pré-treino supervisionado** sobre [TCGA pan-cancer](https://portal.gdc.cancer.gov/) (~10k amostras, 33 tipos)
+
+**Mais dados de melanoma**:
+
+- Expandir Class 2 (nevo): combinar [GSE3189](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE3189), [GSE15605](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE15605), [GSE46517](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE46517) ao [GSE112509](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE112509)
+- Validação externa: [GSE65904](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE65904) ([Cirenajwis 2015](https://doi.org/10.18632/oncotarget.4179)) — 214 melanomas suecos com sobrevida, independentes do TCGA; permite testar classificação, pseudotempo vs Kaplan-Meier e os 4 subtipos moleculares de Cirenajwis
+  - ⚠ Plataforma Affymetrix microarray — requer harmonização (ComBat / quantile) com RNA-seq do TCGA
+
+---
+
+# Trabalhos Futuros (3/3) — Generalização Biológica
+
+**Composição celular** — controlar viés causado pela composição diferente de cada tecido (especialmente metástases)
+
+- **Deconvolução** ([CIBERSORTx](https://cibersortx.stanford.edu/), [MuSiC](https://github.com/xuranw/MuSiC), [EPIC](https://github.com/GfellerLab/EPIC)) — estima fração de cada tipo celular (melanócito, TIL, fibroblasto, queratinócito) por amostra e usa para normalizar a análise.
+- **Single-cell** ([Tirosh 2016](https://doi.org/10.1126/science.aad0501), [Jerby-Arnon 2018](https://doi.org/10.1016/j.cell.2018.09.006)) — resolução nativa por tipo celular; pseudo-bulk para alinhar com o pipeline atual
+
+**Estender o escopo novamente** — incluir Pele Normal, Carcinoma Basocelular (BCC), Carcinoma Espinocelular (SCC) e Queratose Actínica
+
+- Datasets já mapeados: [GSE7553](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE7553), [GSE45216](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE45216), [GSE53462](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE53462)
+- A partir de uma origem comum (pele normal), o modelo compara **dois eixos paralelos de transformação**:
+  - **Melanocítica**: pele normal → nevo → melanoma primário → metástase
+  - **Queratinocítica**: pele normal → queratose actínica → SCC / BCC
 
 ---
 
@@ -457,9 +484,9 @@ Demais clusters menores, alguns com 2–3 nós: vários pares isolados (sem rotu
 - A
 - B
 - C
-- Veličković, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., & Bengio, Y. (2017). *Graph attention networks*. arXiv preprint arXiv:1710.10903.
+- Veličković, P., Cucurull, G., Casanova, A., Romero, A., Lio, P., & Bengio, Y. (2017). _Graph attention networks_. arXiv preprint arXiv:1710.10903.
 
-*(referências A, B, C — placeholders a preencher)*
+_(referências A, B, C — placeholders a preencher)_
 
 ---
 
